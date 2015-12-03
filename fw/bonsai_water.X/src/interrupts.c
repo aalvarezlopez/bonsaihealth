@@ -18,6 +18,8 @@
 #include <stdint.h>        /* Includes uint16_t definition */
 #include <stdbool.h>       /* Includes true/false definition */
 
+#include "log.h"
+#include "user.h"
 /******************************************************************************/
 /* Interrupt Vector Options                                                   */
 /******************************************************************************/
@@ -179,4 +181,16 @@ void _ISR _U1RXInterrupt()
         ch_receive = U1RXREG;
     }
     IFS0bits.U1RXIF = 0;
+}
+
+
+extern char esp_rx_buf[];
+unsigned int esp_n_rx = 0;
+void _ISR _U2RXInterrupt()
+{
+    if( U2STAbits.URXDA && !U2STAbits.OERR){
+        esp_rx_buf[esp_n_rx] = U2RXREG;
+		esp_n_rx++;
+    }
+    IFS1bits.U2RXIF = 0;
 }

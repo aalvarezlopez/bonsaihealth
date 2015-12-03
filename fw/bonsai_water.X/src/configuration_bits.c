@@ -41,14 +41,14 @@
 #pragma config WPEND = WPENDMEM         // Segment Write Protection End Page Select bit (Write Protect from WPFP to the last page of memory)
 
 // CONFIG2
-#pragma config POSCMOD = NONE           // Primary Oscillator Select (Primary oscillator disabled)
+#pragma config POSCMOD = HS           // Primary Oscillator Select (Primary oscillator disabled)
 #pragma config DISUVREG = ON            // Internal USB 3.3V Regulator Disable bit (Regulator is enabled)
 #pragma config IOL1WAY = ON             // IOLOCK One-Way Set Enable bit (Write RP Registers Once)
 #pragma config OSCIOFNC = ON            // Primary Oscillator Output Function (OSCO functions as port I/O (RC15))
 #pragma config FCKSM = CSDCMD           // Clock Switching and Monitor (Both Clock Switching and Fail-safe Clock Monitor are disabled)
-#pragma config FNOSC = FRCPLL           // Oscillator Select (Fast RC oscillator with Postscaler and PLL module (FRCPLL))
+#pragma config FNOSC = PRIPLL//FRCPLL           // Oscillator Select (Fast RC oscillator with Postscaler and PLL module (FRCPLL))
 #pragma config PLL_96MHZ = ON           // 96MHz PLL Disable (Enabled)
-#pragma config PLLDIV = DIV2            // USB 96 MHz PLL Prescaler Select bits (Oscillator input divided by 2 (8MHz input))
+#pragma config PLLDIV = DIV4            // USB 96 MHz PLL Prescaler Select bits  25/MHz/5 = 4 MHZ
 #pragma config IESO = ON                // Internal External Switch Over Mode (IESO mode (Two-speed start-up) enabled)
 
 // CONFIG1

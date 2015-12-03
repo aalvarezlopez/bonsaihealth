@@ -30,7 +30,7 @@
 #include "user.h"
 #include "log.h"
 
-#define I2C_BR_100KHz 157 /*  I2CxBRG value for 100 KHz baudrate @16 MIPs */
+#define I2C_BR_100KHz 60 /*  I2CxBRG value for 100 KHz baudrate @16 MIPs */
 
 /**
 * \brief Configure I2C peripheral to communicate with other IC in the board.
@@ -38,9 +38,9 @@
 uint8_t configureI2C()
 {
     /* Set desired baudrate of the bus */
-    I2C1BRG = I2C_BR_100KHz;
-    I2C1CON = 0;
-    I2C1CONbits.I2CEN = 1;
+    I2C3BRG = I2C_BR_100KHz;
+    I2C3CON = 0;
+    I2C3CONbits.I2CEN = 1;
 }
 
 
@@ -57,48 +57,48 @@ uint8_t configureI2C()
 int readSeqRegisters(uint8_t device_add, int address, int dlen, uint8_t *dout)
 {
     uint8_t nBytes;
-    I2C1CONbits.SEN = 1;
-    while(I2C1CONbits.SEN != 0)  continue;
-    I2C1TRN = device_add;
+    I2C3CONbits.SEN = 1;
+    while(I2C3CONbits.SEN != 0)  continue;
+    I2C3TRN = device_add;
 
-    while(I2C1STATbits.TBF)continue;
-    while(I2C1STATbits.TRSTAT) continue;
-    if(I2C1STATbits.ACKSTAT){
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
         LOG_WARN("I2C. Acknowledgement not received from device");
         return 0;
     }
-    I2C1TRN = (address & 0xFF);
+    I2C3TRN = (address & 0xFF);
 
-    while(I2C1STATbits.TBF)continue;
-    while(I2C1STATbits.TRSTAT) continue;
-    if(I2C1STATbits.ACKSTAT){
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
         LOG_WARN("I2C. Acknowledgement not received writting I2C dev address");
         return 0;
     }
 
-    I2C1CONbits.RSEN = 1; 
-    while(I2C1CONbits.RSEN != 0)  continue;
-    I2C1TRN = device_add + 1; /* I2C device address in read mode */
+    I2C3CONbits.RSEN = 1; 
+    while(I2C3CONbits.RSEN != 0)  continue;
+    I2C3TRN = device_add + 1; /* I2C device address in read mode */
 
-    while(I2C1STATbits.TBF)continue;
-    while(I2C1STATbits.TRSTAT) continue;
-    if(I2C1STATbits.ACKSTAT){
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
         LOG_WARN("I2C. Acknowledgement not received after restart and writting"\
             "register address");
         return 0;
     }
 
     for( nBytes = 0; nBytes<dlen; nBytes++){
-        I2C1CONbits.RCEN = 1;
-        while(I2C1CONbits.RCEN != 0)  continue;
-        *(dout+nBytes) = I2C1RCV ;
+        I2C3CONbits.RCEN = 1;
+        while(I2C3CONbits.RCEN != 0)  continue;
+        *(dout+nBytes) = I2C3RCV ;
         /*  Send nack when last byte was already sent */
-        I2C1CONbits.ACKDT = 1 ? nBytes!=dlen-1 : 0;
-        I2C1CONbits.ACKEN = 1;
+        I2C3CONbits.ACKDT = 1 ? nBytes!=dlen-1 : 0;
+        I2C3CONbits.ACKEN = 1;
     }
 
-    I2C1CONbits.PEN = 1;
-    while(I2C1CONbits.PEN != 0)  continue;
+    I2C3CONbits.PEN = 1;
+    while(I2C3CONbits.PEN != 0)  continue;
     for(int i=0;i<1000; i++)
         continue;
     return 1;
@@ -113,44 +113,79 @@ int readSeqRegisters(uint8_t device_add, int address, int dlen, uint8_t *dout)
  */
 int readRegister(uint8_t device_add, int address, int *value)
 {
-    I2C1CONbits.SEN = 1;
-    while(I2C1CONbits.SEN != 0)  continue;
-    I2C1TRN = device_add;
+    I2C3CONbits.SEN = 1;
+    while(I2C3CONbits.SEN != 0)  continue;
+    I2C3TRN = device_add;
 
-    while(I2C1STATbits.TBF)continue;
-    while(I2C1STATbits.TRSTAT) continue;
-    if(I2C1STATbits.ACKSTAT){
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
         LOG_WARN("I2C. Acknowledgement not received from device");
         return 0;
     }
-    I2C1TRN = (address & 0xFF);
+    I2C3TRN = (address & 0xFF);
 
-    while(I2C1STATbits.TBF)continue;
-    while(I2C1STATbits.TRSTAT) continue;
-    if(I2C1STATbits.ACKSTAT){
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
         LOG_WARN("I2C. Acknowledgement not received writting I2C dev address");
         return 0;
     }
 
-    I2C1CONbits.RSEN = 1; 
-    while(I2C1CONbits.RSEN != 0)  continue;
-    I2C1TRN = device_add + 1; /* I2C device address in write mode */
+    I2C3CONbits.RSEN = 1; 
+    while(I2C3CONbits.RSEN != 0)  continue;
+    I2C3TRN = device_add + 1; /* I2C device address in write mode */
 
-    while(I2C1STATbits.TBF)continue;
-    while(I2C1STATbits.TRSTAT) continue;
-    if(I2C1STATbits.ACKSTAT){
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
         LOG_WARN("I2C. Acknowledgement not received after restart and writting"\
             "register address");
         return 0;
     }
 
-    I2C1CONbits.RCEN = 1;
-    while(I2C1CONbits.RCEN != 0)  continue;
-    *value = I2C1RCV ;
-    I2C1CONbits.ACKDT = 1;
-    I2C1CONbits.ACKEN = 1;
-    I2C1CONbits.PEN = 1;
-    while(I2C1CONbits.PEN != 0)  continue;
+    I2C3CONbits.RCEN = 1;
+    while(I2C3CONbits.RCEN != 0)  continue;
+    *value = I2C3RCV ;
+    I2C3CONbits.ACKDT = 1;
+    I2C3CONbits.ACKEN = 1;
+    I2C3CONbits.PEN = 1;
+    while(I2C3CONbits.PEN != 0)  continue;
+    for(int i=0;i<1000; i++)
+        continue;
+    return 1;
+}
+
+
+
+/**
+ * @brief Read one value from device address
+ *
+ * @param device_add
+ * @param value
+ *
+ * @return 
+ */
+int read(uint8_t device_add, int *value)
+{
+    I2C3CONbits.SEN = 1;
+    while(I2C3CONbits.SEN != 0)  continue;
+    I2C3TRN = device_add + 1;
+
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
+        LOG_WARN("I2C. Acknowledgement not received reading");
+        return 0;
+    }
+
+    I2C3CONbits.RCEN = 1;
+    while(I2C3CONbits.RCEN != 0)  continue;
+    *value = I2C3RCV ;
+    I2C3CONbits.ACKDT = 1;
+    I2C3CONbits.ACKEN = 1;
+    I2C3CONbits.PEN = 1;
+    while(I2C3CONbits.PEN != 0)  continue;
     for(int i=0;i<1000; i++)
         continue;
     return 1;
@@ -171,44 +206,44 @@ int readRegister(uint8_t device_add, int address, int *value)
 int writeSeqRegisters(uint8_t device_add, int address, int dlen, uint8_t *din)
 {
     unsigned int n_bytes;
-    I2C1CONbits.SEN = 1;
-    while(I2C1CONbits.SEN != 0)  continue;
-    I2C1TRN = device_add; /* I2C device address in write mode */
+    I2C3CONbits.SEN = 1;
+    while(I2C3CONbits.SEN != 0)  continue;
+    I2C3TRN = device_add; /* I2C device address in write mode */
 
-    while(I2C1STATbits.TBF)continue;
-    while(I2C1STATbits.TRSTAT) continue;
-    if(I2C1STATbits.ACKSTAT){
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
         LOG_WARN("I2C. Acknowledgement not received from device");
-        I2C1CONbits.PEN = 1;
-        while(I2C1CONbits.PEN != 0)  continue;
+        I2C3CONbits.PEN = 1;
+        while(I2C3CONbits.PEN != 0)  continue;
         return 0;
     }
-    I2C1TRN = address;
+    I2C3TRN = address;
 
-    while(I2C1STATbits.TBF)continue;
-    while(I2C1STATbits.TRSTAT) continue;
-    if(I2C1STATbits.ACKSTAT){
-        I2C1CONbits.PEN = 1;
-        while(I2C1CONbits.PEN != 0)  continue;
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
+        I2C3CONbits.PEN = 1;
+        while(I2C3CONbits.PEN != 0)  continue;
         LOG_WARN("I2C. Acknowledgement not received after writting"\
             "register address");
         return 0;
     }
     for(n_bytes = 0; n_bytes < dlen; n_bytes++){
-        I2C1TRN = *(din+n_bytes);
+        I2C3TRN = *(din+n_bytes);
 
-        while(I2C1STATbits.TBF) continue;
-        while(I2C1STATbits.TRSTAT) continue;
-        if(I2C1STATbits.ACKSTAT){
-            I2C1CONbits.PEN = 1;
-            while(I2C1CONbits.PEN != 0)  continue;
+        while(I2C3STATbits.TBF) continue;
+        while(I2C3STATbits.TRSTAT) continue;
+        if(I2C3STATbits.ACKSTAT){
+            I2C3CONbits.PEN = 1;
+            while(I2C3CONbits.PEN != 0)  continue;
             LOG_WARN("I2C. Acknowledgement not received after writting"\
                 "register address");
             return n_bytes;
         }
     }
-    I2C1CONbits.PEN = 1;
-    while(I2C1CONbits.PEN != 0)  continue;
+    I2C3CONbits.PEN = 1;
+    while(I2C3CONbits.PEN != 0)  continue;
     return n_bytes;
 }
 
@@ -222,40 +257,40 @@ int writeSeqRegisters(uint8_t device_add, int address, int dlen, uint8_t *din)
  */
 int writeRegister(uint8_t device_add, int address, int value)
 {
-    I2C1CONbits.SEN = 1;
-    while(I2C1CONbits.SEN != 0)  continue;
-    I2C1TRN = device_add; /* I2C device address in write mode */
+    I2C3CONbits.SEN = 1;
+    while(I2C3CONbits.SEN != 0)  continue;
+    I2C3TRN = device_add; /* I2C device address in write mode */
 
-    while(I2C1STATbits.TBF)continue;
-    while(I2C1STATbits.TRSTAT) continue;
-    if(I2C1STATbits.ACKSTAT){
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
         LOG_WARN("I2C. Acknowledgement not received from device");
-        I2C1CONbits.PEN = 1;
-        while(I2C1CONbits.PEN != 0)  continue;
+        I2C3CONbits.PEN = 1;
+        while(I2C3CONbits.PEN != 0)  continue;
         return 0;
     }
-    I2C1TRN = address;
+    I2C3TRN = address;
 
-    while(I2C1STATbits.TBF)continue;
-    while(I2C1STATbits.TRSTAT) continue;
-    if(I2C1STATbits.ACKSTAT){
-        I2C1CONbits.PEN = 1;
-        while(I2C1CONbits.PEN != 0)  continue;
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
+        I2C3CONbits.PEN = 1;
+        while(I2C3CONbits.PEN != 0)  continue;
         LOG_WARN("I2C. Acknowledgement not received after writting register address");
         return 0;
     }
-    I2C1TRN = value;
+    I2C3TRN = value;
 
-    while(I2C1STATbits.TBF)continue;
-    while(I2C1STATbits.TRSTAT) continue;
-    if(I2C1STATbits.ACKSTAT){
-        I2C1CONbits.PEN = 1;
-        while(I2C1CONbits.PEN != 0)  continue;
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
+        I2C3CONbits.PEN = 1;
+        while(I2C3CONbits.PEN != 0)  continue;
         LOG_WARN("I2C. Acknowledgement not received after writting register address");
         return 0;
     }
-    I2C1CONbits.PEN = 1;
-    while(I2C1CONbits.PEN != 0)  continue;
+    I2C3CONbits.PEN = 1;
+    while(I2C3CONbits.PEN != 0)  continue;
     return 1;
 }
 
@@ -273,33 +308,33 @@ int writeRegister(uint8_t device_add, int address, int value)
 int writeI2Cdata( uint8_t device_add, uint8_t *data, uint8_t nData)
 {
     unsigned int n_bytes;
-    I2C1CONbits.SEN = 1;
-    while(I2C1CONbits.SEN != 0)  continue;
-    I2C1TRN = device_add; /* I2C device address in write mode */
+    I2C3CONbits.SEN = 1;
+    while(I2C3CONbits.SEN != 0)  continue;
+    I2C3TRN = device_add; /* I2C device address in write mode */
 
-    while(I2C1STATbits.TBF)continue;
-    while(I2C1STATbits.TRSTAT) continue;
-    if(I2C1STATbits.ACKSTAT){
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
         LOG_WARN("I2C. Acknowledgement not received from device");
-        I2C1CONbits.PEN = 1;
-        while(I2C1CONbits.PEN != 0)  continue;
+        I2C3CONbits.PEN = 1;
+        while(I2C3CONbits.PEN != 0)  continue;
         return 0;
     }
 
     for(n_bytes = 0; n_bytes < nData; n_bytes++){
-        I2C1TRN = *(data+n_bytes);
+        I2C3TRN = *(data+n_bytes);
 
-        while(I2C1STATbits.TBF) continue;
-        while(I2C1STATbits.TRSTAT) continue;
-        if(I2C1STATbits.ACKSTAT){
-            I2C1CONbits.PEN = 1;
-            while(I2C1CONbits.PEN != 0)  continue;
+        while(I2C3STATbits.TBF) continue;
+        while(I2C3STATbits.TRSTAT) continue;
+        if(I2C3STATbits.ACKSTAT){
+            I2C3CONbits.PEN = 1;
+            while(I2C3CONbits.PEN != 0)  continue;
             LOG_WARN("I2C. Acknowledgement not received after writting");
             return n_bytes;
         }
     }
-    I2C1CONbits.PEN = 1;
-    while(I2C1CONbits.PEN != 0)  continue;
+    I2C3CONbits.PEN = 1;
+    while(I2C3CONbits.PEN != 0)  continue;
     return n_bytes;
 }
 
@@ -313,11 +348,11 @@ int writeI2Cdata( uint8_t device_add, uint8_t *data, uint8_t nData)
  */
 int isDevAvailable(uint8_t device_add)
 {
-    I2C1CONbits.SEN = 1;
-    while(I2C1CONbits.SEN != 0)  continue;
-    I2C1TRN = device_add; /* I2C device address in write mode */
+    I2C3CONbits.SEN = 1;
+    while(I2C3CONbits.SEN != 0)  continue;
+    I2C3TRN = device_add; /* I2C device address in write mode */
 
-    while(I2C1STATbits.TBF)continue;
-    while(I2C1STATbits.TRSTAT) continue;
-    return 0u ? I2C1STATbits.ACKSTAT : 1u;
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    return 0u ? I2C3STATbits.ACKSTAT : 1u;
 }

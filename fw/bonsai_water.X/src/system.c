@@ -59,3 +59,7 @@ void ConfigureOscillator(void)
         
 }
 
+void __attribute__((interrupt,auto_psv)) _USB1Interrupt()
+{
+    USBDeviceTasks();
+}

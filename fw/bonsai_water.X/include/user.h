@@ -8,6 +8,7 @@
 /* User Function Prototypes                                                   */
 /******************************************************************************/
 #define PUMP PORTGbits.RG6
+#define MUX_EN PORTEbits.RE5
 
 /* TODO User level functions prototypes (i.e. InitApp) go here */
 

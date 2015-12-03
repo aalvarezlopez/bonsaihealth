@@ -1,108 +1,50 @@
-#
-#  There exist several targets which are by default empty and which can be 
-#  used for execution of your targets. These targets are usually executed 
-#  before and after some main targets. They are: 
-#
-#     .build-pre:              called before 'build' target
-#     .build-post:             called after 'build' target
-#     .clean-pre:              called before 'clean' target
-#     .clean-post:             called after 'clean' target
-#     .clobber-pre:            called before 'clobber' target
-#     .clobber-post:           called after 'clobber' target
-#     .all-pre:                called before 'all' target
-#     .all-post:               called after 'all' target
-#     .help-pre:               called before 'help' target
-#     .help-post:              called after 'help' target
-#
-#  Targets beginning with '.' are not intended to be called on their own.
-#
-#  Main targets can be executed directly, and they are:
-#  
-#     build                    build a specific configuration
-#     clean                    remove built files from a configuration
-#     clobber                  remove all built files
-#     all                      build all configurations
-#     help                     print help mesage
-#  
-#  Targets .build-impl, .clean-impl, .clobber-impl, .all-impl, and
-#  .help-impl are implemented in nbproject/makefile-impl.mk.
-#
-#  Available make variables:
-#
-#     CND_BASEDIR                base directory for relative paths
-#     CND_DISTDIR                default top distribution directory (build artifacts)
-#     CND_BUILDDIR               default top build directory (object files, ...)
-#     CONF                       name of current configuration
-#     CND_ARTIFACT_DIR_${CONF}   directory of build artifact (current configuration)
-#     CND_ARTIFACT_NAME_${CONF}  name of build artifact (current configuration)
-#     CND_ARTIFACT_PATH_${CONF}  path to build artifact (current configuration)
-#     CND_PACKAGE_DIR_${CONF}    directory of package (current configuration)
-#     CND_PACKAGE_NAME_${CONF}   name of package (current configuration)
-#     CND_PACKAGE_PATH_${CONF}   path to package (current configuration)
-#
-# NOCDDL
+TARGET = bonsai
+VERSION_MINOR = 1
+VERSION_MAJOR= 0
+VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
+C_FILES := $(wildcard src/*.c)
+OBJ_FILES := $(addprefix obj/,$(notdir $(C_FILES:.c=.o)))
+LD_FLAGS := -mcpu=24FJ64GB106 -omf=elf\
+	-Wl,--defsym=__MPLAB_BUILD=1,,--script=p24FJ64GB106.gld\
+	-Wl,--stack=16,--check-sections,--data-init,--pack-data\
+	-Wl,--handles,--isr,--no-gc-sections,--fill-upper=0,\
+	-Wl,--stackguard=16,--no-force-link,--smart-io,\
+	-Wl,-Map="out/$(TARGET).map",--report-me
+CC_FLAGS := -mcpu=24FJ64GB106 \
+	-g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off -std=gnu99
+INCLUDE := -I ./include -I ./lib/inc
+CC = /opt/microchip/xc16/v1.11/bin/xc16-gcc
+BIN2HEX = "/opt/microchip/xc16/v1.11/bin"/xc16-bin2hex 
+GIT_HASH := $(shell git rev-parse --short HEAD)
 
 
-# Environment 
-MKDIR=mkdir
-CP=cp
-CCADMIN=CCadmin
-RANLIB=ranlib
+LIB_FILES := $(wildcard lib/src/*.c)
+LIB_OBJ := $(addprefix lib/obj/,$(notdir $(LIB_FILES:.c=.o)))
+LIB_INCLUDES := -I ./lib/inc -I ./include
 
+default: $(TARGET) $(LIB_OBJ)
+.PHONY: program clean
 
-# build
-build: .build-post
+$(TARGET): $(OBJ_FILES) $(LIB_OBJ)
+	@mkdir -p out
+	@$(CC)   -o out/$(TARGET).elf  $^ $(LD_FLAGS)
+	@$(BIN2HEX) "out/$(TARGET).elf" -a  -omf=elf 
 
-.build-pre:
-# Add your pre 'build' code here...
+lib/obj/%.o: lib/src/%.c
+	@mkdir -p lib/obj
+	$(CC) -c -o $@ $< $(CC_FLAGS) $(LIB_INCLUDES)\
+		-DHASH=$(GIT_HASH) -DVERSION=$(VERSION)
 
-.build-post: .build-impl
-# Add your post 'build' code here...
+obj/%.o: src/%.c
+	@mkdir -p obj
+	$(CC) -c -o $@ $< $(CC_FLAGS) $(INCLUDE)\
+		-DHASH=$(GIT_HASH) -DVERSION=$(VERSION)
 
+program: $(TARGET)
+	@pk2cmd -P -M -F./out/$(TARGET).hex -T -R
 
-# clean
-clean: .clean-post
-
-.clean-pre:
-# Add your pre 'clean' code here...
-
-.clean-post: .clean-impl
-# Add your post 'clean' code here...
-
-
-# clobber
-clobber: .clobber-post
-
-.clobber-pre:
-# Add your pre 'clobber' code here...
-
-.clobber-post: .clobber-impl
-# Add your post 'clobber' code here...
-
-
-# all
-all: .all-post
-
-.all-pre:
-# Add your pre 'all' code here...
-
-.all-post: .all-impl
-# Add your post 'all' code here...
-
-
-# help
-help: .help-post
-
-.help-pre:
-# Add your pre 'help' code here...
-
-.help-post: .help-impl
-# Add your post 'help' code here...
-
-
-
-# include project implementation makefile
-include nbproject/Makefile-impl.mk
-
-# include project make variables
-include nbproject/Makefile-variables.mk
+clean:
+	@rm ./obj/*.o -f
+	@rm ./lib/obj/*.o -f
+	@rm ./out/$(TARGET).elf -f
+	@rm ./out/$(TARGET).hex -f

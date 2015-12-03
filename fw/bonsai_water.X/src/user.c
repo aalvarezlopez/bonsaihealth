@@ -22,6 +22,7 @@
 #include "user.h"            /* variables/params used by user.c */
 /* Include functions needed to print out message through FTDI */
 #include "i2c.h"
+#include "adc.h"
 
 #define _XTAL_FREQ  8000000     // oscillator frequency for _delay()
 
@@ -34,10 +35,13 @@
 void InitApp(void)
 {
 	//configure I/O
-	AD1PCFG = 0xFFFF;
+	AD1PCFG = 0xFFFFFFFF;
 
 	TRISG = TRISG & ~(1 << 6);
+	TRISE = TRISE & ~(1 << 5);
+	MUX_EN = 0;
 
 	configureI2C();
+	configureADC();
 }
 
