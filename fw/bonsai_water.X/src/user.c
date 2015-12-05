@@ -20,9 +20,8 @@
 #include <stdio.h>
 
 #include "user.h"            /* variables/params used by user.c */
-/* Include functions needed to print out message through FTDI */
-#include "i2c.h"
-#include "adc.h"
+#include "log.h"
+#include "datastorage.h"
 
 #define _XTAL_FREQ  8000000     // oscillator frequency for _delay()
 
@@ -43,5 +42,32 @@ void InitApp(void)
 
 	configureI2C();
 	configureADC();
+	storageInit();
+	InitRTCC();
 }
 
+
+void RTCC_Alarm_TASK()
+{
+    char str[100];
+	uint8_t temperature = readTemperature();
+	uint8_t week_day, hour, minutes, seconds;
+	uint8_t year, month, day;
+    uint8_t soil_wet, light_val;
+	soilTask();
+	lightSensorTask();
+	LOG_DBG("ALARMA");
+	soil_wet = getSoilWet();
+	light_val = getLight();
+	rtccReadClock( &week_day, &hour, &minutes, &seconds);
+	rtccReadDate(&year, &month, &day);
+	sprintf( str, "Temperature: %d Soil: %d Light: %d %d:%d:%d %d/%d/%d", temperature,\
+		soil_wet, light_val, hour, minutes, seconds, day, month, year);
+	LOG_DBG(str);
+	storage_data data;
+	data.temperature = temperature;
+	data.soil = soil_wet;
+	data.light = light_val;
+	storageAppendData( data );
+	IFS3bits.RTCIF = 0;
+}

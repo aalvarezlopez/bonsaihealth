@@ -48,7 +48,6 @@ extern unsigned int esp_n_rx;
 int16_t main(void)
 {
     uint8_t buffer[] = {1,2,4,5,6};
-    uint8_t soil_wet, light_val;
     char str[100];
     /* Configure the oscillator for the device */
     ConfigureOscillator();
@@ -80,17 +79,9 @@ int16_t main(void)
     eepromWrite(2,0,buffer);
     while(1)
     {
-		uint8_t temperature = readTemperature();
-		soilTask();
-		lightSensorTask();
 		espAttention();
 		/* esp_n_rx should be reset once read reply */
 		esp_n_rx = 0;
-		soil_wet = getSoilWet();
-		light_val = getLight();
-		sprintf( str, "Temperature: %d Soil: %d Light: %d", temperature,\
-			soil_wet, light_val);
-		LOG_DBG(str);
         //eepromRead(4,0,buffer);
         if( USBGetDeviceState() < CONFIGURED_STATE ){
 		} else if ( USBIsDeviceSuspended() == true ) {
