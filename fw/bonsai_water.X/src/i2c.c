@@ -91,10 +91,11 @@ int readSeqRegisters(uint8_t device_add, int address, int dlen, uint8_t *dout)
     for( nBytes = 0; nBytes<dlen; nBytes++){
         I2C3CONbits.RCEN = 1;
         while(I2C3CONbits.RCEN != 0)  continue;
-        *(dout+nBytes) = I2C3RCV ;
+        *(dout+nBytes) = (I2C3RCV & 0xFF) ;
         /*  Send nack when last byte was already sent */
-        I2C3CONbits.ACKDT = 1 ? nBytes!=dlen-1 : 0;
+        I2C3CONbits.ACKDT = ( nBytes!=dlen-1 ) ? 0 : 1;
         I2C3CONbits.ACKEN = 1;
+        while( I2C3CONbits.ACKEN != 0 ) continue;
     }
 
     I2C3CONbits.PEN = 1;

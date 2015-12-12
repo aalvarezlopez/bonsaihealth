@@ -30,6 +30,15 @@
 #include "log.h"
 
 
+enum MASK{
+	EVERY_SECOND = 1,
+	EVERY_10_SECONDS ,
+	EVERY_MINUTE,
+	EVERY_10_MIN,
+	EVERY_HOUR,
+	EVERY_10_HOURS
+};
+
 /**
  * @brief Configure RTCC peripheral and enable SOSC
  */
@@ -149,7 +158,7 @@ void rtccSetDate( uint8_t year, uint8_t month, uint8_t day)
 void configureAlarm()
 {
 	ALCFGRPTbits.CHIME = 1;
-	ALCFGRPTbits.AMASK = 3;
+	ALCFGRPTbits.AMASK = EVERY_10_MIN;
 	rtccUnlock();
 	ALCFGRPTbits.ALRMPTR = 2;
 	ALRMVAL =  0;

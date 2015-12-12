@@ -27,6 +27,7 @@
 #include "stdint.h"
 #include "eeprom.h"
 #include "datastorage.h"
+#include "log.h"
 /**
  * EXTERNAL EEPROM CONFIGURATION
  */
@@ -90,12 +91,14 @@ void storageInit()
 	if (eepromRead( HEADER_SIZE, HEADER_ADD, buffer)){
 		_next_position = buffer[NEXTPOS_ADD];
 		_overrunflag = buffer[STATUS_ADD] & ORF_MASK ;
-		if ( buffer[STATUS_ADD] & CODE_MASK != EEPROM_CODE ){
+		if ( (buffer[STATUS_ADD] & CODE_MASK) != EEPROM_CODE ){
+			LOG_DBG("EEPROM without format");
 			_next_position = 0;
 			_overrunflag = NOT_OVR;
 			storageUpdateSt();
 		}
 	} else {
+		LOG_DBG("Error reading EEPROM");
 		_next_position = 0;
 		_overrunflag = NOT_OVR;
 	}
@@ -121,15 +124,20 @@ void storageUpdateSt()
 void storageAppendData( storage_data to_write )
 {
 	uint16_t address = HEADER_SIZE + ( _next_position * DATA_SIZE);
+	char str[50];
 
 	/* End of data address should be lower than size */
 	if( ( address + DATA_SIZE ) > MEM_SIZE ){
+		LOG_DBG("memory overflow");
 		_overrunflag = IS_OVR;
 		_next_position = 0;
 		address = HEADER_SIZE;
 	}
+	sprintf(str, "ADD %x OR %x NEXT_POS %x", address, _overrunflag, _next_position);
+	LOG_DBG(str);
 	eepromWrite( DATA_SIZE, address, (uint8_t*) &to_write);
 	storageUpdateSt();
+	_next_position++;
 }
 
 

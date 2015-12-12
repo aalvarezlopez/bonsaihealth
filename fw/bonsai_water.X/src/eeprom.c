@@ -25,7 +25,7 @@
 
 #define MAX_RETRIES 10
 #define PAGE_SIZE 16
-#define EEPROM_SIZE 128
+#define EEPROM_SIZE 256
 
 #define DEV_ADD 0xA0
 
@@ -56,7 +56,8 @@ uint8_t eepromWrite(unsigned int nBytes, unsigned int address, uint8_t *din)
 			bytes_to_boundaries < (nBytes - bytes_written) ? bytes_to_boundaries :
 			(nBytes - bytes_written);
 		unsigned int last_bytes_written = 
-			writeSeqRegisters(DEV_ADD, address, bytes_to_write, din+bytes_written);
+			writeSeqRegisters(DEV_ADD, address,\
+				bytes_to_write, din+bytes_written);
 		if ( last_bytes_written == 0 ){
 			n_retries++;
 		} else {
@@ -96,7 +97,7 @@ uint8_t eepromRead(unsigned int nBytes, unsigned int address, uint8_t *dout)
 
 	while( bytes_read < nBytes ){
 		unsigned int last_bytes_read =
-			readSeqRegisters(DEV_ADD, address, nBytes, dout);
+			readSeqRegisters(DEV_ADD, address, nBytes - bytes_read, dout+bytes_read);
 		bytes_read += last_bytes_read;
 		address += last_bytes_read;
 
@@ -111,4 +112,17 @@ uint8_t eepromRead(unsigned int nBytes, unsigned int address, uint8_t *dout)
 		}
 	}
 	return (uint8_t)bytes_read;
+}
+
+void dumpMem()
+{
+	uint8_t mem[8];
+	char str[50];
+	for( int i = 0; i < 8; i++){
+		eepromRead(8, 8*i, mem);
+		sprintf(str, "%x : %x %x %x %x %x %x %x %x", i*8,
+			mem[0], mem[1], mem[2], mem[3], mem[4], mem[5],
+			mem[6], mem[7]);
+		LOG_DBG(str);
+	}
 }

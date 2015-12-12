@@ -22,6 +22,8 @@
 #include "user.h"            /* variables/params used by user.c */
 #include "log.h"
 #include "datastorage.h"
+#include "system.h"
+#include "libpic30.h"
 
 #define _XTAL_FREQ  8000000     // oscillator frequency for _delay()
 
@@ -40,8 +42,11 @@ void InitApp(void)
 	TRISE = TRISE & ~(1 << 5);
 	MUX_EN = 0;
 
+    configureLog();
+    initLog();
 	configureI2C();
 	configureADC();
+    soilInit();
 	storageInit();
 	InitRTCC();
 }
@@ -69,5 +74,6 @@ void RTCC_Alarm_TASK()
 	data.soil = soil_wet;
 	data.light = light_val;
 	storageAppendData( data );
+	//dumpMem();
 	IFS3bits.RTCIF = 0;
 }

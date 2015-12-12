@@ -25,5 +25,6 @@ enum ERRORCODE{
 
 uint8_t eepromWrite(unsigned int nBytes, unsigned int address, uint8_t *din);
 uint8_t eepromRead(unsigned int nBytes, unsigned int address, uint8_t *dout);
+void dumpMem();
 
 #endif
