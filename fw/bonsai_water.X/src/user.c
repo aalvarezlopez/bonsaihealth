@@ -59,7 +59,6 @@ void RTCC_Alarm_TASK()
 	uint8_t week_day, hour, minutes, seconds;
 	uint8_t year, month, day;
     uint8_t soil_wet, light_val;
-	soilTask();
 	lightSensorTask();
 	LOG_DBG("ALARMA");
 	soil_wet = getSoilWet();

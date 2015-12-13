@@ -20,6 +20,8 @@
 
 #include "log.h"
 #include "user.h"
+#include "esp8266.h"
+
 /******************************************************************************/
 /* Interrupt Vector Options                                                   */
 /******************************************************************************/
@@ -185,11 +187,11 @@ void _ISR _U1RXInterrupt()
 
 
 extern char esp_rx_buf[];
-unsigned int esp_n_rx = 0;
+extern uint16_t esp_n_rx;
 void _ISR _U2RXInterrupt()
 {
     if( U2STAbits.URXDA && !U2STAbits.OERR){
-        esp_rx_buf[esp_n_rx] = U2RXREG;
+        esp_rx_buf[esp_n_rx % ESP_MAX_IN_LEN] = U2RXREG;
 		esp_n_rx++;
     }
     IFS1bits.U2RXIF = 0;

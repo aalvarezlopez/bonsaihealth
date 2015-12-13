@@ -43,7 +43,6 @@
 /******************************************************************************/
 
 extern char esp_rx_buf[];
-extern unsigned int esp_n_rx;
 
 int16_t main(void)
 {
@@ -57,6 +56,7 @@ int16_t main(void)
 	USBDeviceAttach();
 	LOG_DBG("Device attached");
 	ESP8266Init();
+	LOG_DBG("ESP initializated");
 	#if 0
 	while(1){
 		espAttention();
@@ -75,10 +75,12 @@ int16_t main(void)
 	/* TODO <INSERT USER APPLICATION CODE HERE> */
 	while(1)
 	{
-		espAttention();
-		/* esp_n_rx should be reset once read reply */
-		esp_n_rx = 0;
+		if( IFS0bits.T1IF ){
+			soilTask();
+			IFS0bits.T1IF = 0;
+		}
 		if( USBGetDeviceState() < CONFIGURED_STATE ){
+			ESP8266Task();
 		} else if ( USBIsDeviceSuspended() == true ) {
 		} else {
 			APP_DeviceCDCEmulatorTasks();
