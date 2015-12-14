@@ -12,6 +12,9 @@ struct STORAGE{
 	uint8_t temperature;
 	uint8_t soil;
 	uint8_t light;
+	uint8_t hour;
+	uint8_t minutes;
+	uint8_t seconds;
 };
 
 typedef struct STORAGE storage_data;

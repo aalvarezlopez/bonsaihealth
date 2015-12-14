@@ -69,7 +69,6 @@ void soilTask()
 	triggerScan ( AI_SOIL );
 	while(!isConversionFinished()) { continue; }
 	soil_wet = getADCMean();
-	return;
 	addNewDataToBuffer(soil_wet);
 	if( pump_sal ){
 		if( wetSoil() ){
@@ -81,7 +80,7 @@ void soilTask()
 		}
 	}
 	pump_hal = pump_sal || ( dgn_pump_state && dgn_pump_ctrl);
-	PUMP = pump_sal;
+	PUMP = pump_hal;
 }
 
 uint8_t getSoilWet()
@@ -102,6 +101,7 @@ uint8_t drySoil()
 
 uint8_t wetSoil()
 {
+	char str[20];
 	uint8_t soil_is_wet = 1;
 	for( int i = 0; i < N_SOIL_ACQ; i++){
 		if( soil_wet_buffer[i] < raw_high_level ){

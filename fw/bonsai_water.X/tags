@@ -1,9 +1,13 @@
 APP_DeviceCDCEmulatorInitialize	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^void APP_DeviceCDCEmulatorInitialize()$/;"	f
 APP_DeviceCDCEmulatorTasks	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^void APP_DeviceCDCEmulatorTasks()$/;"	f
+CODE_MASK	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	35;"	d	file:
 CONNECTION_REQUEST_MSG	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	36;"	d	file:
+DATASTORAGE_H	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	9;"	d
 DATA_SENT	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	38;"	d	file:
+DATA_SIZE	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	48;"	d	file:
 DEFAULT_RAW_HIGH_LEVEL	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	39;"	d	file:
 DEFAULT_RAW_LOW_LEVEL	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	38;"	d	file:
+EEPROM_CODE	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	34;"	d	file:
 END_CHAR	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	105;"	d	file:
 ESP8266Init	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void ESP8266Init()$/;"	f
 ESP8266Task	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void ESP8266Task()$/;"	f
@@ -11,9 +15,14 @@ ESP_ST_CONNECTING	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266
 ESP_ST_SENDING	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_ST_SENDING,$/;"	e	enum:__anon1	file:
 ESP_ST_WAITING_CONNECTION	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_ST_WAITING_CONNECTION,$/;"	e	enum:__anon1	file:
 ESP_ST_WAITING_SENT	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_ST_WAITING_SENT$/;"	e	enum:__anon1	file:
+HEADER_ADD	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	40;"	d	file:
+HEADER_SIZE	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	39;"	d	file:
+HISTOGRAM	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	HISTOGRAM$/;"	e	enum:MENU_SELECTION	file:
+IS_OVR	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	37;"	d	file:
 InitApp	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/user.c	/^void InitApp(void)$/;"	f	signature:(void)
 MAIN_MENU	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	MAIN_MENU,$/;"	e	enum:MENU_SELECTION	file:
-MAIN_MENU_KEY	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	59;"	d	file:
+MAIN_MENU_KEY	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	63;"	d	file:
+MAIN_TO_HISTOGRAM	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	MAIN_TO_HISTOGRAM = 'h'$/;"	e	enum:__anon1	file:
 MAIN_TO_PUMP_CTRL	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	MAIN_TO_PUMP_CTRL = 'p',$/;"	e	enum:__anon1	file:
 MAIN_TO_SNAPSHOT	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	MAIN_TO_SNAPSHOT = 's',$/;"	e	enum:__anon1	file:
 MAIN_TO_TIME	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	MAIN_TO_TIME = 't',$/;"	e	enum:__anon1	file:
@@ -22,35 +31,56 @@ MAX_ESP_CMD_LEN	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c
 MAX_ESP_N_RANGE	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	42;"	d	file:
 MAX_HEADER_LEN	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	103;"	d	file:
 MAX_HTTP_SIZE	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	44;"	d	file:
-MAX_MSG_LEN	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	38;"	d	file:
+MAX_MSG_LEN	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	39;"	d	file:
+MEM_SIZE	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	49;"	d	file:
 MENU_SELECTION	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^enum MENU_SELECTION{$/;"	g	file:
 MSG_LEN_ARG_POS	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	106;"	d	file:
+NEW_DATA	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	NEW_DATA = 'n',$/;"	e	enum:__anon1	file:
 NEW_SNAPSHOT	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	NEW_SNAPSHOT = 'n',$/;"	e	enum:__anon1	file:
+NEXTPOS_ADD	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^	NEXTPOS_ADD,$/;"	e	enum:__anon1	file:
+NOT_OVR	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	36;"	d	file:
+N_ACQ	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/adc.c	31;"	d	file:
 N_SOIL_ACQ	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	36;"	d	file:
 NextUSBOut	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^unsigned char    NextUSBOut;$/;"	v
 NextUSBOut	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^unsigned char  NextUSBOut;$/;"	v
-PRINT_MAIN_MENU	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	80;"	d	file:
-PRINT_NEW_SNAPSHOT	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	87;"	d	file:
-PRINT_PUMP_CTRL	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	105;"	d	file:
-PRINT_SNAPSHOT_MENU	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	93;"	d	file:
-PRINT_WIFI_MENU	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	99;"	d	file:
-PUMP_CONTROL	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	PUMP_CONTROL$/;"	e	enum:MENU_SELECTION	file:
+ORF_MASK	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	46;"	d	file:
+PRINT_HIST_ERROR	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	112;"	d	file:
+PRINT_HIST_MENU	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	116;"	d	file:
+PRINT_MAIN_MENU	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	86;"	d	file:
+PRINT_NEW_HIST_DATA	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	105;"	d	file:
+PRINT_NEW_SNAPSHOT	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	94;"	d	file:
+PRINT_PUMP_CTRL	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	127;"	d	file:
+PRINT_SNAPSHOT_MENU	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	100;"	d	file:
+PRINT_WIFI_MENU	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	121;"	d	file:
+PUMP_CONTROL	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	PUMP_CONTROL,$/;"	e	enum:MENU_SELECTION	file:
 RTCC_Alarm_TASK	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/user.c	/^void RTCC_Alarm_TASK()$/;"	f
 SEND_DATA_RPLY_ACK	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	37;"	d	file:
 SNAPSHOT	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	SNAPSHOT,$/;"	e	enum:MENU_SELECTION	file:
 SPLIT_CHAR	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	104;"	d	file:
+STATUS_ADD	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^	STATUS_ADD$/;"	e	enum:__anon1	file:
+STORAGE	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^struct STORAGE{$/;"	s
+STORAGE::hour	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^	uint8_t hour;$/;"	m	struct:STORAGE	access:public
+STORAGE::light	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^	uint8_t light;$/;"	m	struct:STORAGE	access:public
+STORAGE::minutes	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^	uint8_t minutes;$/;"	m	struct:STORAGE	access:public
+STORAGE::seconds	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^	uint8_t seconds;$/;"	m	struct:STORAGE	access:public
+STORAGE::soil	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^	uint8_t soil;$/;"	m	struct:STORAGE	access:public
+STORAGE::temperature	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^	uint8_t temperature;$/;"	m	struct:STORAGE	access:public
 TIME	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	TIME,$/;"	e	enum:MENU_SELECTION	file:
 TMR1_PRESCALER	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	33;"	d	file:
 TMR1_PR_64	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	34;"	d	file:
 TMR1_TCY_SRC	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	35;"	d	file:
-TURN_OFF_PUMP_KEY	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	TURN_OFF_PUMP_KEY = '0'$/;"	e	enum:__anon1	file:
+TURN_OFF_PUMP_KEY	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	TURN_OFF_PUMP_KEY = '0',$/;"	e	enum:__anon1	file:
 TURN_ON_PUMP_KEY	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	TURN_ON_PUMP_KEY = '1',$/;"	e	enum:__anon1	file:
 USER_USB_CALLBACK_EVENT_HANDLER	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/main.c	/^bool USER_USB_CALLBACK_EVENT_HANDLER(USB_EVENT event, void *pdata, uint16_t size)$/;"	f	signature:(USB_EVENT event, void *pdata, uint16_t size)
 WIFI	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^	WIFI,$/;"	e	enum:MENU_SELECTION	file:
 _XTAL_FREQ	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/user.c	28;"	d	file:
+_data	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^static storage_data _data;$/;"	v	file:
 _hour	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^uint8_t _hour, _minutes, _seconds;$/;"	v
 _light_val	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^uint8_t _soil_wet, _light_val;$/;"	v
+_measurement_index	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^static uint8_t _measurement_index = 0;$/;"	v	file:
 _minutes	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^uint8_t _hour, _minutes, _seconds;$/;"	v
+_next_position	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^static uint8_t _next_position;$/;"	v	file:
+_overrunflag	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^static uint8_t _overrunflag;$/;"	v	file:
 _seconds	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^uint8_t _hour, _minutes, _seconds;$/;"	v
 _soil_wet	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^uint8_t _soil_wet, _light_val;$/;"	v
 _temperature	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^uint8_t _temperature = 0;$/;"	v
@@ -59,6 +89,7 @@ addNewDataToBuffer	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c
 clearBuffer	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void clearBuffer()$/;"	f
 clearBuffer	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void clearBuffer();$/;"	p	file:
 closeConnection	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void closeConnection()$/;"	f
+configureADC	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/adc.c	/^void configureADC()$/;"	f
 current_menu_selected	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^static uint8_t current_menu_selected = MAIN_MENU;$/;"	v	file:
 current_state	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint8_t current_state = ESP_ST_WAITING_CONNECTION;$/;"	v
 dgn_pump_ctrl	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	/^uint8_t dgn_pump_ctrl = 0;$/;"	v
@@ -74,16 +105,23 @@ esp_n_rx	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint
 esp_n_tx	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^uint16_t esp_n_tx = 0;$/;"	v
 esp_putch	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void esp_putch(char c)$/;"	f	signature:(char c)
 esp_rx_buf	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^char esp_rx_buf[ESP_MAX_IN_LEN];$/;"	v
+getADCMean	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/adc.c	/^uint8_t getADCMean()$/;"	f
+getADCValues	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/adc.c	/^uint8_t getADCValues(uint8_t n_channels, uint8_t *buffer)$/;"	f	signature:(uint8_t n_channels, uint8_t *buffer)
 getSoilWet	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	/^uint8_t getSoilWet()$/;"	f
 goToConnecting	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void goToConnecting()$/;"	f
 goToSending	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void goToSending()$/;"	f
+histogramSt	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^void histogramSt(char ch)$/;"	f	signature:(char ch)
+hour	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^	uint8_t hour;$/;"	m	struct:STORAGE	access:public
 isConnected	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint8_t isConnected()$/;"	f
 isConnectionRequest	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint8_t isConnectionRequest()$/;"	f
+isConversionFinished	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/adc.c	/^uint8_t isConversionFinished()$/;"	f
 isHttpSend	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint8_t isHttpSend()$/;"	f
 lastTransmission	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^USB_HANDLE  lastTransmission;$/;"	v
+light	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^	uint8_t light;$/;"	m	struct:STORAGE	access:public
 main	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/main.c	/^int16_t main(void)$/;"	f	signature:(void)
 mainMenuSt	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^void mainMenuSt(char ch)$/;"	f	signature:(char ch)
 main_page	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/http.h	/^char main_page[]={"<html><head>"$/;"	v
+minutes	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^	uint8_t minutes;$/;"	m	struct:STORAGE	access:public
 msg_from_esp	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^static uint8_t msg_from_esp[MAX_MSG_LEN];$/;"	v	file:
 msg_in	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^static uint8_t msg_in[MAX_MSG_LEN];$/;"	v	file:
 msg_len	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^static uint8_t msg_len = 0;$/;"	v	file:
@@ -100,14 +138,26 @@ pump_sal	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	/^static 
 raw_high_level	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	/^static uint8_t raw_high_level = DEFAULT_RAW_HIGH_LEVEL;$/;"	v	file:
 raw_low_level	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	/^static uint8_t raw_low_level = DEFAULT_RAW_LOW_LEVEL;$/;"	v	file:
 readyToSend	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint8_t readyToSend()$/;"	f
+seconds	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^	uint8_t seconds;$/;"	m	struct:STORAGE	access:public
 sendHTTP	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void sendHTTP(char *http)$/;"	f	signature:(char *http)
 sendMainPage	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void sendMainPage()$/;"	f
 snapshotSt	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^void snapshotSt(char ch)$/;"	f	signature:(char ch)
+soil	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^	uint8_t soil;$/;"	m	struct:STORAGE	access:public
 soilInit	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	/^void soilInit()$/;"	f
 soilTask	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	/^void soilTask()$/;"	f
 soil_wet	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	/^static uint8_t soil_wet = 0;$/;"	v	file:
 soil_wet_buffer	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	/^static uint8_t soil_wet_buffer[N_SOIL_ACQ];$/;"	v	file:
+storageAppendData	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^void storageAppendData( storage_data to_write );$/;"	p	signature:( storage_data to_write )
+storageAppendData	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^void storageAppendData( storage_data to_write )$/;"	f	signature:( storage_data to_write )
+storageGetData	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^uint8_t storageGetData( uint8_t index, storage_data *data );$/;"	p	signature:( uint8_t index, storage_data *data )
+storageGetData	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^uint8_t storageGetData( uint8_t index, storage_data *data )$/;"	f	signature:( uint8_t index, storage_data *data )
+storageInit	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^void storageInit()$/;"	f
+storageUpdateSt	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^void storageUpdateSt()$/;"	f
+storageUpdateSt	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^void storageUpdateSt();$/;"	p	file:
+storage_data	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^typedef struct STORAGE storage_data;$/;"	t	typeref:struct:STORAGE
+temperature	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^	uint8_t temperature;$/;"	m	struct:STORAGE	access:public
 timeSt	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^void timeSt()$/;"	f
+triggerScan	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/adc.c	/^void triggerScan( uint8_t channel )$/;"	f	signature:( uint8_t channel )
 usb_in_data	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^static uint8_t usb_in_data[CDC_DATA_IN_EP_SIZE];$/;"	v	file:
 usb_out_data	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^static uint8_t usb_out_data[CDC_DATA_OUT_EP_SIZE];$/;"	v	file:
 wetSoil	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/soil.c	/^uint8_t wetSoil()$/;"	f

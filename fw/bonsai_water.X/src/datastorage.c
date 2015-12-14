@@ -31,7 +31,7 @@
 /**
  * EXTERNAL EEPROM CONFIGURATION
  */
-#define EEPROM_CODE 0xA8
+#define EEPROM_CODE 0xA4
 #define CODE_MASK 0xFE
 #define NOT_OVR 0
 #define IS_OVR 1
@@ -45,7 +45,7 @@ enum{
 
 #define ORF_MASK 0x01
 
-#define DATA_SIZE 3
+#define DATA_SIZE sizeof(storage_data)
 #define MEM_SIZE 256
 
 

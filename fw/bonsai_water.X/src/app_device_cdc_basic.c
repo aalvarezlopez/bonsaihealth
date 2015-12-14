@@ -34,6 +34,7 @@
 
 #include "log.h"
 #include "esp8266.h"
+#include "datastorage.h"
 
 #define MAX_MSG_LEN 100
 /** VARIABLES ******************************************************/
@@ -44,6 +45,8 @@ static uint8_t msg_in[MAX_MSG_LEN];
 static uint8_t msg_out[MAX_MSG_LEN];
 static uint8_t msg_from_esp[MAX_MSG_LEN];
 static uint8_t msg_len = 0;
+static uint8_t _measurement_index = 0;
+static storage_data _data;
 
 extern uint8_t  dgn_pump_state;
 extern uint8_t dgn_pump_ctrl;
@@ -53,7 +56,8 @@ enum MENU_SELECTION{
 	TIME,
 	WIFI,
 	SNAPSHOT,
-	PUMP_CONTROL
+	PUMP_CONTROL,
+	HISTOGRAM
 };
 
 #define MAIN_MENU_KEY 'm'
@@ -62,9 +66,11 @@ enum{
 	MAIN_TO_WIFI = 'w',
 	MAIN_TO_SNAPSHOT = 's',
 	NEW_SNAPSHOT = 'n',
+	NEW_DATA = 'n',
 	MAIN_TO_PUMP_CTRL = 'p',
 	TURN_ON_PUMP_KEY = '1',
-	TURN_OFF_PUMP_KEY = '0'
+	TURN_OFF_PUMP_KEY = '0',
+	MAIN_TO_HISTOGRAM = 'h'
 };
 
 static uint8_t current_menu_selected = MAIN_MENU;
@@ -79,6 +85,7 @@ uint8_t _soil_wet, _light_val;
 
 #define PRINT_MAIN_MENU() do{\
 	sprintf(msg_out, "MAIN MENU\n\n\r[s] get snapshot\r\n"\
+		"[h] histogram\r\n"\
 		"[t] time menu\r\n"\
 		"[p] Pump manual control\r\n"\
 		"[w] wifi menu\r\n******\r\n");\
@@ -95,6 +102,21 @@ uint8_t _soil_wet, _light_val;
 		"[m] main menu\r\n******\r\n");\
 }while(0)
 
+#define PRINT_NEW_HIST_DATA() do{\
+	sprintf( msg_out, "[%d]Measure time %02d:%02d:%02d Temperature: %d"\
+		" Soil: %d Light: %d\r\n",_measurement_index,\
+		_data.hour, _data.minutes, _data.seconds,\
+		_data.temperature, _data.soil, _data.light);\
+}while(0)
+
+#define PRINT_HIST_ERROR() do{\
+	sprintf( msg_out, "Error reading historics\r\n");\
+}while(0)
+
+#define PRINT_HIST_MENU() do{\
+	sprintf(msg_out, "HISTOGRAM MENU\n\n\r[n] Get another old data\r\n"\
+		"[m] main menu\r\n******\r\n");\
+}while(0)
 
 #define PRINT_WIFI_MENU() do{\
 	sprintf(msg_out, "WIFI MENU:\n\r"\
@@ -151,6 +173,11 @@ void mainMenuSt(char ch)
 			dgn_pump_ctrl = 1;
 			current_menu_selected = PUMP_CONTROL;
 			break;
+		case MAIN_TO_HISTOGRAM:
+			PRINT_HIST_MENU();
+			current_menu_selected = HISTOGRAM;
+			_measurement_index = 0;
+			break;
 		case MAIN_MENU_KEY:
 		default:
 			PRINT_MAIN_MENU();
@@ -200,6 +227,27 @@ void snapshotSt(char ch)
 	}
 }
 
+void histogramSt(char ch)
+{
+	uint8_t week_day;
+	switch(ch){
+		case MAIN_MENU_KEY:
+			PRINT_MAIN_MENU();
+			current_menu_selected = MAIN_MENU;
+			break;
+		case NEW_DATA:
+			if(storageGetData( _measurement_index, &_data )){
+				PRINT_NEW_HIST_DATA();
+				_measurement_index++;
+			} else {
+				PRINT_HIST_ERROR();
+			}
+			break;
+		default:
+			PRINT_SNAPSHOT_MENU();
+	}
+}
+
 void pumpCtrlSt( char ch )
 {
 	switch(ch){
@@ -240,6 +288,9 @@ void parseMsg()
 					break;
 				case PUMP_CONTROL:
 					pumpCtrlSt(msg_in[i-1]);
+					break;
+				case HISTOGRAM:
+					histogramSt(msg_in[i-1]);
 					break;
 				default:
 					current_menu_selected = MAIN_MENU;

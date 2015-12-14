@@ -72,6 +72,9 @@ void RTCC_Alarm_TASK()
 	data.temperature = temperature;
 	data.soil = soil_wet;
 	data.light = light_val;
+	data.hour = hour;
+	data.minutes = minutes;
+	data.seconds = seconds;
 	storageAppendData( data );
 	//dumpMem();
 	IFS3bits.RTCIF = 0;
