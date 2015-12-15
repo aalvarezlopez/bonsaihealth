@@ -60,6 +60,12 @@ enum{
 // +------------------------------------+
 // |position 1 light                    |
 // +------------------------------------+
+// |position 1 hour                     |
+// +------------------------------------+
+// |position 1 minutes                  |
+// +------------------------------------+
+// |position 1 seconds                  |
+// +------------------------------------+
 // | position 2 temperature       | PS  |
 // +------------------------------------|
 // |     ....                           |
@@ -69,6 +75,12 @@ enum{
 // | position 84 soil                   |
 // +------------------------------------+
 // |position 84 light                   |
+// +------------------------------------+
+// |position 84 hour                    |
+// +------------------------------------+
+// |position 84 minutes                 |
+// +------------------------------------+
+// |position 84 seconds                 |
 // +------------------------------------+
 // |      SPARE  2 bytes                |
 // +------------------------------------+
@@ -140,6 +152,11 @@ void storageAppendData( storage_data to_write )
 	_next_position++;
 }
 
+uint8_t maxStorage()
+{
+	uint8_t n_measurements = (MEM_SIZE - HEADER_SIZE) / DATA_SIZE;
+	return n_measurements;
+}
 
 /**
  * @brief Read data storaged in EEPROM. Index indicate which data should be read
@@ -156,7 +173,12 @@ uint8_t storageGetData( uint8_t index, storage_data *data )
 	uint16_t address = HEADER_SIZE + ( _next_position * DATA_SIZE);
 	uint8_t position;
 
-	address -= ( index * DATA_SIZE);
+	if ( index > maxStorage() ){
+		LOG_DBG("Index should be lower than storage size");
+		return 0;
+	}
+
+	address -= ( (index+1) * DATA_SIZE);
 	if ( address > MEM_SIZE && _overrunflag == NOT_OVR ){
 		return 0;
 	} else if ( address > MEM_SIZE ){
@@ -170,3 +192,4 @@ uint8_t storageGetData( uint8_t index, storage_data *data )
 	eepromRead( DATA_SIZE, address, (uint8_t *) data);
 	return 1;
 }
+

@@ -121,6 +121,7 @@ light	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/
 main	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/main.c	/^int16_t main(void)$/;"	f	signature:(void)
 mainMenuSt	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^void mainMenuSt(char ch)$/;"	f	signature:(char ch)
 main_page	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/http.h	/^char main_page[]={"<html><head>"$/;"	v
+maxStorage	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^uint8_t maxStorage()$/;"	f
 minutes	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/include/datastorage.h	/^	uint8_t minutes;$/;"	m	struct:STORAGE	access:public
 msg_from_esp	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^static uint8_t msg_from_esp[MAX_MSG_LEN];$/;"	v	file:
 msg_in	/media/datos/proyecto/auto_riego/fw/bonsai_water.X/src/app_device_cdc_basic.c	/^static uint8_t msg_in[MAX_MSG_LEN];$/;"	v	file:

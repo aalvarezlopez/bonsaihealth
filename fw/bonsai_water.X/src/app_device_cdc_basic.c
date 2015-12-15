@@ -165,7 +165,7 @@ void mainMenuSt(char ch)
 			current_menu_selected = WIFI;
 			break;
 		case MAIN_TO_SNAPSHOT:
-			PRINT_NEW_SNAPSHOT();
+			PRINT_SNAPSHOT_MENU();
 			current_menu_selected = SNAPSHOT;
 			break;
 		case MAIN_TO_PUMP_CTRL:
@@ -271,6 +271,10 @@ void pumpCtrlSt( char ch )
 
 void parseMsg()
 {
+	if (( msg_len % MAX_MSG_LEN ) == 0 && USBUSARTIsTxTrfReady()) {
+		memset(msg_out, 0, MAX_MSG_LEN);
+		return;
+	}
 	for( int i = 0 ; i < msg_len % MAX_MSG_LEN; i++){
 		if ( msg_in[i] == '\n' || msg_in[i] == '\r'  ){
 			switch(current_menu_selected){
@@ -350,7 +354,6 @@ void APP_DeviceCDCEmulatorTasks()
 	parseMsg();
 	/* If wifi is selected connect ESP transmission to USB */
 	if ( current_menu_selected == WIFI && strlen(msg_out) == 0){
-
 		while( esp_n_rx != esp_n_tx && esp_n_bytes < CDC_DATA_OUT_EP_SIZE ){
 			msg_from_esp[esp_n_bytes] = esp_rx_buf[esp_n_tx % ESP_MAX_IN_LEN];
 			esp_n_tx++;

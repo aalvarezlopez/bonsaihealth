@@ -101,7 +101,6 @@ uint8_t drySoil()
 
 uint8_t wetSoil()
 {
-	char str[20];
 	uint8_t soil_is_wet = 1;
 	for( int i = 0; i < N_SOIL_ACQ; i++){
 		if( soil_wet_buffer[i] < raw_high_level ){
