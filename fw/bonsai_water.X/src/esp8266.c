@@ -32,6 +32,8 @@
 
 #include "log.h"
 #include "http.h"
+#include "datastorage.h"
+#include "user.h"
 
 #define CONNECTION_REQUEST_MSG "+IPD"
 #define SEND_DATA_RPLY_ACK "OK"
@@ -159,7 +161,32 @@ uint8_t isConnected()
 void goToSending()
 {
 	char str[20];
-	uint16_t size = strlen(main_page);
+	uint16_t size;
+	char data_register[50];
+	uint8_t temperature, soil_wet, light_val;
+	uint8_t week_day, hour, minutes, seconds;
+	uint8_t measurement_index = 0;
+	static storage_data data;
+	temperature = readTemperature();
+	rtccReadClock( &week_day, &hour, &minutes, &seconds);
+	lightSensorTask();
+	soil_wet = getSoilWet();
+	light_val = getLight();
+	/* fill snapshot and histogram */
+	sprintf(snapshot_page, SNAPSHOT_MACRO,hour, minutes, seconds, \
+		temperature,soil_wet,light_val,PUMP);
+	sprintf(data_hist_page, "");
+	while(storageGetData( measurement_index, &data )){
+		measurement_index++;
+		sprintf(data_register, DATA_HIST_MACRO, data.hour, data.minutes, data.seconds,\
+			data.temperature,data.light,data.soil,data.pump_state*100);
+		strcat(data_hist_page, data_register);
+		strcat(data_hist_page, ",");
+	}
+	data_hist_page[strlen(data_hist_page)-1]=0;
+
+	size = strlen(head_page) + strlen(data_hist_page)+strlen(body_page) +\
+					strlen(snapshot_page) + strlen(bot_page);
 	sprintf(str, "LENGTH=%d", size);
 	LOG_DBG(str);
 	clearBuffer();
@@ -183,17 +210,21 @@ uint8_t readyToSend()
 void sendHTTP(char *http)
 {
 	for(uint16_t i=0; i < MAX_HTTP_SIZE; i++){
-		if ( main_page[i] == 0){
+		if ( *(http+i) == 0){
 			break;
 		}
-		esp_putch( main_page[i] );
+		esp_putch( *(http+i) );
 	}
-	espEndCmd();
 }
 
 void sendMainPage()
 {
-	sendHTTP(main_page);
+	sendHTTP(head_page);
+	sendHTTP(data_hist_page);
+	sendHTTP(body_page);
+	sendHTTP(snapshot_page);
+	sendHTTP(bot_page);
+	espEndCmd();
 }
 
 uint8_t isHttpSend()
@@ -204,8 +235,6 @@ uint8_t isHttpSend()
 	if (ptr != NULL){
 		LOG_DBG("HTTP sent");
 		ready = 1;
-	} else {
-		LOG_DBG(esp_rx_buf);
 	}
 	return ready;
 }

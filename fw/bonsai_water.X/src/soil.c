@@ -41,6 +41,7 @@
 static uint8_t soil_wet = 0;
 static uint8_t pump_hal = 0;
 static uint8_t pump_sal = 0;
+uint8_t pumpPeriodEnable = 0;
 static uint8_t soil_wet_buffer[N_SOIL_ACQ];
 static uint8_t *ptr_write = soil_wet_buffer;
 static uint8_t raw_low_level = DEFAULT_RAW_LOW_LEVEL;
@@ -81,6 +82,9 @@ void soilTask()
 	}
 	pump_hal = pump_sal || ( dgn_pump_state && dgn_pump_ctrl);
 	PUMP = pump_hal;
+	if( pumpPeriodEnable == 0 && pump_hal == 1){
+		pumpPeriodEnable = 1;
+	}
 }
 
 uint8_t getSoilWet()

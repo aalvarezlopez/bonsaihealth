@@ -27,6 +27,7 @@
 
 #define _XTAL_FREQ  8000000     // oscillator frequency for _delay()
 
+extern uint8_t pumpPeriodEnable;
 /******************************************************************************/
 /* User Functions                                                             */
 /******************************************************************************/
@@ -70,6 +71,7 @@ void RTCC_Alarm_TASK()
 	LOG_DBG(str);
 	storage_data data;
 	data.temperature = temperature;
+	data.pump_state = pumpPeriodEnable;
 	data.soil = soil_wet;
 	data.light = light_val;
 	data.hour = hour;
@@ -77,5 +79,6 @@ void RTCC_Alarm_TASK()
 	data.seconds = seconds;
 	storageAppendData( data );
 	//dumpMem();
+	pumpPeriodEnable = 0;
 	IFS3bits.RTCIF = 0;
 }

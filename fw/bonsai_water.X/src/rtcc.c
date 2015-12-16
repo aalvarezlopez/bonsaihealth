@@ -44,20 +44,21 @@ enum MASK{
  */
 void InitRTCC()
 {
-	rtccUnlock();
-	/*  enable SOSC 32 kHz */
-	asm volatile ("mov #OSCCON,W1");
-	asm volatile ("mov.b #0x46,W2");
-	asm volatile ("mov.b #0x57,W3"); /*  Unlock secuence */
-	asm volatile ("mov.b #0x02,W0"); /*  Unlock secuence  */
-	asm volatile ("mov.b W2, [W1]"); /*  SOSCEN = 1 */
-	asm volatile ("mov.b W3, [W1]");
-	asm volatile ("mov.b W0, [W1]");
-	RCFGCALbits.RTCEN = 1;
-	rtccLock();
-
-	rtccSetClock( DEF_WEEKDAY, DEF_HOUR, DEF_MIN, DEF_SEC);
-	rtccSetDate( DEF_YEAR, DEF_MONTH, DEF_DAY);
+	if( RCFGCALbits.RTCEN == 0 ){
+		rtccUnlock();
+		/*  enable SOSC 32 kHz */
+		asm volatile ("mov #OSCCON,W1");
+		asm volatile ("mov.b #0x46,W2");
+		asm volatile ("mov.b #0x57,W3"); /*  Unlock secuence */
+		asm volatile ("mov.b #0x02,W0"); /*  Unlock secuence  */
+		asm volatile ("mov.b W2, [W1]"); /*  SOSCEN = 1 */
+		asm volatile ("mov.b W3, [W1]");
+		asm volatile ("mov.b W0, [W1]");
+		RCFGCALbits.RTCEN = 1;
+		rtccLock();
+		rtccSetClock( DEF_WEEKDAY, DEF_HOUR, DEF_MIN, DEF_SEC);
+		rtccSetDate( DEF_YEAR, DEF_MONTH, DEF_DAY);
+	}
 	configureAlarm();
 }
 

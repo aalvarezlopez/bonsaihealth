@@ -91,6 +91,11 @@ uint8_t _soil_wet, _light_val;
 		"[w] wifi menu\r\n******\r\n");\
 }while(0)
 
+#define PRINT_TIME_MENU() do{\
+	sprintf(msg_out, "TIME: type time in format hh:mm:ss dd/mm/yy and press"\
+		"enter\r\n");\
+}while(0)
+
 #define PRINT_NEW_SNAPSHOT() do{\
 	sprintf( msg_out, "TIME:%02d:%02d:%02d Temperature: %d"\
 		" Soil: %d Light: %d\r\n", _hour, _minutes, _seconds,\
@@ -158,6 +163,7 @@ void mainMenuSt(char ch)
 {
 	switch(ch){
 		case MAIN_TO_TIME:
+			PRINT_TIME_MENU();
 			current_menu_selected = TIME;
 			break;
 		case MAIN_TO_WIFI:
@@ -185,9 +191,37 @@ void mainMenuSt(char ch)
 	}
 }
 
-void timeSt()
+void timeSt( char *str, uint8_t length)
 {
-
+	char *ptr = str;
+	uint8_t time[3];
+	uint8_t date[3];
+	current_menu_selected = MAIN_MENU;
+	str[length] = 0;
+	for( int i=0; i < 3; i++){
+		time[i] = atoi(ptr);
+		ptr = strchr(ptr,':');
+		if( ptr == NULL){
+			LOG_DBG("HOUR BREAK");
+			break;
+		}
+		ptr++;
+	}
+	ptr = strchr(str,' ');
+	if( ptr == NULL){
+		return;
+	}
+	for( int i=0; i < 3; i++){
+		date[i] = atoi(ptr);
+		ptr = strchr(ptr,'/');
+		if( ptr == NULL){
+			break;
+		}
+		ptr++;
+	}
+	rtccSetClock( 0, time[0], time[1], time[2]);
+	rtccSetDate( date[2], date[1], date[0]);
+	PRINT_MAIN_MENU();
 }
 
 void wifiSt(char *str, uint8_t length)
@@ -282,7 +316,7 @@ void parseMsg()
 					mainMenuSt(msg_in[i-1]);
 					break;
 				case TIME:
-					timeSt();
+					timeSt(msg_in, i);
 					break;
 				case WIFI:
 					wifiSt(msg_in, i);

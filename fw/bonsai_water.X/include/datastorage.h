@@ -9,7 +9,8 @@
 #define DATASTORAGE_H
 
 struct STORAGE{
-	uint8_t temperature;
+	uint8_t temperature : 7;
+	uint8_t pump_state : 1;
 	uint8_t soil;
 	uint8_t light;
 	uint8_t hour;

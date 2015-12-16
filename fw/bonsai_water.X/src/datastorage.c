@@ -173,7 +173,7 @@ uint8_t storageGetData( uint8_t index, storage_data *data )
 	uint16_t address = HEADER_SIZE + ( _next_position * DATA_SIZE);
 	uint8_t position;
 
-	if ( index > maxStorage() ){
+	if ( index >= maxStorage() ){
 		LOG_DBG("Index should be lower than storage size");
 		return 0;
 	}
@@ -183,7 +183,7 @@ uint8_t storageGetData( uint8_t index, storage_data *data )
 		return 0;
 	} else if ( address > MEM_SIZE ){
 		address = address % MEM_SIZE;
-		address -= HEADER_SIZE;
+		address += HEADER_SIZE;
 		position = (address / DATA_SIZE) - 1;
 		address = HEADER_SIZE + position * DATA_SIZE;
 	} else {
