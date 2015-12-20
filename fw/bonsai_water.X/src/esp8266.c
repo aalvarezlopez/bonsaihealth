@@ -38,12 +38,16 @@
 #define CONNECTION_REQUEST_MSG "+IPD"
 #define SEND_DATA_RPLY_ACK "OK"
 #define DATA_SENT "SEND OK"
+#define AT_COMMAND_ECHO "AT"
+#define AT_REPLY_OK "OK"
 
 extern uint16_t esp_n_rx;
 uint16_t esp_n_rd = 0;
 #define MAX_ESP_N_RANGE (uint16_t)((uint16_t)0 - 1);
 #define MAX_ESP_CMD_LEN 32
 #define MAX_HTTP_SIZE 2048
+#define DEFAULT_HTTP_TIMEOUT 2
+#define DEFAULT_TIMEOUT 2
 
 enum{
 	ESP_ST_WAITING_CONNECTION,
@@ -61,7 +65,11 @@ uint16_t nbytes_to_receive = 0;
 
 void clearBuffer();
 void espSendCmd(uint16_t len);
+void espPrint(char *str);
 
+#define TMR_PR_256 3
+#define TMR_TCY_SRC 0
+#define TMR_PRESCALER 156200
 /**
  * @brief ESP8266 initialitation.
  * UART2 configuration
@@ -84,6 +92,14 @@ void ESP8266Init()
 	/* Enable interrupts*/
 	IFS1bits.U2RXIF = 0;
 	IEC1bits.U2RXIE = 1;
+	// Configure timer source 
+	PR3 = TMR_PRESCALER >> 16;
+	PR2 = TMR_PRESCALER & 0xFFFF;
+	T2CONbits.T32 = 1;
+	T2CONbits.TCKPS = TMR_PR_256;
+	T2CONbits.TCS = TMR_TCY_SRC;
+	T2CONbits.TON = 1;
+	IFS0bits.T3IF = 0;
 }
 
 uint8_t isConnectionRequest()
@@ -174,7 +190,7 @@ void goToSending()
 	light_val = getLight();
 	/* fill snapshot and histogram */
 	sprintf(snapshot_page, SNAPSHOT_MACRO,hour, minutes, seconds, \
-		temperature,soil_wet,light_val,PUMP);
+		temperature,light_val,soil_wet,PUMP);
 	sprintf(data_hist_page, "");
 	while(storageGetData( measurement_index, &data )){
 		measurement_index++;
@@ -253,21 +269,68 @@ void closeConnection()
 	espEndCmd();
 }
 
+
+uint8_t getStatus()
+{
+	uint8_t status_ok = 0;
+	char *ptr;
+	ptr = strstr( esp_rx_buf, AT_COMMAND_ECHO);
+	if (ptr != NULL){
+		ptr = strstr( esp_rx_buf, AT_REPLY_OK);
+		if (ptr != NULL){
+			status_ok = 1;
+			clearBuffer();
+		}
+	} else {
+		espAttention();
+		espEndCmd();
+	}
+	return status_ok;
+}
+
 void ESP8266Task()
 {
+	static uint16_t sending_http_timeout = DEFAULT_HTTP_TIMEOUT;
+	static uint8_t timeout_status = 0;
+	static int8_t timeout_count = DEFAULT_TIMEOUT;
+
+	if( IFS0bits.T3IF ){
+		timeout_status = 1;
+		IFS0bits.T3IF = 0;
+	} else {
+		timeout_status = 0;
+	}
+
+	if( timeout_status  ){
+		if ( current_state != ESP_ST_WAITING_CONNECTION ){
+			timeout_count--;
+			if ( timeout_count < 0){
+				timeout_count = DEFAULT_TIMEOUT;
+				current_state = ESP_ST_WAITING_CONNECTION;
+				closeConnection();
+			}
+		} else {
+			timeout_count = DEFAULT_TIMEOUT;
+		}
+	}
+
 	switch(current_state){
 		case ESP_ST_WAITING_CONNECTION:
 			if( isConnectionRequest() ){
 				current_state++;
 				goToConnecting();
+				timeout_count = DEFAULT_TIMEOUT;
 			} else {
-				/*  nothing to do */
+				if( timeout_status ){
+					getStatus();
+				}
 			}
 			break;
 		case ESP_ST_CONNECTING:
 			if( isConnected() ){
 				current_state++;
 				goToSending();
+				timeout_count = DEFAULT_TIMEOUT;
 			} else {
 				/*  nothing to do */
 			}
@@ -276,6 +339,8 @@ void ESP8266Task()
 			if( readyToSend() ){
 				sendMainPage();
 				current_state++;
+				timeout_count = DEFAULT_TIMEOUT;
+				sending_http_timeout = DEFAULT_HTTP_TIMEOUT;
 			} else {
 				/*  nothing to do */
 			}
@@ -284,6 +349,19 @@ void ESP8266Task()
 			if( isHttpSend() ){
 				closeConnection();
 				current_state = ESP_ST_WAITING_CONNECTION;
+			} else {
+				if ( timeout_status ){
+					if( sending_http_timeout < 0){
+						if( getStatus()){
+							closeConnection();
+							current_state = ESP_ST_WAITING_CONNECTION;
+						}
+						sending_http_timeout = DEFAULT_HTTP_TIMEOUT;
+					} else {
+						sending_http_timeout--;
+					}
+				}
+				
 			}
 			break;
 		default:
@@ -328,6 +406,18 @@ void espEndCmd()
 {
 	esp_putch(0x0d);
 	esp_putch(0xa);
+}
+
+
+void espPrint(char *str)
+{
+	for(int i=0; i < MAX_ESP_CMD_LEN; i++){
+		if ( str[i] == 0){
+			break;
+		}
+		esp_putch( str[i] );
+	}
+	espEndCmd();
 }
 
 void clearBuffer()

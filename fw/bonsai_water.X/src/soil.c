@@ -30,13 +30,13 @@
 #include "log.h"
 #include "user.h"
 
-#define TMR1_PRESCALER 25000u // 100 ms => T1_PRS*/ Tcy / 2
+#define TMR1_PRESCALER 25000u // 100 ms => T1_PRS* 2 / Tcy
 #define TMR1_PR_64 2
 #define TMR1_TCY_SRC 0
 #define N_SOIL_ACQ 10
 
-#define DEFAULT_RAW_LOW_LEVEL 20
-#define DEFAULT_RAW_HIGH_LEVEL 80
+#define DEFAULT_RAW_LOW_LEVEL 40
+#define DEFAULT_RAW_HIGH_LEVEL 53
 
 static uint8_t soil_wet = 0;
 static uint8_t pump_hal = 0;
@@ -96,7 +96,7 @@ uint8_t drySoil()
 {
 	uint8_t soil_is_dry = 1;
 	for( int i = 0; i < N_SOIL_ACQ; i++){
-		if( soil_wet_buffer[i] > raw_low_level ){
+		if( soil_wet_buffer[i] < raw_high_level ){
 			soil_is_dry = 0;
 		}
 	}
@@ -107,7 +107,7 @@ uint8_t wetSoil()
 {
 	uint8_t soil_is_wet = 1;
 	for( int i = 0; i < N_SOIL_ACQ; i++){
-		if( soil_wet_buffer[i] < raw_high_level ){
+		if( soil_wet_buffer[i] > raw_low_level ){
 			soil_is_wet = 0;
 		}
 	}
