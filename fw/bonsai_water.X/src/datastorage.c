@@ -116,6 +116,13 @@ void storageInit()
 	}
 }
 
+void storageClean()
+{
+	LOG_DBG("EEPROM will be erased");
+	_next_position = 0;
+	_overrunflag = NOT_OVR;
+	storageUpdateSt();
+}
 
 /**
  * @brief Write in eeprom the status variables.

@@ -57,6 +57,7 @@ enum MENU_SELECTION{
 	WIFI,
 	SNAPSHOT,
 	PUMP_CONTROL,
+	EEPROM,
 	HISTOGRAM
 };
 
@@ -65,8 +66,12 @@ enum{
 	MAIN_TO_TIME = 't',
 	MAIN_TO_WIFI = 'w',
 	MAIN_TO_SNAPSHOT = 's',
+	MAIN_TO_EEPROM = 'e',
 	NEW_SNAPSHOT = 'n',
 	NEW_DATA = 'n',
+	TRIGER_ACQ = 't',
+	CLEAN_EEPROM = 'c',
+	DUMP_EEPROM = 'd',
 	MAIN_TO_PUMP_CTRL = 'p',
 	TURN_ON_PUMP_KEY = '1',
 	TURN_OFF_PUMP_KEY = '0',
@@ -86,6 +91,7 @@ uint8_t _soil_wet, _light_val;
 #define PRINT_MAIN_MENU() do{\
 	sprintf(msg_out, "MAIN MENU\n\n\r[s] get snapshot\r\n"\
 		"[h] histogram\r\n"\
+		"[e] EEPROM\r\n"\
 		"[t] time menu\r\n"\
 		"[p] Pump manual control\r\n"\
 		"[w] wifi menu\r\n******\r\n");\
@@ -107,6 +113,12 @@ uint8_t _soil_wet, _light_val;
 		"[m] main menu\r\n******\r\n");\
 }while(0)
 
+#define PRINT_EEPROM_MENU() do{\
+	sprintf(msg_out, "EEPROM MENU\n\n\r[c] Clean EEPROM\r\n"\
+		"[d] Dump EEPROM memory\r\n"\
+		"[m] main menu\r\n******\r\n");\
+}while(0)
+
 #define PRINT_NEW_HIST_DATA() do{\
 	sprintf( msg_out, "[%d]Measure time %02d:%02d:%02d Temperature: %d"\
 		" Soil: %d Light: %d\r\n",_measurement_index,\
@@ -120,6 +132,7 @@ uint8_t _soil_wet, _light_val;
 
 #define PRINT_HIST_MENU() do{\
 	sprintf(msg_out, "HISTOGRAM MENU\n\n\r[n] Get another old data\r\n"\
+		"[t] Triger acquisition storage\r\n"\
 		"[m] main menu\r\n******\r\n");\
 }while(0)
 
@@ -178,6 +191,10 @@ void mainMenuSt(char ch)
 			PRINT_PUMP_CTRL();
 			dgn_pump_ctrl = 1;
 			current_menu_selected = PUMP_CONTROL;
+			break;
+		case MAIN_TO_EEPROM:
+			PRINT_EEPROM_MENU();
+			current_menu_selected = EEPROM;
 			break;
 		case MAIN_TO_HISTOGRAM:
 			PRINT_HIST_MENU();
@@ -261,6 +278,26 @@ void snapshotSt(char ch)
 	}
 }
 
+void eepromSt(char ch)
+{
+	switch(ch){
+		case MAIN_MENU_KEY:
+			PRINT_MAIN_MENU();
+			current_menu_selected = MAIN_MENU;
+			break;
+		case CLEAN_EEPROM:
+			storageClean();
+			PRINT_EEPROM_MENU();
+			break;
+		case DUMP_EEPROM:
+			dumpMem();
+			PRINT_EEPROM_MENU();
+			break;
+		default:
+			PRINT_EEPROM_MENU();
+	}
+}
+
 void histogramSt(char ch)
 {
 	uint8_t week_day;
@@ -268,6 +305,10 @@ void histogramSt(char ch)
 		case MAIN_MENU_KEY:
 			PRINT_MAIN_MENU();
 			current_menu_selected = MAIN_MENU;
+			break;
+		case TRIGER_ACQ:
+			PRINT_HIST_MENU();
+			RTCCTriggerAcq();
 			break;
 		case NEW_DATA:
 			if(storageGetData( _measurement_index, &_data )){
@@ -278,7 +319,7 @@ void histogramSt(char ch)
 			}
 			break;
 		default:
-			PRINT_SNAPSHOT_MENU();
+			PRINT_HIST_MENU();
 	}
 }
 
@@ -326,6 +367,9 @@ void parseMsg()
 					break;
 				case PUMP_CONTROL:
 					pumpCtrlSt(msg_in[i-1]);
+					break;
+				case EEPROM:
+					eepromSt(msg_in[i-1]);
 					break;
 				case HISTOGRAM:
 					histogramSt(msg_in[i-1]);

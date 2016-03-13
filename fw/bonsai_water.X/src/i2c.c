@@ -29,13 +29,14 @@
 #include <stdint.h>
 #include "user.h"
 #include "log.h"
+#include "i2c.h"
 
 #define I2C_BR_100KHz 60 /*  I2CxBRG value for 100 KHz baudrate @16 MIPs */
 
 /**
 * \brief Configure I2C peripheral to communicate with other IC in the board.
 */
-uint8_t configureI2C()
+void configureI2C()
 {
     /* Set desired baudrate of the bus */
     I2C3BRG = I2C_BR_100KHz;
@@ -68,6 +69,74 @@ int readSeqRegisters(uint8_t device_add, int address, int dlen, uint8_t *dout)
         return 0;
     }
     I2C3TRN = (address & 0xFF);
+
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
+        LOG_WARN("I2C. Acknowledgement not received writting I2C dev address");
+        return 0;
+    }
+
+    I2C3CONbits.RSEN = 1; 
+    while(I2C3CONbits.RSEN != 0)  continue;
+    I2C3TRN = device_add + 1; /* I2C device address in read mode */
+
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
+        LOG_WARN("I2C. Acknowledgement not received after restart and writting"\
+            "register address");
+        return 0;
+    }
+
+    for( nBytes = 0; nBytes<dlen; nBytes++){
+        I2C3CONbits.RCEN = 1;
+        while(I2C3CONbits.RCEN != 0)  continue;
+        *(dout+nBytes) = (I2C3RCV & 0xFF) ;
+        /*  Send nack when last byte was already sent */
+        I2C3CONbits.ACKDT = ( nBytes!=dlen-1 ) ? 0 : 1;
+        I2C3CONbits.ACKEN = 1;
+        while( I2C3CONbits.ACKEN != 0 ) continue;
+    }
+
+    I2C3CONbits.PEN = 1;
+    while(I2C3CONbits.PEN != 0)  continue;
+    for(int i=0;i<1000; i++)
+        continue;
+    return 1;
+}
+
+
+/**
+ * @brief 
+ * @brief Read from I2C bus the register addres from a i2c device.
+ * |START|I2Cdev(write)|REG_ADDSS|REG_ADDSS|RESTART|i2cdev(read)|value|
+ * @param device_add This is the i2c device address (last bit should be 0)
+ * @param address Address of the register that will be read.
+ * @param value Point where value are going to be written.
+ */
+int readSeqRegisters16add(uint8_t device_add, uint16_t address, int dlen, uint8_t *dout)
+{
+    uint8_t nBytes;
+    I2C3CONbits.SEN = 1;
+    while(I2C3CONbits.SEN != 0)  continue;
+    I2C3TRN = device_add;
+
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
+        LOG_WARN("I2C. Acknowledgement not received from device");
+        return 0;
+    }
+    I2C3TRN =((address >> ADD_HIGH_WORD) & ADD_8_BITS_MASK);
+
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
+        LOG_WARN("I2C. Acknowledgement not received from device");
+        return 0;
+    }
+    I2C3TRN = (address & ADD_8_BITS_MASK);
 
     while(I2C3STATbits.TBF)continue;
     while(I2C3STATbits.TRSTAT) continue;
@@ -247,6 +316,70 @@ int writeSeqRegisters(uint8_t device_add, int address, int dlen, uint8_t *din)
     while(I2C3CONbits.PEN != 0)  continue;
     return n_bytes;
 }
+/**
+ * @brief  Write register of 16 bytes I2C device addres width sequentially.
+ *
+ * @param device_add This i the i2c device address (last bit should be 0).
+ * @param address 16 bit address of the first register that will be written
+ * @param dlen Number of registers that will be updated
+ * @param din Pointer to a buffer than contains the values of the registers\
+ * thar will be updated
+ *
+ * @return Number of bytes written
+ */
+int writeSeqRegisters16add(uint8_t device_add, uint16_t address, int dlen, uint8_t *din)
+{
+    unsigned int n_bytes;
+    I2C3CONbits.SEN = 1;
+    while(I2C3CONbits.SEN != 0)  continue;
+    I2C3TRN = device_add; /* I2C device address in write mode */
+
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
+        LOG_WARN("I2C. Acknowledgement not received from device");
+        I2C3CONbits.PEN = 1;
+        while(I2C3CONbits.PEN != 0)  continue;
+        return 0;
+    }
+    I2C3TRN = ((address) >> ADD_HIGH_WORD) & ADD_8_BITS_MASK;
+
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
+        LOG_WARN("I2C. Acknowledgement not received from device");
+        I2C3CONbits.PEN = 1;
+        while(I2C3CONbits.PEN != 0)  continue;
+        return 0;
+    }
+    I2C3TRN = (address) & ADD_8_BITS_MASK;
+
+    while(I2C3STATbits.TBF)continue;
+    while(I2C3STATbits.TRSTAT) continue;
+    if(I2C3STATbits.ACKSTAT){
+        I2C3CONbits.PEN = 1;
+        while(I2C3CONbits.PEN != 0)  continue;
+        LOG_WARN("I2C. Acknowledgement not received after writting"\
+            "register address");
+        return 0;
+    }
+    for(n_bytes = 0; n_bytes < dlen; n_bytes++){
+        I2C3TRN = *(din+n_bytes);
+
+        while(I2C3STATbits.TBF) continue;
+        while(I2C3STATbits.TRSTAT) continue;
+        if(I2C3STATbits.ACKSTAT){
+            I2C3CONbits.PEN = 1;
+            while(I2C3CONbits.PEN != 0)  continue;
+            LOG_WARN("I2C. Acknowledgement not received after writting"\
+                "register address");
+            return n_bytes;
+        }
+    }
+    I2C3CONbits.PEN = 1;
+    while(I2C3CONbits.PEN != 0)  continue;
+    return n_bytes;
+}
 
 
 /**
@@ -355,5 +488,5 @@ int isDevAvailable(uint8_t device_add)
 
     while(I2C3STATbits.TBF)continue;
     while(I2C3STATbits.TRSTAT) continue;
-    return 0u ? I2C3STATbits.ACKSTAT : 1u;
+    return I2C3STATbits.ACKSTAT ? 0u : 1u;
 }

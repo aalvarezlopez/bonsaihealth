@@ -46,8 +46,6 @@ extern char esp_rx_buf[];
 
 int16_t main(void)
 {
-	uint8_t buffer[] = {4,2,4,5,6};
-	uint8_t buf_read[] = { 7,8,9,10};
 	/* Configure the oscillator for the device */
 	ConfigureOscillator();
 	InitApp();
@@ -72,7 +70,6 @@ int16_t main(void)
 	}
 	#endif
 
-	/* TODO <INSERT USER APPLICATION CODE HERE> */
 	while(1)
 	{
 		if( IFS0bits.T1IF ){

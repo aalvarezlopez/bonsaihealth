@@ -82,3 +82,8 @@ void RTCC_Alarm_TASK()
 	pumpPeriodEnable = 0;
 	IFS3bits.RTCIF = 0;
 }
+
+void RTCCTriggerAcq()
+{
+	RTCC_Alarm_TASK();
+}

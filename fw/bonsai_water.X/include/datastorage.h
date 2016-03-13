@@ -22,5 +22,6 @@ typedef struct STORAGE storage_data;
 
 void storageAppendData( storage_data to_write );
 uint8_t storageGetData( uint8_t index, storage_data *data );
+void storageClean();
 
 #endif
