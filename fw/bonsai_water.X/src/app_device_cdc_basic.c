@@ -45,7 +45,7 @@ static uint8_t msg_in[MAX_MSG_LEN];
 static uint8_t msg_out[MAX_MSG_LEN];
 static uint8_t msg_from_esp[MAX_MSG_LEN];
 static uint8_t msg_len = 0;
-static uint8_t _measurement_index = 0;
+static uint16_t _measurement_index = 0;
 static storage_data _data;
 
 extern uint8_t  dgn_pump_state;

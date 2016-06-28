@@ -1,3 +1,7 @@
+/**
+ * @file main.c
+ * @brieg main file
+ */
 /******************************************************************************/
 /* Files to Include                                                           */
 /******************************************************************************/
@@ -44,6 +48,11 @@
 
 extern char esp_rx_buf[];
 
+/**
+ * @satisfy{@req{1}}
+ * @verify{@req{1}}
+ */
+
 int16_t main(void)
 {
 	/* Configure the oscillator for the device */
@@ -70,6 +79,7 @@ int16_t main(void)
 	}
 	#endif
 
+	// Configure ESP8266
 	while(1)
 	{
 		if( IFS0bits.T1IF ){

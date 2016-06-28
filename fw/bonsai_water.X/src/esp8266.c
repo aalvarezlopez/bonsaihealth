@@ -35,33 +35,55 @@
 #include "datastorage.h"
 #include "user.h"
 
+#include "system.h"        /* System funct/params, like osc/peripheral config */
+#include "libpic30.h"
 #define CONNECTION_REQUEST_MSG "+IPD"
 #define SEND_DATA_RPLY_ACK "OK"
 #define DATA_SENT "SEND OK"
 #define AT_COMMAND_ECHO "AT"
 #define AT_REPLY_OK "OK"
 
+#define OFFSET_VAR "offset"
+#define STEP_VAR "step"
+
 extern uint16_t esp_n_rx;
 uint16_t esp_n_rd = 0;
 #define MAX_ESP_N_RANGE (uint16_t)((uint16_t)0 - 1);
-#define MAX_ESP_CMD_LEN 32
+#define MAX_ESP_CMD_LEN 64
 #define MAX_HTTP_SIZE 2048
 #define DEFAULT_HTTP_TIMEOUT 2
 #define DEFAULT_TIMEOUT 2
+#define MAX_POINTS_IN_CHART 14
 
 enum{
 	ESP_ST_WAITING_CONNECTION,
 	ESP_ST_CONNECTING,
-	ESP_ST_SENDING,
-	ESP_ST_WAITING_SENT
+	ESP_ST_SEND_CMD,
+	ESP_ST_SEND_MSG
 };
+
+
+enum ESP_SEND_HTTP_STEP{
+	ESP_SEND_HEADER,
+	ESP_SEND_DATA,
+	ESP_SEND_BODY,
+	ESP_SEND_SNAPSHOT,
+	ESP_SEND_FOOT,
+	ESP_SEND_END
+};
+
+const char esp_commands[][20] = {"CWMODE", "CWJAP", "CIFSR", "CIPMUX", "CIPSERVER"};
+
 uint8_t current_state = ESP_ST_WAITING_CONNECTION;
+enum ESP_SEND_HTTP_STEP current_http_step = ESP_SEND_HEADER;
 
 char esp_rx_buf[ESP_MAX_IN_LEN];
 uint16_t esp_n_rx = 0;
 
 uint16_t nbytes_to_receive = 0;
 
+uint16_t chart_step = 0;
+uint16_t chart_offset = 0;
 
 void clearBuffer();
 void espSendCmd(uint16_t len);
@@ -76,6 +98,7 @@ void espPrint(char *str);
  */
 void ESP8266Init()
 {
+	char temp[512];
 	//configure serial port
 	//pins TX 13 RX 12
 	RPINR19 = RX2_PIN;
@@ -100,6 +123,17 @@ void ESP8266Init()
 	T2CONbits.TCS = TMR_TCY_SRC;
 	T2CONbits.TON = 1;
 	IFS0bits.T3IF = 0;
+	// Configure ESP8266
+
+	espSendCommands(ESP_IP, NULL, temp);
+	LOG_DBG("**** IP ****");
+	LOG_DBG(temp);
+	espSendCommands(ESP_MUX, "1", temp);
+	LOG_DBG("**** MUX****");
+	LOG_DBG(temp);
+	espSendCommands(ESP_SERVER, "1,80", temp);
+	LOG_DBG("**** SERVER ****");
+	LOG_DBG(temp);
 }
 
 uint8_t isConnectionRequest()
@@ -118,6 +152,31 @@ uint8_t isConnectionRequest()
 	return request;
 }
 
+#define OFFSET_VAR "offset"
+#define STEP_VAR "step"
+
+void getChartOffset()
+{
+	uint16_t offset = 0;
+	char *ptr;
+	ptr = strstr( esp_rx_buf, OFFSET_VAR);
+	if (ptr != NULL){
+		offset = atoi(ptr+strlen(OFFSET_VAR) + 1u);
+	}
+	chart_offset = offset;
+}
+
+void getChartSteps()
+{
+	uint16_t step = 0;
+	char *ptr;
+	ptr = strstr( esp_rx_buf, STEP_VAR);
+	if (ptr != NULL){
+		step = atoi(ptr + strlen(STEP_VAR) + 1u);
+	}
+	chart_step = step;
+}
+
 #define MAX_HEADER_LEN 20
 #define SPLIT_CHAR ','
 #define END_CHAR ':'
@@ -128,6 +187,8 @@ void goToConnecting()
 	uint16_t msg_len_start_offset = 0;
 	uint16_t msg_len_end_offset = 0;
 	char len_str[ MAX_HEADER_LEN ];
+	getChartOffset();
+	getChartSteps();
 	for( int i=0; i < MAX_HEADER_LEN; i++ ){
 		if( esp_rx_buf[ (esp_n_rd + i) % ESP_MAX_IN_LEN] == SPLIT_CHAR ){
 			n_splitted_args++;
@@ -165,8 +226,9 @@ uint8_t isConnected()
 	uint16_t nbytes_received = esp_n_rx > esp_n_rd ? esp_n_rx - esp_n_rd : \
 							   MAX_ESP_N_RANGE - esp_n_rd + esp_n_rx;
 	char str[100];
-	sprintf(str, "N bytes to receive =%d\r\n N bytes received =%d",\
-		nbytes_to_receive, nbytes_received);
+	sprintf(str, "N bytes to receive =%d\r\n N bytes received =%d"\
+		" OFFSET %d STEP = %d",
+		nbytes_to_receive, nbytes_received, chart_offset, chart_step);
 	LOG_DBG(str);
 	if ( nbytes_received >= nbytes_to_receive ){
 		is_connected = 1;
@@ -174,15 +236,32 @@ uint8_t isConnected()
 	return is_connected;
 }
 
-void goToSending()
+uint16_t fillChartData( uint16_t offset, uint16_t step)
 {
-	char str[20];
-	uint16_t size;
-	char data_register[50];
+	char str[256];
+	uint16_t number_of_points = 0;
+	char data_register[256];
+	uint16_t measurement_index = offset;
+	static storage_data data;
+	sprintf(data_hist_page, "");
+	while(storageGetData( measurement_index, &data ) &&\
+		number_of_points < MAX_POINTS_IN_CHART){
+		sprintf(str, "****\r\nNew data read. %d\r\n", number_of_points);
+		LOG_DBG(str);
+		measurement_index+= step;
+		sprintf(data_register, DATA_HIST_MACRO, data.hour, data.minutes, data.seconds,\
+			data.temperature,data.light,data.soil,data.pump_state*100);
+		strcat(data_hist_page, data_register);
+		strcat(data_hist_page, ",");
+		number_of_points++;
+	}
+	return number_of_points;
+}
+
+void fillSnapShotData()
+{
 	uint8_t temperature, soil_wet, light_val;
 	uint8_t week_day, hour, minutes, seconds;
-	uint8_t measurement_index = 0;
-	static storage_data data;
 	temperature = readTemperature();
 	rtccReadClock( &week_day, &hour, &minutes, &seconds);
 	lightSensorTask();
@@ -191,23 +270,43 @@ void goToSending()
 	/* fill snapshot and histogram */
 	sprintf(snapshot_page, SNAPSHOT_MACRO,hour, minutes, seconds, \
 		temperature,light_val,soil_wet,PUMP);
-	sprintf(data_hist_page, "");
-	while(storageGetData( measurement_index, &data )){
-		measurement_index++;
-		sprintf(data_register, DATA_HIST_MACRO, data.hour, data.minutes, data.seconds,\
-			data.temperature,data.light,data.soil,data.pump_state*100);
-		strcat(data_hist_page, data_register);
-		strcat(data_hist_page, ",");
-	}
-	data_hist_page[strlen(data_hist_page)-1]=0;
+}
 
-	size = strlen(head_page) + strlen(data_hist_page)+strlen(body_page) +\
-					strlen(snapshot_page) + strlen(bot_page);
+void goToSending()
+{
+	uint16_t size;
+	char str[256];
+
+	switch( current_http_step ){
+		case ESP_SEND_HEADER:
+			LOG_DBG("Sending header size");
+			size = strlen(head_page);
+			break;
+		case ESP_SEND_DATA:
+			LOG_DBG("Sending data size");
+			size = strlen(data_hist_page);
+			break;
+		case ESP_SEND_BODY:
+			LOG_DBG("Sending body size");
+			size = strlen(body_page);
+			break;
+		case ESP_SEND_SNAPSHOT:
+			LOG_DBG("Sending snapshot size");
+			size = strlen(snapshot_page);
+			break;
+			break;
+		case ESP_SEND_FOOT:
+			LOG_DBG("Sending foot size");
+			size = strlen(bot_page);
+			break;
+		default:
+			size = 0u;
+	}
 	sprintf(str, "LENGTH=%d", size);
 	LOG_DBG(str);
 	clearBuffer();
 	LOG_DBG("HTTP sending data");
-	espSendCmd(size);
+	espSendCmd(size % MAX_HTTP_SIZE);
 }
 
 uint8_t readyToSend()
@@ -233,13 +332,32 @@ void sendHTTP(char *http)
 	}
 }
 
-void sendMainPage()
+void sendHttpBlock()
 {
-	sendHTTP(head_page);
-	sendHTTP(data_hist_page);
-	sendHTTP(body_page);
-	sendHTTP(snapshot_page);
-	sendHTTP(bot_page);
+	switch(current_http_step){
+		case ESP_SEND_HEADER:
+			LOG_DBG("Sending header");
+			sendHTTP(head_page);
+			break;
+		case ESP_SEND_DATA:
+			LOG_DBG("Sending data");
+			sendHTTP(data_hist_page);
+			break;
+		case ESP_SEND_BODY:
+			LOG_DBG("Sending body");
+			sendHTTP(body_page);
+			break;
+		case ESP_SEND_SNAPSHOT:
+			LOG_DBG("Sending snapshot");
+			sendHTTP(snapshot_page);
+			break;
+		case ESP_SEND_FOOT:
+			LOG_DBG("Sending foot");
+			sendHTTP(bot_page);
+			break;
+		default:
+			break;
+	}
 	espEndCmd();
 }
 
@@ -293,6 +411,8 @@ void ESP8266Task()
 	static uint16_t sending_http_timeout = DEFAULT_HTTP_TIMEOUT;
 	static uint8_t timeout_status = 0;
 	static int8_t timeout_count = DEFAULT_TIMEOUT;
+	static uint16_t total_number_of_points = 0u;
+	static uint8_t number_of_points_send = 0;
 
 	if( IFS0bits.T3IF ){
 		timeout_status = 1;
@@ -329,26 +449,53 @@ void ESP8266Task()
 		case ESP_ST_CONNECTING:
 			if( isConnected() ){
 				current_state++;
+				current_http_step = ESP_SEND_HEADER;
 				goToSending();
+				fillSnapShotData();
+				total_number_of_points = 0u;
+				number_of_points_send = 0;
 				timeout_count = DEFAULT_TIMEOUT;
 			} else {
 				/*  nothing to do */
 			}
 			break;
-		case ESP_ST_SENDING:
+		case ESP_ST_SEND_CMD:
 			if( readyToSend() ){
-				sendMainPage();
 				current_state++;
+				if ( current_http_step == ESP_SEND_DATA &&
+					total_number_of_points < 128 &&
+						number_of_points_send != 0u){
+					/* do nothing */
+					data_hist_page[strlen(data_hist_page)-1]=',';
+					sendHttpBlock();
+				} else {
+					data_hist_page[strlen(data_hist_page)-1]=' ';
+					sendHttpBlock();
+					current_http_step++;
+				}
 				timeout_count = DEFAULT_TIMEOUT;
 				sending_http_timeout = DEFAULT_HTTP_TIMEOUT;
 			} else {
 				/*  nothing to do */
 			}
 			break;
-		case ESP_ST_WAITING_SENT:
+		case ESP_ST_SEND_MSG:
 			if( isHttpSend() ){
-				closeConnection();
-				current_state = ESP_ST_WAITING_CONNECTION;
+				if( current_http_step >= ESP_SEND_END){
+					closeConnection();
+					current_state = ESP_ST_WAITING_CONNECTION;
+				} else if( current_http_step == ESP_SEND_DATA){
+					number_of_points_send =
+						fillChartData(total_number_of_points*1u + chart_offset , chart_step);
+					total_number_of_points += number_of_points_send;
+					current_state--;
+					goToSending();
+					timeout_count = DEFAULT_TIMEOUT;
+				}else {
+					current_state--;
+					goToSending();
+					timeout_count = DEFAULT_TIMEOUT;
+				}
 			} else {
 				if ( timeout_status ){
 					if( sending_http_timeout < 0){
@@ -361,7 +508,6 @@ void ESP8266Task()
 						sending_http_timeout--;
 					}
 				}
-				
 			}
 			break;
 		default:
@@ -425,4 +571,42 @@ void clearBuffer()
 	memset(esp_rx_buf, 0, ESP_MAX_IN_LEN);
 	esp_n_rx = 0;
 	esp_n_rd = 0;
+}
+
+
+#define ESP_TIMEOUT_REPLY 50
+uint8_t espSendCommands(uint8_t id, char *args, char *out)
+{
+	uint8_t timeout = ESP_TIMEOUT_REPLY;
+	char cmd[MAX_ESP_CMD_LEN];
+	char *ptr;
+	uint8_t successful = false;
+	clearBuffer();
+	strcpy(cmd, AT_COMMAND_ECHO);
+	strcat(cmd, "+");
+	strcat(cmd, esp_commands[id]);
+	if( args != NULL ){
+		strcat(cmd, "=");
+		strcat(cmd, args);
+	}
+	for(int i=0; i < MAX_ESP_CMD_LEN; i++){
+		if ( cmd[i] == 0){
+			break;
+		}
+		esp_putch( cmd[i] );
+	}
+	espEndCmd();
+	/* Wait reply*/
+	while( timeout > 0 ){
+		timeout--;
+		ptr = strstr( esp_rx_buf, SEND_DATA_RPLY_ACK);
+		if (ptr != NULL){
+			timeout = 0;
+			successful = true;
+			strcpy(out, esp_rx_buf);
+		}
+		__delay_ms(5);
+	}
+	clearBuffer();
+	return successful;
 }

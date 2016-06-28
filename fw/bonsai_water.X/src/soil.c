@@ -35,8 +35,9 @@
 #define TMR1_TCY_SRC 0
 #define N_SOIL_ACQ 10
 
-#define DEFAULT_RAW_LOW_LEVEL 40
-#define DEFAULT_RAW_HIGH_LEVEL 53
+#define DEFAULT_RAW_LOW_LEVEL 40u
+#define DEFAULT_RAW_HIGH_LEVEL 53u
+#define DEFAULT_RAW_MAX_LEVEL 100
 
 static uint8_t soil_wet = 0;
 static uint8_t pump_hal = 0;
@@ -46,6 +47,7 @@ static uint8_t soil_wet_buffer[N_SOIL_ACQ];
 static uint8_t *ptr_write = soil_wet_buffer;
 static uint8_t raw_low_level = DEFAULT_RAW_LOW_LEVEL;
 static uint8_t raw_high_level = DEFAULT_RAW_HIGH_LEVEL;
+static uint8_t raw_max_level = DEFAULT_RAW_MAX_LEVEL;
 
 uint8_t  dgn_pump_state = 0;
 uint8_t dgn_pump_ctrl = 0;
@@ -96,7 +98,8 @@ uint8_t drySoil()
 {
 	uint8_t soil_is_dry = 1;
 	for( int i = 0; i < N_SOIL_ACQ; i++){
-		if( soil_wet_buffer[i] < raw_high_level ){
+		if( (soil_wet_buffer[i] < raw_high_level) ||
+			(soil_wet_buffer[i] > raw_max_level)){
 			soil_is_dry = 0;
 		}
 	}
@@ -107,7 +110,8 @@ uint8_t wetSoil()
 {
 	uint8_t soil_is_wet = 1;
 	for( int i = 0; i < N_SOIL_ACQ; i++){
-		if( soil_wet_buffer[i] > raw_low_level ){
+		if( (soil_wet_buffer[i] > raw_low_level) &&
+			( soil_wet_buffer[i] < raw_max_level)){
 			soil_is_wet = 0;
 		}
 	}

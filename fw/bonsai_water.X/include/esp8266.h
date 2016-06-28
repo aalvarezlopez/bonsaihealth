@@ -15,8 +15,18 @@
 
 #define ESP_MAX_IN_LEN 512
 
+enum CMDS_ID{
+	ESP_MODE,
+	ESP_SSID,
+	ESP_IP,
+	ESP_MUX,
+	ESP_SERVER
+};
+
 void ESP8266Init();
 void ESP8266Task();
 void esp_putch(char c);
 void espEndCmd();
+void fillSnapShotData();
+uint8_t espSendCommands(uint8_t id, char *args, char *out);
 #endif

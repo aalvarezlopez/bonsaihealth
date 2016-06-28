@@ -36,23 +36,26 @@
 #define NOT_OVR 0
 #define IS_OVR 1
 
-#define HEADER_SIZE 2
+#define HEADER_SIZE 3
 #define HEADER_ADD 0
 enum{
-	NEXTPOS_ADD,
+	HWORD_NEXTPOS_ADD,
+	LWORD_NEXTPOS_ADD,
 	STATUS_ADD
 };
 
 #define ORF_MASK 0x01
 
 #define DATA_SIZE sizeof(storage_data)
-#define MEM_SIZE 256
+#define MEM_SIZE 65535
 
 
 // +------------------------------------+
-// | Position of the next element       |
+// | Position of the next element HWORD |
 // +------------------------------------+
-// |   CODE (0xA8)                | OR  |
+// | Position of the next element LWORD |
+// +------------------------------------+
+// |   CODE (0xA4)                | OR  |
 // +------------------------------------+
 // | position 1 temperature       | PS  |
 // +------------------------------------+
@@ -89,7 +92,7 @@ enum{
 // '0' in other case
 // OR = Owerrun Flag. '1' it he memory has been written at least one time whole.
 
-static uint8_t _next_position;
+static uint16_t _next_position;
 static uint8_t _overrunflag;
 void storageUpdateSt();
 
@@ -101,7 +104,8 @@ void storageInit()
 {
 	uint8_t buffer[HEADER_SIZE];
 	if (eepromRead( HEADER_SIZE, HEADER_ADD, buffer)){
-		_next_position = buffer[NEXTPOS_ADD];
+		_next_position = (buffer[HWORD_NEXTPOS_ADD] << 8u) | \
+						 buffer[LWORD_NEXTPOS_ADD];
 		_overrunflag = buffer[STATUS_ADD] & ORF_MASK ;
 		if ( (buffer[STATUS_ADD] & CODE_MASK) != EEPROM_CODE ){
 			LOG_DBG("EEPROM without format");
@@ -129,8 +133,8 @@ void storageClean()
  */
 void storageUpdateSt()
 {
-	uint8_t buffer[HEADER_SIZE] = { _next_position, EEPROM_CODE |  _overrunflag };
-	eepromWrite( HEADER_SIZE, HEADER_ADD, buffer);
+	uint8_t buffer[HEADER_SIZE] = { (_next_position >> 8u), _next_position, EEPROM_CODE |  _overrunflag };
+	eepromWrite( HEADER_SIZE, HEADER_ADD, (uint8_t*)buffer);
 }
 
 
@@ -159,9 +163,9 @@ void storageAppendData( storage_data to_write )
 	_next_position++;
 }
 
-uint8_t maxStorage()
+uint16_t maxStorage()
 {
-	uint8_t n_measurements = (MEM_SIZE - HEADER_SIZE) / DATA_SIZE;
+	uint16_t n_measurements = ((uint16_t)MEM_SIZE - HEADER_SIZE) / DATA_SIZE;
 	return n_measurements;
 }
 
@@ -174,10 +178,10 @@ uint8_t maxStorage()
  *
  * @return  If there are data of this index
  */
-uint8_t storageGetData( uint8_t index, storage_data *data )
+uint8_t storageGetData( uint16_t index, storage_data *data )
 {
 	/* Address of the next position */
-	uint16_t address = HEADER_SIZE + ( _next_position * DATA_SIZE);
+	uint32_t address = HEADER_SIZE + ( _next_position * DATA_SIZE);
 	uint8_t position;
 
 	if ( index >= maxStorage() ){
