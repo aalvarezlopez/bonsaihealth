@@ -38,6 +38,10 @@
 #include "system.h"        /* System funct/params, like osc/peripheral config */
 #include "libpic30.h"
 #define CONNECTION_REQUEST_MSG "+IPD"
+#define CONNECTION_REQUEST_4HTTP "HTTP"
+#define CONNECTION_REQUEST_4DGN "DGN:"
+#define REQUEST_PUMP_SETON "SETON"
+#define REQUEST_PUMP_SETOFF "SETOFF"
 #define SEND_DATA_RPLY_ACK "OK"
 #define DATA_SENT "SEND OK"
 #define AT_COMMAND_ECHO "AT"
@@ -45,6 +49,9 @@
 
 #define OFFSET_VAR "offset"
 #define STEP_VAR "step"
+
+extern uint8_t dgn_pump_ctrl;
+extern uint8_t dgn_pump_state;
 
 extern uint16_t esp_n_rx;
 uint16_t esp_n_rd = 0;
@@ -140,13 +147,37 @@ uint8_t isConnectionRequest()
 {
 	uint8_t request = 0;
 	char *ptr;
+	char *http_source;
+	char *dgn_source;
 	ptr = strstr( esp_rx_buf, CONNECTION_REQUEST_MSG);
-	if (ptr != NULL){
+	http_source = strstr( esp_rx_buf, CONNECTION_REQUEST_4HTTP);
+	dgn_source = strstr( esp_rx_buf, CONNECTION_REQUEST_4DGN);
+	if (ptr != NULL && http_source!= NULL){
 		LOG_DBG("Connection REQUEST");
 		// Mark this message as read to avoid read this message again.
 		*ptr = '#';
 		esp_n_rd = ptr - esp_rx_buf;
 		request = 1;
+	} else if ( ptr != NULL && dgn_source != NULL ){
+		LOG_DBG("Diagnostic command");
+		// Mark this message as read to avoid read this message again.
+		*ptr = '#';
+		esp_n_rd = ptr - esp_rx_buf;
+		if( strstr( esp_rx_buf, REQUEST_PUMP_SETON) != NULL ){
+			dgn_pump_ctrl = 1;
+			dgn_pump_state = 1;
+		} else if ( strstr( esp_rx_buf, REQUEST_PUMP_SETOFF) != NULL ){
+			dgn_pump_ctrl = 1;
+			dgn_pump_state = 0;
+		} else {
+			dgn_pump_ctrl = 0;
+			dgn_pump_state = 0;
+		}
+		fillSnapShotData();
+		espSendCmd(strlen(snapshot_page) % MAX_HTTP_SIZE);
+		__delay_ms(200);
+		sendHTTP(snapshot_page);
+		espEndCmd();
 	} else {
 	}
 	return request;
@@ -243,7 +274,7 @@ uint16_t fillChartData( uint16_t offset, uint16_t step)
 	char data_register[256];
 	uint16_t measurement_index = offset;
 	static storage_data data;
-	sprintf(data_hist_page, "");
+	sprintf(data_hist_page, " ");
 	while(storageGetData( measurement_index, &data ) &&\
 		number_of_points < MAX_POINTS_IN_CHART){
 		sprintf(str, "****\r\nNew data read. %d\r\n", number_of_points);

@@ -33,9 +33,9 @@ char body_page[]={"]);var options = { title: 'History',curveType:'function',"\
 	"<h1>BONSAI ENVIROMENT STATUS!</h1>"};
 char snapshot_page[MAX_SNAPSHOT_LEN];
 #define SNAPSHOT_MACRO	"<h2> TIME: %02d:%02d:%02d</h2>"\
-	"<h2>Temperature=%dºC</h2>"\
-	"<h2>Light=%d\%</h2>"\
-	"<h2>Soil humedity=%d\%</h2>"\
-	"<h2>Pump state=%d\%</h2>"
+	"<h2>Temperature=%d &#x2103</h2>"\
+	"<h2>Light=%d \%</h2>"\
+	"<h2>Soil humedity=%d \%</h2>"\
+	"<h2>Pump state=%d \%</h2>"
 char bot_page[]={
 	"<div id=\"curve_chart\" style=\"width: 900px; height: 500px\"></div></body></html>"};
