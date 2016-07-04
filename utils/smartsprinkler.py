@@ -5,39 +5,47 @@ import time
 class SmartSprinkler:
     def __init__(self, ip):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.s.connect((ip, 80))
-        self.s.setblocking(False)
+        try:
+            self.s.connect((ip, 80))
+            self.s.setblocking(False)
+            self.connected = True
+        except:
+            self.connected = False
 
     def close(self):
         self.s.close()
 
     def setOn(self):
-        values = []
-        self.s.send(b'DGN:SETON')
-        ready = select.select([self.s], [], [], 10)
-        reply = str(self.s.recv(1024))
-        for section in reply.split('=')[1:]:
-            values.append( int(section.split(' ')[0]))
+        values = [0, 0, 0, 0]
+        if self.connected:
+            self.s.send(b'DGN:SETON')
+            ready = select.select([self.s], [], [], 10)
+            reply = str(self.s.recv(1024))
+            for section in reply.split('=')[1:]:
+                values.append( int(section.split(' ')[0]))
 
         return values
 
     def setOff(self):
-        values = []
-        self.s.send(b'DGN:SETOFF')
-        ready = select.select([self.s], [], [], 10)
-        reply = str(self.s.recv(1024))
-        for section in reply.split('=')[1:]:
-            values.append( int(section.split(' ')[0]))
+        values = [0, 0, 0, 0]
+        if self.connected:
+            self.s.send(b'DGN:SETOFF')
+            ready = select.select([self.s], [], [], 10)
+            reply = str(self.s.recv(1024))
+            for section in reply.split('=')[1:]:
+                values.append( int(section.split(' ')[0]))
 
         return values
 
     def query(self):
-        values = []
-        self.s.send(b'DGN:')
-        ready = select.select([self.s], [], [], 10)
-        reply = str(self.s.recv(1024))
-        for section in reply.split('=')[1:]:
-            values.append( int(section.split(' ')[0]))
+        values = [0, 0, 0, 0]
+        if self.connected:
+            self.s.send(b'DGN:')
+            redeable, writable, exceptional = select.select([self.s], [], [], 10)
+            print 'redeable =', redeable
+            reply = str(self.s.recv(1024))
+            for section in reply.split('=')[1:]:
+                values.append( int(section.split(' ')[0]))
 
         return values
 
