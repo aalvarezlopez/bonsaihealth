@@ -4,6 +4,7 @@ import time
 from smartsprinkler import SmartSprinkler
 from wx.lib.pubsub import setuparg1
 from wx.lib.pubsub import pub
+from ipaddress import ip_address
 
 
 class MainFrame(wx.Frame):
@@ -115,18 +116,75 @@ class ComThread (threading.Thread):
 
     def run(self):
         while self.running:
-            smartsprinkler = SmartSprinkler("192.168.0.201")
+            smartsprinkler = SmartSprinkler(app.IP)
             if self.pumpState:
                 self.envState = smartsprinkler.setOn()
             else:
                 self.envState = smartsprinkler.setOff()
+            print self.envState
             smartsprinkler.close()
             wx.CallAfter(pub.sendMessage, "refresh", self.envState)
             time.sleep(1)
 
+class InitDlg(wx.Dialog):
+    def __init__(self):
+        wx.Dialog.__init__(
+            self, None, title="DAQControl", style=(
+                wx.STAY_ON_TOP | wx.CAPTION))
+        self.horizontal_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        self.horizontal_sizer_2 = wx.BoxSizer(wx.HORIZONTAL)
+        self.vertical_sizer = wx.BoxSizer(wx.VERTICAL)
+
+        self.label_hear = wx.StaticText(self, label="Select Serial Port")
+        self.textCtrl = wx.TextCtrl(self)
+
+        self.horizontal_sizer.Add(self.label_hear, wx.EXPAND)
+        self.horizontal_sizer.Add(self.textCtrl, wx.EXPAND)
+
+        self.button_ok = wx.Button(self, label="OK")
+        self.Bind(wx.EVT_BUTTON, self.ok_event, self.button_ok)
+
+        self.button_cancel = wx.Button(self, label="Cancel")
+        self.Bind(wx.EVT_BUTTON, self.cancel_event, self.button_cancel)
+
+        self.horizontal_sizer_2.Add(self.button_ok, wx.EXPAND)
+        self.horizontal_sizer_2.Add(self.button_cancel, wx.EXPAND)
+        self.vertical_sizer.Add(self.horizontal_sizer, wx.EXPAND)
+        self.vertical_sizer.Add(self.horizontal_sizer_2, wx.EXPAND)
+
+        self.SetSizer(self.vertical_sizer)
+        self.SetAutoLayout(1)
+        self.vertical_sizer.Fit(self)
+
+    def ok_event(self, event):
+        self.ip = self.textCtrl.GetValue()
+        done = False
+        try:
+            ip_address(self.ip)
+            done = True
+        except:
+            pass
+        if done:
+            self.EndModal(1)
+        else:
+            dlg = wx.MessageDialog(
+                self, "Not a valid IP", "Retry", wx.OK | wx.ICON_QUESTION)
+            dlg.ShowModal()
+            dlg.Destroy()
+
+    def cancel_event(self, event):
+        self.port = 0
+        self.EndModal(0)
 
 class MyApp(wx.App):
     def OnInit(self):
+        self.validIp = False
+        dial = InitDlg()
+        ret = dial.ShowModal()
+        self.validIp = ret
+        if self.validIp == True:
+            self.IP = dial.ip
+        dial.Destroy()
         return True
 
 
@@ -144,11 +202,13 @@ class MyApp(wx.App):
 
 def main():
     app = MyApp(False)
-    global frame
-    frame = MainFrame()
-    frame.Centre()
-    frame.Show()
-    app.MainLoop()
+    global app
+    if app.validIp == True:
+        global frame
+        frame = MainFrame()
+        frame.Centre()
+        frame.Show()
+        app.MainLoop()
 
 
 if __name__ == "__main__":

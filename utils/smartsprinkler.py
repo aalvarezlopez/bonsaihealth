@@ -16,29 +16,33 @@ class SmartSprinkler:
         self.s.close()
 
     def setOn(self):
-        values = [0, 0, 0, 0]
+        values = []
         if self.connected:
             self.s.send(b'DGN:SETON')
             ready = select.select([self.s], [], [], 10)
             reply = str(self.s.recv(1024))
             for section in reply.split('=')[1:]:
                 values.append( int(section.split(' ')[0]))
+        else:
+            values = [0, 0, 0, 0]
 
         return values
 
     def setOff(self):
-        values = [0, 0, 0, 0]
+        values = []
         if self.connected:
             self.s.send(b'DGN:SETOFF')
             ready = select.select([self.s], [], [], 10)
             reply = str(self.s.recv(1024))
             for section in reply.split('=')[1:]:
                 values.append( int(section.split(' ')[0]))
+        else:
+            values = [0, 0, 0, 0]
 
         return values
 
     def query(self):
-        values = [0, 0, 0, 0]
+        values = []
         if self.connected:
             self.s.send(b'DGN:')
             redeable, writable, exceptional = select.select([self.s], [], [], 10)
@@ -46,6 +50,8 @@ class SmartSprinkler:
             reply = str(self.s.recv(1024))
             for section in reply.split('=')[1:]:
                 values.append( int(section.split(' ')[0]))
+        else:
+            values = [0, 0, 0, 0]
 
         return values
 
