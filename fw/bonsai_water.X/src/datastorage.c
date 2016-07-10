@@ -36,12 +36,15 @@
 #define NOT_OVR 0
 #define IS_OVR 1
 
-#define HEADER_SIZE 3
+#define HEADER_SIZE 5
+#define TIME_HEADER_SIZE 2
 #define HEADER_ADD 0
 enum{
 	HWORD_NEXTPOS_ADD,
 	LWORD_NEXTPOS_ADD,
-	STATUS_ADD
+	STATUS_ADD,
+	LASTTIME_HOUR,
+	LASTTIME_MIN
 };
 
 #define ORF_MASK 0x01
@@ -56,6 +59,10 @@ enum{
 // | Position of the next element LWORD |
 // +------------------------------------+
 // |   CODE (0xA4)                | OR  |
+// +------------------------------------+
+// |   Last time: hour                  |
+// +------------------------------------+
+// |   Last time: minutes               |
 // +------------------------------------+
 // | position 1 temperature       | PS  |
 // +------------------------------------+
@@ -95,18 +102,21 @@ enum{
 static uint16_t _next_position;
 static uint8_t _overrunflag;
 void storageUpdateSt();
+void storageUpdateStTime(uint8_t hour, uint8_t min);
 
 
 /**
  * @brief Initialitation of the static variables of status.
  */
-void storageInit()
+void storageInit(uint8_t *hour, uint8_t *min)
 {
 	uint8_t buffer[HEADER_SIZE];
 	if (eepromRead( HEADER_SIZE, HEADER_ADD, buffer)){
 		_next_position = (buffer[HWORD_NEXTPOS_ADD] << 8u) | \
 						 buffer[LWORD_NEXTPOS_ADD];
 		_overrunflag = buffer[STATUS_ADD] & ORF_MASK ;
+		*hour = buffer[LASTTIME_HOUR] ;
+		*min = buffer[LASTTIME_MIN] ;
 		if ( (buffer[STATUS_ADD] & CODE_MASK) != EEPROM_CODE ){
 			LOG_DBG("EEPROM without format");
 			_next_position = 0;
@@ -131,10 +141,20 @@ void storageClean()
 /**
  * @brief Write in eeprom the status variables.
  */
-void storageUpdateSt()
+void storageUpdateStTime(uint8_t hour, uint8_t min)
 {
-	uint8_t buffer[HEADER_SIZE] = { (_next_position >> 8u), _next_position, EEPROM_CODE |  _overrunflag };
+	uint8_t buffer[HEADER_SIZE] = { (_next_position >> 8u), _next_position, EEPROM_CODE |  _overrunflag, hour, min };
 	eepromWrite( HEADER_SIZE, HEADER_ADD, (uint8_t*)buffer);
+}
+
+
+/**
+ * @brief Write in eeprom the status variables.
+ */
+void storageUpdateSt(void)
+{
+	uint8_t buffer[HEADER_SIZE] = { (_next_position >> 8u), _next_position, EEPROM_CODE |  _overrunflag, 0, 0 };
+	eepromWrite( HEADER_SIZE - TIME_HEADER_SIZE, HEADER_ADD, (uint8_t*)buffer);
 }
 
 
@@ -159,7 +179,7 @@ void storageAppendData( storage_data to_write )
 	sprintf(str, "ADD %x OR %x NEXT_POS %x", address, _overrunflag, _next_position);
 	LOG_DBG(str);
 	eepromWrite( DATA_SIZE, address, (uint8_t*) &to_write);
-	storageUpdateSt();
+	storageUpdateStTime( to_write.hour, to_write.minutes);
 	_next_position++;
 }
 

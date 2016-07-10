@@ -36,6 +36,7 @@ extern uint8_t pumpPeriodEnable;
 
 void InitApp(void)
 {
+	uint8_t lastTimeHour, lastTimeMin = 0u;
 	//configure I/O
 	AD1PCFG = 0xFFFFFFFF;
 
@@ -48,8 +49,8 @@ void InitApp(void)
 	configureI2C();
 	configureADC();
     soilInit();
-	storageInit();
-	InitRTCC();
+	storageInit(&lastTimeHour, &lastTimeMin);
+	InitRTCC( lastTimeHour, lastTimeMin);
 }
 
 

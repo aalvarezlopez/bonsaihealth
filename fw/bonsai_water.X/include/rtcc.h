@@ -27,7 +27,7 @@ enum RTCC_PTR{ MIN_SEC, DAY_HOURS, MONTH_DAY, YEAR};
 #define DEF_YEAR 15
 #endif
 
-void InitRTCC();
+void InitRTCC(uint8_t hour, uint8_t min);
 void rtccLock();
 void rtccUnlock();
 void rtccReadClock( uint8_t *week_day, uint8_t *hour, uint8_t *minutes, uint8_t *seconds);

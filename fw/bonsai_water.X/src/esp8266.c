@@ -39,9 +39,10 @@
 #include "libpic30.h"
 #define CONNECTION_REQUEST_MSG "+IPD"
 #define CONNECTION_REQUEST_4HTTP "HTTP"
-#define CONNECTION_REQUEST_4DGN "DGN:"
+#define CONNECTION_REQUEST_4DGN "DGN"
 #define REQUEST_PUMP_SETON "SETON"
 #define REQUEST_PUMP_SETOFF "SETOFF"
+#define REQUEST_SET_DATE "DATE"
 #define SEND_DATA_RPLY_ACK "OK"
 #define DATA_SENT "SEND OK"
 #define AT_COMMAND_ECHO "AT"
@@ -149,6 +150,8 @@ uint8_t isConnectionRequest()
 	char *ptr;
 	char *http_source;
 	char *dgn_source;
+	uint8_t date[6];
+	char str[100];
 	ptr = strstr( esp_rx_buf, CONNECTION_REQUEST_MSG);
 	http_source = strstr( esp_rx_buf, CONNECTION_REQUEST_4HTTP);
 	dgn_source = strstr( esp_rx_buf, CONNECTION_REQUEST_4DGN);
@@ -169,6 +172,23 @@ uint8_t isConnectionRequest()
 		} else if ( strstr( esp_rx_buf, REQUEST_PUMP_SETOFF) != NULL ){
 			dgn_pump_ctrl = 1;
 			dgn_pump_state = 0;
+		} else if(strstr( esp_rx_buf,  REQUEST_SET_DATE) != NULL){
+			LOG_DBG("Setting clock");
+			ptr = strstr( esp_rx_buf,  REQUEST_SET_DATE);
+			*ptr = '#';
+			ptr++;
+			for( int i=0; i < 6; i++){
+				ptr = strchr(ptr,'_');
+				ptr++;
+				date[i] = atoi(ptr);
+				if( ptr == NULL){
+					break;
+				}
+				sprintf(str,"%d\n", date[i]);
+				LOG_DBG(str);
+			}
+			rtccSetClock( 0, date[0], date[1], date[2]);
+			rtccSetDate( date[5], date[4], date[3]);
 		} else {
 			dgn_pump_ctrl = 0;
 			dgn_pump_state = 0;

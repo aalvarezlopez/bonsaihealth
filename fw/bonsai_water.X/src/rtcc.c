@@ -42,7 +42,7 @@ enum MASK{
 /**
  * @brief Configure RTCC peripheral and enable SOSC
  */
-void InitRTCC()
+void InitRTCC(uint8_t hour, uint8_t min)
 {
 	if( RCFGCALbits.RTCEN == 0 ){
 		rtccUnlock();
@@ -56,7 +56,7 @@ void InitRTCC()
 		asm volatile ("mov.b W0, [W1]");
 		RCFGCALbits.RTCEN = 1;
 		rtccLock();
-		rtccSetClock( DEF_WEEKDAY, DEF_HOUR, DEF_MIN, DEF_SEC);
+		rtccSetClock( DEF_WEEKDAY, hour, min, DEF_SEC);
 		rtccSetDate( DEF_YEAR, DEF_MONTH, DEF_DAY);
 	}
 	configureAlarm();

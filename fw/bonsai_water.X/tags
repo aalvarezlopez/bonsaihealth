@@ -88,8 +88,8 @@ AS_DESCRIPTOR_UNDEFINED	lib/inc/usb_device_audio.h	60;"	d
 AS_GENERAL	lib/inc/usb_device_audio.h	61;"	d
 ATTACHED_STATE	lib/inc/usb_device.h	/^    ATTACHED_STATE$/;"	e	enum:__anon95
 ATTACK_TIME	lib/inc/usb_device_audio.h	147;"	d
-AT_COMMAND_ECHO	src/esp8266.c	47;"	d	file:
-AT_REPLY_OK	src/esp8266.c	48;"	d	file:
+AT_COMMAND_ECHO	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	48;"	d	file:
+AT_REPLY_OK	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	49;"	d	file:
 AUDIOCONTROL	lib/inc/usb_device_audio.h	36;"	d
 AUDIOSTREAMING	lib/inc/usb_device_audio.h	37;"	d
 AUDIO_COMMAND_FAILED	lib/inc/usb_host_audio_v1.h	42;"	d
@@ -255,16 +255,16 @@ CNT	lib/inc/usb_hal_pic24.h	/^            uint8_t CNT;$/;"	m	struct:__BDT::__ano
 CNT	lib/inc/usb_hal_pic24e.h	/^	        uint16_t        CNT:10;$/;"	m	struct:__BDT::__anon116::__anon117
 CNT	lib/inc/usb_hal_pic24f.h	/^            uint8_t CNT;$/;"	m	struct:__BDT::__anon8::__anon9
 CNT	lib/src/usb_pic18_local.h	/^        uint8_t CNT;$/;"	m	struct:__BDT::__anon200
-CODE_MASK	src/datastorage.c	35;"	d	file:
+CODE_MASK	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	35;"	d	file:
 COMM_INTERFACE_DETAILS	lib/inc/usb_host_cdc.h	/^}   COMM_INTERFACE_DETAILS;$/;"	t	typeref:struct:_COMM_INTERFACE_DETAILS
 COMM_INTF	lib/inc/usb_device_cdc.h	55;"	d
 COMPRESSION_RATE_CONTROL	lib/inc/usb_device_audio.h	144;"	d
 CONFIGURED_STATE	lib/inc/usb_device.h	/^    CONFIGURED_STATE$/;"	e	enum:__anon95
 CONFIGURE_RTS	lib/inc/usb_device_cdc.h	108;"	d
 CONFIGURE_RTS	lib/inc/usb_device_cdc.h	110;"	d
-CONNECTION_REQUEST_4DGN	src/esp8266.c	42;"	d	file:
-CONNECTION_REQUEST_4HTTP	src/esp8266.c	41;"	d	file:
-CONNECTION_REQUEST_MSG	src/esp8266.c	40;"	d	file:
+CONNECTION_REQUEST_4DGN	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	42;"	d	file:
+CONNECTION_REQUEST_4HTTP	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	41;"	d	file:
+CONNECTION_REQUEST_MSG	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	40;"	d	file:
 CONTROL_BUFFER	lib/src/usb_device_cdc.c	/^} CONTROL_BUFFER;$/;"	t	typeref:union:__anon202	file:
 CONTROL_BUFFER_ADDRESS_TAG	lib/src/usb_device_cdc.c	57;"	d	file:
 CONTROL_SIGNAL_BITMAP	lib/inc/usb_device_cdc.h	/^} CONTROL_SIGNAL_BITMAP;$/;"	t	typeref:union:_CONTROL_SIGNAL_BITMAP
@@ -345,26 +345,26 @@ DATA_HIST_MACRO	include/http.h	28;"	d
 DATA_INTERFACE_DETAILS	lib/inc/usb_host_cdc.h	/^}   DATA_INTERFACE_DETAILS;$/;"	t	typeref:struct:_DATA_INTERFACE_DETAILS
 DATA_INTF	lib/inc/usb_device_cdc.h	65;"	d
 DATA_PTR_SIZE	lib/src/usb_hal_local.h	163;"	d
-DATA_SENT	src/esp8266.c	46;"	d	file:
-DATA_SIZE	src/datastorage.c	49;"	d	file:
-DAY	include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	g
-DAY_HOURS	include/rtcc.h	/^enum RTCC_PTR{ MIN_SEC, DAY_HOURS, MONTH_DAY, YEAR};$/;"	e	enum:RTCC_PTR
+DATA_SENT	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	47;"	d	file:
+DATA_SIZE	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	52;"	d	file:
+DAY	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	g
+DAY_HOURS	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^enum RTCC_PTR{ MIN_SEC, DAY_HOURS, MONTH_DAY, YEAR};$/;"	e	enum:RTCC_PTR
 DBD	lib/inc/usb_device_msd.h	/^	uint8_t DBD;                \/\/ actually only b3 is used as disable block descriptor$/;"	m	struct:__anon36
 DCD	lib/inc/usb_device_cdc.h	/^        uint8_t    DCD             :1;$/;"	m	struct:__anon110::__anon111
-DEFAULT_HTTP_TIMEOUT	src/esp8266.c	61;"	d	file:
+DEFAULT_HTTP_TIMEOUT	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	62;"	d	file:
 DEFAULT_RAW_HIGH_LEVEL	src/soil.c	39;"	d	file:
 DEFAULT_RAW_LOW_LEVEL	src/soil.c	38;"	d	file:
 DEFAULT_RAW_MAX_LEVEL	src/soil.c	40;"	d	file:
 DEFAULT_STATE	lib/inc/usb_device.h	/^    DEFAULT_STATE$/;"	e	enum:__anon95
-DEFAULT_TIMEOUT	src/esp8266.c	62;"	d	file:
+DEFAULT_TIMEOUT	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	63;"	d	file:
 DEFAULT_VALUE	src/tc74.c	34;"	d	file:
-DEF_DAY	include/rtcc.h	25;"	d
-DEF_HOUR	include/rtcc.h	21;"	d
-DEF_MIN	include/rtcc.h	22;"	d
-DEF_MONTH	include/rtcc.h	26;"	d
-DEF_SEC	include/rtcc.h	23;"	d
-DEF_WEEKDAY	include/rtcc.h	24;"	d
-DEF_YEAR	include/rtcc.h	27;"	d
+DEF_DAY	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	25;"	d
+DEF_HOUR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	21;"	d
+DEF_MIN	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	22;"	d
+DEF_MONTH	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	26;"	d
+DEF_SEC	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	23;"	d
+DEF_WEEKDAY	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	24;"	d
+DEF_YEAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	27;"	d
 DELAY_CONTROL	lib/inc/usb_device_audio.h	105;"	d
 DESCRIPTOR_ID	lib/inc/usb_ch9.h	/^} DESCRIPTOR_ID;$/;"	t	typeref:struct:__anon134
 DESCRIPTOR_UNDEFINED	lib/inc/usb_device_audio.h	75;"	d
@@ -471,7 +471,7 @@ DisableNonZeroEndpoints	lib/inc/usb_hal_pic24e.h	515;"	d
 DisableNonZeroEndpoints	lib/inc/usb_hal_pic24f.h	554;"	d
 EEPROM	src/app_device_cdc_basic.c	/^	EEPROM,$/;"	e	enum:MENU_SELECTION	file:
 EEPROM_ACK	include/eeprom.h	/^    EEPROM_ACK,$/;"	e	enum:ERRORCODE
-EEPROM_CODE	src/datastorage.c	34;"	d	file:
+EEPROM_CODE	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	34;"	d	file:
 EEPROM_ERROR_DEVICE	include/eeprom.h	/^    EEPROM_ERROR_DEVICE$/;"	e	enum:ERRORCODE
 EEPROM_H	include/eeprom.h	19;"	d
 EEPROM_SIZE	src/eeprom.c	28;"	d	file:
@@ -481,7 +481,7 @@ ENDPOINT_MASK	lib/inc/usb_hal_pic18.h	166;"	d
 ENDPOINT_MASK	lib/inc/usb_hal_pic24.h	222;"	d
 ENDPOINT_MASK	lib/inc/usb_hal_pic24e.h	172;"	d
 ENDPOINT_MASK	lib/inc/usb_hal_pic24f.h	222;"	d
-END_CHAR	src/esp8266.c	213;"	d	file:
+END_CHAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	233;"	d	file:
 EOM	lib/inc/usb_device_msd.h	/^    	unsigned EOM:1;                        \/\/ End of Medium$/;"	m	struct:__anon47::__anon49
 EP	lib/src/usb_device_local.h	114;"	d
 EP	lib/src/usb_device_local.h	186;"	d
@@ -795,27 +795,27 @@ EP_STALL	lib/src/usb_hal_local.h	57;"	d
 EP_STATUS	lib/src/usb_device_local.h	/^} EP_STATUS;$/;"	t	typeref:union:__anon183
 ERRORCODE	include/eeprom.h	/^enum ERRORCODE{$/;"	g
 ERROR_MASK	lib/src/usb_hal_local.h	155;"	d
-ESP8266Init	src/esp8266.c	/^void ESP8266Init()$/;"	f
-ESP8266Task	src/esp8266.c	/^void ESP8266Task()$/;"	f
+ESP8266Init	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void ESP8266Init()$/;"	f
+ESP8266Task	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void ESP8266Task()$/;"	f
 ESP8266_H	include/esp8266.h	7;"	d
 ESP_IP	include/esp8266.h	/^	ESP_IP,$/;"	e	enum:CMDS_ID
 ESP_MAX_IN_LEN	include/esp8266.h	16;"	d
 ESP_MODE	include/esp8266.h	/^	ESP_MODE,$/;"	e	enum:CMDS_ID
 ESP_MUX	include/esp8266.h	/^	ESP_MUX,$/;"	e	enum:CMDS_ID
-ESP_SEND_BODY	src/esp8266.c	/^	ESP_SEND_BODY,$/;"	e	enum:ESP_SEND_HTTP_STEP	file:
-ESP_SEND_DATA	src/esp8266.c	/^	ESP_SEND_DATA,$/;"	e	enum:ESP_SEND_HTTP_STEP	file:
-ESP_SEND_END	src/esp8266.c	/^	ESP_SEND_END$/;"	e	enum:ESP_SEND_HTTP_STEP	file:
-ESP_SEND_FOOT	src/esp8266.c	/^	ESP_SEND_FOOT,$/;"	e	enum:ESP_SEND_HTTP_STEP	file:
-ESP_SEND_HEADER	src/esp8266.c	/^	ESP_SEND_HEADER,$/;"	e	enum:ESP_SEND_HTTP_STEP	file:
-ESP_SEND_HTTP_STEP	src/esp8266.c	/^enum ESP_SEND_HTTP_STEP{$/;"	g	file:
-ESP_SEND_SNAPSHOT	src/esp8266.c	/^	ESP_SEND_SNAPSHOT,$/;"	e	enum:ESP_SEND_HTTP_STEP	file:
+ESP_SEND_BODY	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_SEND_BODY,$/;"	e	enum:ESP_SEND_HTTP_STEP	file:
+ESP_SEND_DATA	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_SEND_DATA,$/;"	e	enum:ESP_SEND_HTTP_STEP	file:
+ESP_SEND_END	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_SEND_END$/;"	e	enum:ESP_SEND_HTTP_STEP	file:
+ESP_SEND_FOOT	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_SEND_FOOT,$/;"	e	enum:ESP_SEND_HTTP_STEP	file:
+ESP_SEND_HEADER	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_SEND_HEADER,$/;"	e	enum:ESP_SEND_HTTP_STEP	file:
+ESP_SEND_HTTP_STEP	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^enum ESP_SEND_HTTP_STEP{$/;"	g	file:
+ESP_SEND_SNAPSHOT	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_SEND_SNAPSHOT,$/;"	e	enum:ESP_SEND_HTTP_STEP	file:
 ESP_SERVER	include/esp8266.h	/^	ESP_SERVER$/;"	e	enum:CMDS_ID
 ESP_SSID	include/esp8266.h	/^	ESP_SSID,$/;"	e	enum:CMDS_ID
-ESP_ST_CONNECTING	src/esp8266.c	/^	ESP_ST_CONNECTING,$/;"	e	enum:__anon204	file:
-ESP_ST_SEND_CMD	src/esp8266.c	/^	ESP_ST_SEND_CMD,$/;"	e	enum:__anon204	file:
-ESP_ST_SEND_MSG	src/esp8266.c	/^	ESP_ST_SEND_MSG$/;"	e	enum:__anon204	file:
-ESP_ST_WAITING_CONNECTION	src/esp8266.c	/^	ESP_ST_WAITING_CONNECTION,$/;"	e	enum:__anon204	file:
-ESP_TIMEOUT_REPLY	src/esp8266.c	608;"	d	file:
+ESP_ST_CONNECTING	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_ST_CONNECTING,$/;"	e	enum:__anon1	file:
+ESP_ST_SEND_CMD	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_ST_SEND_CMD,$/;"	e	enum:__anon1	file:
+ESP_ST_SEND_MSG	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_ST_SEND_MSG$/;"	e	enum:__anon1	file:
+ESP_ST_WAITING_CONNECTION	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_ST_WAITING_CONNECTION,$/;"	e	enum:__anon1	file:
+ESP_TIMEOUT_REPLY	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	628;"	d	file:
 EVENT_1MS	lib/inc/usb_common.h	/^    EVENT_1MS,$/;"	e	enum:__anon25
 EVENT_ALT_INTERFACE	lib/inc/usb_common.h	/^    EVENT_ALT_INTERFACE,$/;"	e	enum:__anon25
 EVENT_ANDROID_ATTACH	lib/inc/usb_host_android.h	66;"	d
@@ -893,12 +893,12 @@ EVENT_VBUS_POWER_AVAILABLE	lib/inc/usb_common.h	/^    EVENT_VBUS_POWER_AVAILABLE
 EVENT_VBUS_RELEASE_POWER	lib/inc/usb_common.h	/^    EVENT_VBUS_RELEASE_POWER,   $/;"	e	enum:__anon25
 EVENT_VBUS_REQUEST_POWER	lib/inc/usb_common.h	/^    EVENT_VBUS_REQUEST_POWER,   $/;"	e	enum:__anon25
 EVENT_VBUS_SES_REQUEST	lib/inc/usb_common.h	/^    EVENT_VBUS_SES_REQUEST,     $/;"	e	enum:__anon25
-EVERY_10_HOURS	src/rtcc.c	/^	EVERY_10_HOURS$/;"	e	enum:MASK	file:
-EVERY_10_MIN	src/rtcc.c	/^	EVERY_10_MIN,$/;"	e	enum:MASK	file:
-EVERY_10_SECONDS	src/rtcc.c	/^	EVERY_10_SECONDS ,$/;"	e	enum:MASK	file:
-EVERY_HOUR	src/rtcc.c	/^	EVERY_HOUR,$/;"	e	enum:MASK	file:
-EVERY_MINUTE	src/rtcc.c	/^	EVERY_MINUTE,$/;"	e	enum:MASK	file:
-EVERY_SECOND	src/rtcc.c	/^	EVERY_SECOND = 1,$/;"	e	enum:MASK	file:
+EVERY_10_HOURS	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^	EVERY_10_HOURS$/;"	e	enum:MASK	file:
+EVERY_10_MIN	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^	EVERY_10_MIN,$/;"	e	enum:MASK	file:
+EVERY_10_SECONDS	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^	EVERY_10_SECONDS ,$/;"	e	enum:MASK	file:
+EVERY_HOUR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^	EVERY_HOUR,$/;"	e	enum:MASK	file:
+EVERY_MINUTE	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^	EVERY_MINUTE,$/;"	e	enum:MASK	file:
+EVERY_SECOND	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^	EVERY_SECOND = 1,$/;"	e	enum:MASK	file:
 EVPD	lib/inc/usb_device_msd.h	/^	uint8_t EVPD;                \/\/ only b0 is enable vital product data$/;"	m	struct:__anon33
 EXTENSION_UNIT	lib/inc/usb_device_audio.h	57;"	d
 EnableUsbModule	lib/src/usb_hal_local.h	414;"	d
@@ -920,7 +920,7 @@ Files	latex/dir_68267d1309a1af8e8297ef4c3efbcdba.tex	/^\\subsection*{Files}$/;"	
 FindChildElement	html/search/search.js	/^    this.FindChildElement = function(id)$/;"	m	class:SearchResults
 Flags	lib/inc/usb_device_msd.h	/^    uint8_t Flags;                        \/\/ b7-b5 RDProtect, b4 DPO, b3 FUA, b2 Reserved, b1 FUA_NV, b0 Obsolete$/;"	m	struct:__anon32
 FramingError	lib/inc/usb_device_cdc.h	/^        uint8_t    FramingError    :1;$/;"	m	struct:__anon110::__anon111
-Friday	include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	e	enum:DAY
+Friday	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	e	enum:DAY
 GET_COMM_FEATURE	lib/inc/usb_device_cdc.h	35;"	d
 GET_CUR	lib/inc/usb_device_audio.h	85;"	d
 GET_DATA_STATUS	lib/inc/usb_device_phdc.h	48;"	d
@@ -947,8 +947,8 @@ HB	lib/inc/usb_ch9.h	/^                uint8_t HB;$/;"	m	struct:__anon135::__ano
 HB	lib/inc/usb_device.h	/^        uint8_t HB;$/;"	m	struct:__anon97::__anon98
 HB	lib/inc/usb_device_msd.h	/^        uint8_t HB;$/;"	m	struct:__anon30::__anon31
 HEADER	lib/inc/usb_device_audio.h	50;"	d
-HEADER_ADD	src/datastorage.c	40;"	d	file:
-HEADER_SIZE	src/datastorage.c	39;"	d	file:
+HEADER_ADD	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	41;"	d	file:
+HEADER_SIZE	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	39;"	d	file:
 HEADPHONES	lib/inc/usb_device_audio.h	166;"	d
 HIDCollection_Application	lib/inc/usb_host_hid_parser.h	123;"	d
 HIDCollection_Physical	lib/inc/usb_host_hid_parser.h	122;"	d
@@ -1056,7 +1056,7 @@ HOST	lib/src/usb_hal_local.h	/^    HOST   = 1  \/\/ USB controller is acting as 
 HOST_TRANSFER_DATA	lib/inc/usb_host.h	/^} HOST_TRANSFER_DATA;$/;"	t	typeref:struct:_HOST_TRANSFER_DATA
 HSHK_EN	lib/inc/usb_hal_dspic33e.h	185;"	d
 HSHK_EN	lib/inc/usb_hal_pic24e.h	184;"	d
-HWORD_NEXTPOS_ADD	src/datastorage.c	/^	HWORD_NEXTPOS_ADD,$/;"	e	enum:__anon203	file:
+HWORD_NEXTPOS_ADD	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^	HWORD_NEXTPOS_ADD,$/;"	e	enum:__anon1	file:
 Header	lib/inc/usb_device_msd.h	/^	tModeParamHdr Header;$/;"	m	struct:__anon45
 Header_Fn_Dsc	lib/inc/usb_host_cdc.h	/^    USB_CDC_HEADER_FN_DSC           Header_Fn_Dsc;        \/\/ Header Function Descriptor$/;"	m	struct:_COMM_INTERFACE_DETAILS
 I2C_BR_100KHz	src/i2c.c	34;"	d	file:
@@ -1077,14 +1077,15 @@ IN_PIPE	lib/inc/usb_device.h	/^}IN_PIPE;$/;"	t	typeref:struct:__anon99
 IN_TO_HOST	lib/inc/usb_ch9.h	590;"	d
 ISOCHRONOUS_DATA	lib/inc/usb_host.h	/^} ISOCHRONOUS_DATA;$/;"	t	typeref:struct:_ISOCHRONOUS_DATA
 ISOCHRONOUS_DATA_BUFFER	lib/inc/usb_host.h	/^} ISOCHRONOUS_DATA_BUFFER;$/;"	t	typeref:struct:_ISOCHRONOUS_DATA_BUFFER
-IS_OVR	src/datastorage.c	37;"	d	file:
+IS_OVR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	37;"	d	file:
 Immed	lib/inc/usb_device_msd.h	/^	uint8_t Immed;$/;"	m	struct:__anon40
 InformationB0	lib/inc/usb_device_msd.h	/^    	uint8_t InformationB0;                    \/\/ device type or command specific (SPC-33.1.18)$/;"	m	struct:__anon47::__anon49
 InformationB1	lib/inc/usb_device_msd.h	/^        uint8_t InformationB1;                    \/\/ device type or command specific (SPC-33.1.18)$/;"	m	struct:__anon47::__anon49
 InformationB2	lib/inc/usb_device_msd.h	/^        uint8_t InformationB2;                    \/\/ device type or command specific (SPC-33.1.18)$/;"	m	struct:__anon47::__anon49
 InformationB3	lib/inc/usb_device_msd.h	/^        uint8_t InformationB3;                    \/\/ device type or command specific (SPC-33.1.18)$/;"	m	struct:__anon47::__anon49
-InitApp	src/user.c	/^void InitApp(void)$/;"	f
-InitRTCC	src/rtcc.c	/^void InitRTCC()$/;"	f
+InitApp	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/user.c	/^void InitApp(void)$/;"	f	signature:(void)
+InitRTCC	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^void InitRTCC(uint8_t hour, uint8_t min);$/;"	p	signature:(uint8_t hour, uint8_t min)
+InitRTCC	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^void InitRTCC(uint8_t hour, uint8_t min)$/;"	f	signature:(uint8_t hour, uint8_t min)
 Initialize	lib/inc/usb_host.h	/^    USB_CLIENT_INIT          Initialize;     \/\/ Initialization routine$/;"	m	struct:_CLIENT_DRIVER_TABLE
 InquiryCB	lib/inc/usb_device_msd.h	/^} InquiryCB;$/;"	t	typeref:struct:__anon33
 InquiryResponse	lib/inc/usb_device_msd.h	/^} InquiryResponse;      \/\/36 bytes total$/;"	t	typeref:struct:__anon41
@@ -1099,6 +1100,8 @@ KEN	lib/src/usb_pic18_local.h	/^        unsigned KEN:1;         \/\/BD Keep Enab
 KVA0_TO_KVA1	lib/src/usb_pic18_local.h	34;"	d
 KVA1_TO_KVA0	lib/src/usb_pic18_local.h	35;"	d
 KVA_TO_PA	lib/src/usb_pic18_local.h	27;"	d
+LASTTIME_HOUR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^	LASTTIME_HOUR,$/;"	e	enum:__anon1	file:
+LASTTIME_MIN	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^	LASTTIME_MIN$/;"	e	enum:__anon1	file:
 LB	lib/inc/usb_ch9.h	/^                uint8_t LB;$/;"	m	struct:__anon135::__anon137::__anon138::__anon139
 LB	lib/inc/usb_ch9.h	/^                uint8_t LB;$/;"	m	struct:__anon135::__anon137::__anon140::__anon141
 LB	lib/inc/usb_ch9.h	/^                uint8_t LB;$/;"	m	struct:__anon135::__anon137::__anon142::__anon143
@@ -1130,7 +1133,7 @@ LOUDNESS_CONTROL	lib/inc/usb_device_audio.h	107;"	d
 LUNSoftAttach	lib/inc/usb_device_msd.h	619;"	d
 LUNSoftDetach	lib/inc/usb_device_msd.h	598;"	d
 LUN_FUNCTIONS	lib/inc/usb_device_msd.h	/^} LUN_FUNCTIONS;$/;"	t	typeref:struct:__anon50
-LWORD_NEXTPOS_ADD	src/datastorage.c	/^	LWORD_NEXTPOS_ADD,$/;"	e	enum:__anon203	file:
+LWORD_NEXTPOS_ADD	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^	LWORD_NEXTPOS_ADD,$/;"	e	enum:__anon1	file:
 MAIN_MENU	src/app_device_cdc_basic.c	/^	MAIN_MENU,$/;"	e	enum:MENU_SELECTION	file:
 MAIN_MENU_KEY	src/app_device_cdc_basic.c	64;"	d	file:
 MAIN_TO_EEPROM	src/app_device_cdc_basic.c	/^	MAIN_TO_EEPROM = 'e',$/;"	e	enum:__anon208	file:
@@ -1139,26 +1142,26 @@ MAIN_TO_PUMP_CTRL	src/app_device_cdc_basic.c	/^	MAIN_TO_PUMP_CTRL = 'p',$/;"	e	e
 MAIN_TO_SNAPSHOT	src/app_device_cdc_basic.c	/^	MAIN_TO_SNAPSHOT = 's',$/;"	e	enum:__anon208	file:
 MAIN_TO_TIME	src/app_device_cdc_basic.c	/^	MAIN_TO_TIME = 't',$/;"	e	enum:__anon208	file:
 MAIN_TO_WIFI	src/app_device_cdc_basic.c	/^	MAIN_TO_WIFI = 'w',$/;"	e	enum:__anon208	file:
-MASK	src/rtcc.c	/^enum MASK{$/;"	g	file:
+MASK	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^enum MASK{$/;"	g	file:
 MAXAMPL_CONTROL	lib/inc/usb_device_audio.h	145;"	d
 MAX_DATA_HIST_LEN	include/http.h	15;"	d
-MAX_DAY	include/rtcc.h	17;"	d
-MAX_ESP_CMD_LEN	src/esp8266.c	59;"	d	file:
-MAX_ESP_N_RANGE	src/esp8266.c	58;"	d	file:
-MAX_HEADER_LEN	src/esp8266.c	211;"	d	file:
-MAX_HOUR	include/rtcc.h	14;"	d
-MAX_HTTP_SIZE	src/esp8266.c	60;"	d	file:
-MAX_MIN	include/rtcc.h	15;"	d
-MAX_MONTH	include/rtcc.h	18;"	d
+MAX_DAY	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	17;"	d
+MAX_ESP_CMD_LEN	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	60;"	d	file:
+MAX_ESP_N_RANGE	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	59;"	d	file:
+MAX_HEADER_LEN	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	231;"	d	file:
+MAX_HOUR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	14;"	d
+MAX_HTTP_SIZE	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	61;"	d	file:
+MAX_MIN	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	15;"	d
+MAX_MONTH	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	18;"	d
 MAX_MSG_LEN	src/app_device_cdc_basic.c	39;"	d	file:
 MAX_MSG_LEN	src/log.c	29;"	d	file:
-MAX_POINTS_IN_CHART	src/esp8266.c	63;"	d	file:
+MAX_POINTS_IN_CHART	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	64;"	d	file:
 MAX_RETRIES	src/eeprom.c	26;"	d	file:
-MAX_SEC	include/rtcc.h	16;"	d
+MAX_SEC	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	16;"	d
 MAX_SNAPSHOT_LEN	include/http.h	16;"	d
 MEM_RAM	lib/inc/usb_device_phdc.h	63;"	d
 MEM_ROM	lib/inc/usb_device_phdc.h	62;"	d
-MEM_SIZE	src/datastorage.c	50;"	d	file:
+MEM_SIZE	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	53;"	d	file:
 MENU_SELECTION	src/app_device_cdc_basic.c	/^enum MENU_SELECTION{$/;"	g	file:
 MICROPHONE	lib/inc/usb_device_audio.h	164;"	d
 MIDISTREAMING	lib/inc/usb_device_audio.h	38;"	d
@@ -1187,10 +1190,10 @@ MIDI_CIN_SYSEX_ENDS_2	lib/inc/usb_device_midi.h	60;"	d
 MIDI_CIN_SYSEX_ENDS_3	lib/inc/usb_device_midi.h	61;"	d
 MIDI_CIN_SYSEX_START	lib/inc/usb_device_midi.h	56;"	d
 MID_CONTROL	lib/inc/usb_device_audio.h	101;"	d
-MIN_SEC	include/rtcc.h	/^enum RTCC_PTR{ MIN_SEC, DAY_HOURS, MONTH_DAY, YEAR};$/;"	e	enum:RTCC_PTR
+MIN_SEC	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^enum RTCC_PTR{ MIN_SEC, DAY_HOURS, MONTH_DAY, YEAR};$/;"	e	enum:RTCC_PTR
 MIXER_UNIT	lib/inc/usb_device_audio.h	53;"	d
 MMC_2	lib/inc/usb_device_msd.h	41;"	d
-MONTH_DAY	include/rtcc.h	/^enum RTCC_PTR{ MIN_SEC, DAY_HOURS, MONTH_DAY, YEAR};$/;"	e	enum:RTCC_PTR
+MONTH_DAY	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^enum RTCC_PTR{ MIN_SEC, DAY_HOURS, MONTH_DAY, YEAR};$/;"	e	enum:RTCC_PTR
 MSDWasLastCBWValid	lib/inc/usb_device_msd.h	576;"	d
 MSD_BUFFER_ADDRESS	lib/src/usb_device.c	/^volatile char msd_buffer[512] @ MSD_BUFFER_ADDRESS;$/;"	v
 MSD_CBWFLAGS_RESERVED_BITS_MASK	lib/inc/usb_device_msd.h	120;"	d
@@ -1267,7 +1270,7 @@ MSD_WRITE10_RX_SECTOR	lib/inc/usb_device_msd.h	110;"	d
 MSD_WRITE10_SECTOR	lib/inc/usb_device_msd.h	109;"	d
 MSD_WRITE10_WAIT	lib/inc/usb_device_msd.h	107;"	d
 MSD_WRITE_10	lib/inc/usb_device_msd.h	89;"	d
-MSG_LEN_ARG_POS	src/esp8266.c	214;"	d	file:
+MSG_LEN_ARG_POS	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	234;"	d	file:
 MUTE_CONTROL	lib/inc/usb_device_audio.h	98;"	d
 MUX_EN	include/user.h	11;"	d
 MediaDetect	lib/inc/usb_device_msd.h	/^    bool  (*MediaDetect)(void * config);$/;"	m	struct:__anon50
@@ -1277,7 +1280,7 @@ ModeDataLen	lib/inc/usb_device_msd.h	/^    uint8_t ModeDataLen;$/;"	m	struct:__a
 ModeParam	lib/inc/usb_device_msd.h	/^	uint8_t ModeParam[];                    \/\/ mode parameters$/;"	m	struct:__anon44
 ModeSenseCB	lib/inc/usb_device_msd.h	/^} ModeSenseCB;$/;"	t	typeref:struct:__anon36
 ModeSenseResponse	lib/inc/usb_device_msd.h	/^} ModeSenseResponse;$/;"	t	typeref:struct:__anon45
-Monday	include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	e	enum:DAY
+Monday	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	e	enum:DAY
 NETWORK_CONNECTION	lib/inc/usb_device_cdc.h	46;"	d
 NEW_DATA	src/app_device_cdc_basic.c	/^	NEW_DATA = 'n',$/;"	e	enum:__anon208	file:
 NEW_SNAPSHOT	src/app_device_cdc_basic.c	/^	NEW_SNAPSHOT = 'n',$/;"	e	enum:__anon208	file:
@@ -1285,7 +1288,7 @@ NEXT_STATE	lib/src/usb_host_local.h	45;"	d
 NEXT_SUBSTATE	lib/src/usb_host_local.h	46;"	d
 NEXT_SUBSUBSTATE	lib/src/usb_host_local.h	47;"	d
 NINC	lib/src/usb_hal_local.h	/^        unsigned short NINC:    1;  \/\/ No Increment of DMA address$/;"	m	struct:_BDT_SETUP::__anon186
-NOT_OVR	src/datastorage.c	36;"	d	file:
+NOT_OVR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	36;"	d	file:
 NO_PROTOCOL	lib/inc/usb_device_cdc.h	68;"	d
 NO_PROTOCOL	lib/inc/usb_device_phdc.h	55;"	d
 NO_STATE	lib/src/usb_host_local.h	51;"	d
@@ -1303,9 +1306,9 @@ NextUSBOut	src/app_device_cdc_basic.c	/^unsigned char    NextUSBOut;$/;"	v
 NextUSBOut	src/app_device_cdc_basic.c	/^unsigned char  NextUSBOut;$/;"	v
 NumBlocks	lib/inc/usb_device_msd.h	/^	uint8_t NumBlocks[4];$/;"	m	struct:__anon43
 OBJ_FILES	Makefile	/^OBJ_FILES := $(addprefix obj\/,$(notdir $(C_FILES:.c=.o)))$/;"	m
-OFFSET_VAR	src/esp8266.c	186;"	d	file:
-OFFSET_VAR	src/esp8266.c	50;"	d	file:
-ORF_MASK	src/datastorage.c	47;"	d	file:
+OFFSET_VAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	206;"	d	file:
+OFFSET_VAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	51;"	d	file:
+ORF_MASK	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	50;"	d	file:
 OTG_FEATURE_A_ALT_HNP_SUPPORT	lib/inc/usb_ch9.h	503;"	d
 OTG_FEATURE_A_HNP_SUPPORT	lib/inc/usb_ch9.h	502;"	d
 OTG_FEATURE_B_HNP_ENABLE	lib/inc/usb_ch9.h	501;"	d
@@ -1485,8 +1488,9 @@ QIC_157	lib/inc/usb_device_msd.h	42;"	d
 RBC	lib/inc/usb_device_msd.h	39;"	d
 RELEASE_TIME	lib/inc/usb_device_audio.h	148;"	d
 REQUEST_CODE_UNDEFINED	lib/inc/usb_device_audio.h	79;"	d
-REQUEST_PUMP_SETOFF	src/esp8266.c	44;"	d	file:
-REQUEST_PUMP_SETON	src/esp8266.c	43;"	d	file:
+REQUEST_PUMP_SETOFF	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	44;"	d	file:
+REQUEST_PUMP_SETON	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	43;"	d	file:
+REQUEST_SET_DATE	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	45;"	d	file:
 RESISTOR_CTRL_MASK	lib/src/usb_hal_local.h	160;"	d
 RESPONSE_AVAILABLE	lib/inc/usb_device_cdc.h	47;"	d
 REVERBERATION_PROCESS	lib/inc/usb_device_audio.h	70;"	d
@@ -1498,10 +1502,11 @@ RPOR_PADDING	include/log.h	22;"	d
 RPOR_TX	include/log.h	21;"	d
 RPOR_TX2	include/esp8266.h	10;"	d
 RPT_PROTOCOL	lib/inc/usb_device_hid.h	47;"	d
-RTCCTriggerAcq	src/user.c	/^void RTCCTriggerAcq()$/;"	f
-RTCC_Alarm_TASK	src/user.c	/^void RTCC_Alarm_TASK()$/;"	f
-RTCC_H	include/rtcc.h	9;"	d
-RTCC_PTR	include/rtcc.h	/^enum RTCC_PTR{ MIN_SEC, DAY_HOURS, MONTH_DAY, YEAR};$/;"	g
+RTCCTriggerAcq	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/user.c	/^void RTCCTriggerAcq()$/;"	f
+RTCC_Alarm_TASK	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^void RTCC_Alarm_TASK();$/;"	p	file:
+RTCC_Alarm_TASK	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/user.c	/^void RTCC_Alarm_TASK()$/;"	f
+RTCC_H	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	9;"	d
+RTCC_PTR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^enum RTCC_PTR{ MIN_SEC, DAY_HOURS, MONTH_DAY, YEAR};$/;"	g
 RV_CONTROL_UNDEFINED	lib/inc/usb_device_audio.h	128;"	d
 RV_ENABLE_CONTROL	lib/inc/usb_device_audio.h	129;"	d
 RX2_PIN	include/esp8266.h	14;"	d
@@ -1537,7 +1542,7 @@ SAMPLING_FREQ_CONTROL	lib/inc/usb_device_audio.h	157;"	d
 SCSI_TRANSPARENT	lib/inc/usb_device_msd.h	37;"	d
 SELECTOR_UNIT	lib/inc/usb_device_audio.h	54;"	d
 SEND_BREAK	lib/inc/usb_device_cdc.h	40;"	d
-SEND_DATA_RPLY_ACK	src/esp8266.c	45;"	d	file:
+SEND_DATA_RPLY_ACK	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	46;"	d	file:
 SEND_ENCAPSULATED_COMMAND	lib/inc/usb_device_cdc.h	32;"	d
 SERIAL_STATE	lib/inc/usb_device_cdc.h	48;"	d
 SERIAL_STATE_NOTIFICATION	lib/inc/usb_device_cdc.h	/^}SERIAL_STATE_NOTIFICATION;   $/;"	t	typeref:struct:__anon112
@@ -1563,7 +1568,7 @@ SOIL_H	include/soil.h	2;"	d
 SPACIOUSNESS_CONTROL	lib/inc/usb_device_audio.h	125;"	d
 SPEAKER	lib/inc/usb_device_audio.h	165;"	d
 SPF	lib/inc/usb_device_msd.h	/^	unsigned SPF:1;                        \/\/ SubPageFormat=0 means Page_0 format$/;"	m	struct:__anon44
-SPLIT_CHAR	src/esp8266.c	212;"	d	file:
+SPLIT_CHAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	232;"	d	file:
 SSF_8020i	lib/inc/usb_device_msd.h	40;"	d
 SSF_8070i	lib/inc/usb_device_msd.h	44;"	d
 STAT	lib/inc/usb_hal_dspic33e.h	/^	        BD_STAT         STAT;$/;"	m	struct:__BDT::__anon17::__anon18
@@ -1580,12 +1585,12 @@ STATE_DETACHED	lib/src/usb_host_local.h	60;"	d
 STATE_HOLDING	lib/src/usb_host_local.h	173;"	d
 STATE_MASK	lib/src/usb_host_local.h	41;"	d
 STATE_RUNNING	lib/src/usb_host_local.h	156;"	d
-STATUS_ADD	src/datastorage.c	/^	STATUS_ADD$/;"	e	enum:__anon203	file:
+STATUS_ADD	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^	STATUS_ADD,$/;"	e	enum:__anon1	file:
 STATUS_MASK	lib/src/usb_hal_local.h	101;"	d
 STATUS_MASK	lib/src/usb_hal_local.h	127;"	d
 STATUS_MASK	lib/src/usb_hal_local.h	74;"	d
-STEP_VAR	src/esp8266.c	187;"	d	file:
-STEP_VAR	src/esp8266.c	51;"	d	file:
+STEP_VAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	207;"	d	file:
+STEP_VAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	52;"	d	file:
 STMSDLED	lib/inc/usb_device_msd.h	60;"	d
 STMSDTRIS	lib/inc/usb_device_msd.h	58;"	d
 STORAGE	include/datastorage.h	/^struct STORAGE{$/;"	s
@@ -1670,7 +1675,7 @@ S_RECOVERED_ERROR	lib/inc/usb_device_msd.h	148;"	d
 S_UNIT_ATTENTION	lib/inc/usb_device_msd.h	153;"	d
 S_VENDOR_SPECIFIC	lib/inc/usb_device_msd.h	156;"	d
 S_VOLUME_OVERFLOW	lib/inc/usb_device_msd.h	160;"	d
-Saturday	include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	e	enum:DAY
+Saturday	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	e	enum:DAY
 Sccstp	lib/inc/usb_device_msd.h	/^    uint8_t Sccstp;                     \/\/ b7 SCCS, b6 ACC, b5-b4 TGPS, b3 3PC, b2-b1 Reserved, b0 Protected$/;"	m	struct:__anon41
 Search	html/search/search.js	/^    this.Search = function(search)$/;"	m	class:SearchResults
 Search	html/search/search.js	/^  this.Search = function()$/;"	m	class:SearchBox
@@ -1710,7 +1715,7 @@ StructQueuePeekTail	lib/inc/usb_struct_queue.h	158;"	d
 StructQueueRemove	lib/inc/usb_struct_queue.h	121;"	d
 StructQueueSpaceAvailable	lib/inc/usb_struct_queue.h	277;"	d
 SubPageCode	lib/inc/usb_device_msd.h	/^	uint8_t SubPageCode;$/;"	m	struct:__anon36
-Sunday	include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	e	enum:DAY
+Sunday	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	e	enum:DAY
 TARGET	Makefile	/^TARGET = bonsai$/;"	m
 TC74_ADD	src/tc74.c	32;"	d	file:
 TEMP_REG	src/tc74.c	33;"	d	file:
@@ -1720,12 +1725,13 @@ THREE_D_ENABLE_CONTROL	lib/inc/usb_device_audio.h	124;"	d
 THREE_D_STEREO_EXTENDER_PROCESS	lib/inc/usb_device_audio.h	69;"	d
 THRESHOLD_CONTROL	lib/inc/usb_device_audio.h	146;"	d
 TIME	src/app_device_cdc_basic.c	/^	TIME,$/;"	e	enum:MENU_SELECTION	file:
+TIME_HEADER_SIZE	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	40;"	d	file:
 TMR1_PRESCALER	src/soil.c	33;"	d	file:
 TMR1_PR_64	src/soil.c	34;"	d	file:
 TMR1_TCY_SRC	src/soil.c	35;"	d	file:
-TMR_PRESCALER	src/esp8266.c	101;"	d	file:
-TMR_PR_256	src/esp8266.c	99;"	d	file:
-TMR_TCY_SRC	src/esp8266.c	100;"	d	file:
+TMR_PRESCALER	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	102;"	d	file:
+TMR_PR_256	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	100;"	d	file:
+TMR_TCY_SRC	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	101;"	d	file:
 TOK_PID	lib/src/usb_hal_local.h	/^        unsigned short TOK_PID: 4;  \/\/ Packit Identifier$/;"	m	struct:_BDT_SETUP::__anon185
 TPL_ALLOW_HNP	lib/inc/usb_host.h	251;"	d
 TPL_CLASS_DRV	lib/inc/usb_host.h	252;"	d
@@ -1780,12 +1786,12 @@ TSUBSTATE_MASK	lib/src/usb_host_local.h	183;"	d
 TURN_OFF_PUMP_KEY	src/app_device_cdc_basic.c	/^	TURN_OFF_PUMP_KEY = '0',$/;"	e	enum:__anon208	file:
 TURN_ON_PUMP_KEY	src/app_device_cdc_basic.c	/^	TURN_ON_PUMP_KEY = '1',$/;"	e	enum:__anon208	file:
 TestUnitReadyCB	lib/inc/usb_device_msd.h	/^} TestUnitReadyCB;$/;"	t	typeref:struct:__anon38
-Thursday	include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	e	enum:DAY
+Thursday	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	e	enum:DAY
 Toggle	html/search/search.js	/^    this.Toggle = function(id)$/;"	m	class:SearchResults
 ToggleRUNLED	lib/inc/usb_device_msd.h	62;"	d
 TransferData	lib/src/usb_host_local.h	/^            HOST_TRANSFER_DATA  TransferData;   \/\/ Event: EVENT_TRANSFER,$/;"	m	union:__anon180::__anon181
 TransferLength	lib/inc/usb_device_msd.h	/^    USB_MSD_TRANSFER_LENGTH TransferLength;$/;"	m	struct:__anon32
-Tuesday	include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	e	enum:DAY
+Tuesday	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	e	enum:DAY
 U1ADDR	lib/inc/usb_hal_pic16f1.h	162;"	d
 U1ADDR	lib/inc/usb_hal_pic18.h	178;"	d
 U1CNFG1	lib/inc/usb_hal_pic16f1.h	179;"	d
@@ -4886,12 +4892,12 @@ WP	lib/inc/usb_device_msd.h	/^    unsigned WP:1;                        \/\/ 0 i
 W_Index	lib/inc/usb_ch9.h	/^        } W_Index;$/;"	m	struct:__anon135::__anon137	typeref:union:__anon135::__anon137::__anon140
 W_Length	lib/inc/usb_ch9.h	/^        } W_Length;$/;"	m	struct:__anon135::__anon137	typeref:union:__anon135::__anon137::__anon142
 W_Value	lib/inc/usb_ch9.h	/^        } W_Value;$/;"	m	struct:__anon135::__anon137	typeref:union:__anon135::__anon137::__anon138
-Wednesday	include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	e	enum:DAY
+Wednesday	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^enum DAY{Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};$/;"	e	enum:DAY
 WriteProtectState	lib/inc/usb_device_msd.h	/^    uint8_t  (*WriteProtectState)(void * config);$/;"	m	struct:__anon50
 XFLAGS	lib/inc/usb_common.h	197;"	d
 XU_CONTROL_UNDEFINED	lib/inc/usb_device_audio.h	152;"	d
 XU_ENABLE_CONTROL	lib/inc/usb_device_audio.h	153;"	d
-YEAR	include/rtcc.h	/^enum RTCC_PTR{ MIN_SEC, DAY_HOURS, MONTH_DAY, YEAR};$/;"	e	enum:RTCC_PTR
+YEAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^enum RTCC_PTR{ MIN_SEC, DAY_HOURS, MONTH_DAY, YEAR};$/;"	e	enum:RTCC_PTR
 _AD	lib/inc/usb_ch9.h	579;"	d
 _AS	lib/inc/usb_ch9.h	578;"	d
 _AddressError	src/traps.c	/^void __attribute__((interrupt,no_auto_psv)) _AddressError(void)$/;"	f
@@ -5050,7 +5056,7 @@ _PUEN	lib/inc/usb_hal_pic18.h	248;"	d
 _PUEN	lib/inc/usb_hal_pic24.h	243;"	d
 _PUEN	lib/inc/usb_hal_pic24e.h	198;"	d
 _PUEN	lib/inc/usb_hal_pic24f.h	243;"	d
-_RTCCInterrupt	src/rtcc.c	/^void __attribute__((interrupt,auto_psv)) _RTCCInterrupt()$/;"	f
+_RTCCInterrupt	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^void __attribute__((interrupt,auto_psv)) _RTCCInterrupt()$/;"	f
 _RWU	lib/inc/usb_ch9.h	562;"	d
 _SELF	lib/inc/usb_ch9.h	561;"	d
 _SPI1Interrupt	src/interrupts.c	/^void _ISR _SPI1Interrupt(void)$/;"	f
@@ -5157,7 +5163,7 @@ _USIE	lib/inc/usb_hal_pic24.h	209;"	d
 _USIE	lib/inc/usb_hal_pic24e.h	159;"	d
 _USIE	lib/inc/usb_hal_pic24f.h	209;"	d
 _USIE	lib/src/usb_pic18_local.h	83;"	d
-_XTAL_FREQ	src/user.c	28;"	d	file:
+_XTAL_FREQ	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/user.c	28;"	d	file:
 __BDT	lib/inc/usb_hal_dspic33e.h	/^typedef union __attribute__ ((packed))__BDT$/;"	u
 __BDT	lib/inc/usb_hal_pic16f1.h	/^typedef union __BDT$/;"	u
 __BDT	lib/inc/usb_hal_pic18.h	/^typedef union __BDT$/;"	u
@@ -5185,9 +5191,9 @@ _hour	src/app_device_cdc_basic.c	/^uint8_t _hour, _minutes, _seconds;$/;"	v
 _light_val	src/app_device_cdc_basic.c	/^uint8_t _soil_wet, _light_val;$/;"	v
 _measurement_index	src/app_device_cdc_basic.c	/^static uint16_t _measurement_index = 0;$/;"	v	file:
 _minutes	src/app_device_cdc_basic.c	/^uint8_t _hour, _minutes, _seconds;$/;"	v
-_next_position	src/datastorage.c	/^static uint16_t _next_position;$/;"	v	file:
+_next_position	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^static uint16_t _next_position;$/;"	v	file:
 _override_client_driver_data	lib/inc/usb_common.h	/^typedef struct _override_client_driver_data$/;"	s
-_overrunflag	src/datastorage.c	/^static uint8_t _overrunflag;$/;"	v	file:
+_overrunflag	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^static uint8_t _overrunflag;$/;"	v	file:
 _seconds	src/app_device_cdc_basic.c	/^uint8_t _hour, _minutes, _seconds;$/;"	v
 _soil_wet	src/app_device_cdc_basic.c	/^uint8_t _soil_wet, _light_val;$/;"	v
 _temperature	src/app_device_cdc_basic.c	/^uint8_t _temperature = 0;$/;"	v
@@ -5467,16 +5473,17 @@ cdc_notice	lib/src/usb_device_cdc.c	/^CDC_NOTICE cdc_notice;$/;"	v
 cdc_rx_len	lib/src/usb_device_cdc.c	/^uint8_t cdc_rx_len;            \/\/ total rx length$/;"	v
 cdc_trf_state	lib/src/usb_device_cdc.c	/^uint8_t cdc_trf_state;         \/\/ States are defined cdc.h$/;"	v
 cdc_tx_len	lib/src/usb_device_cdc.c	/^uint8_t cdc_tx_len;            \/\/ total tx length$/;"	v
-chart_offset	src/esp8266.c	/^uint16_t chart_offset = 0;$/;"	v
-chart_step	src/esp8266.c	/^uint16_t chart_step = 0;$/;"	v
-clearBuffer	src/esp8266.c	/^void clearBuffer()$/;"	f
+chart_offset	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint16_t chart_offset = 0;$/;"	v
+chart_step	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint16_t chart_step = 0;$/;"	v
+clearBuffer	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void clearBuffer()$/;"	f
+clearBuffer	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void clearBuffer();$/;"	p	file:
 clientDriver	lib/inc/usb_host.h	/^   uint8_t                 clientDriver;       \/\/ INTERNAL USE ONLY - Client driver index for sending the event.$/;"	m	struct:_HOST_TRANSFER_DATA
 clientDriver	lib/src/usb_host_local.h	/^    uint8_t                        clientDriver;                   \/\/ Client driver index for events$/;"	m	struct:_USB_ENDPOINT_INFO
 clientDriver	lib/src/usb_host_local.h	/^    uint8_t                        clientDriver;        \/\/ Index into client driver table for this Interface$/;"	m	struct:_USB_INTERFACE_INFO
 clientDriverID	lib/inc/usb_host_audio_v1.h	/^    uint8_t                            clientDriverID;         \/\/ Client driver ID for device requests.$/;"	m	struct:_USB_AUDIO_V1_DEVICE_ID
 clientDriverID	lib/inc/usb_host_cdc.h	/^    uint8_t                                clientDriverID;        \/\/ Client driver ID for device requests.$/;"	m	struct:_USB_CDC_DEVICE_INFO
 clientDriverID	lib/inc/usb_host_hid.h	/^    uint8_t                            clientDriverID;         \/\/ Client driver ID for device requests$/;"	m	struct:_USB_HID_DEVICE_ID
-closeConnection	src/esp8266.c	/^void closeConnection()$/;"	f
+closeConnection	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void closeConnection()$/;"	f
 collectionList	lib/inc/usb_host_hid_parser.h	/^    HID_COLLECTION *collectionList;     \/\/ List of collections, see HID_COLLECTION for details in the structure$/;"	m	struct:_USB_HID_ITEM_LIST
 collectionNesting	lib/inc/usb_host_hid_parser.h	/^    uint8_t collectionNesting;     \/\/ this number tells depth of collection nesting$/;"	m	struct:_USB_HID_DEVICE_RPT_INFO
 collectionStack	lib/inc/usb_host_hid_parser.h	/^    uint8_t *collectionStack;              \/\/ stores the array of parents ids for the collection$/;"	m	struct:_USB_HID_ITEM_LIST
@@ -5486,7 +5493,7 @@ commRequest	lib/inc/usb_host_cdc.h	/^    uint8_t                                
 configDescriptor1	src/usb_descriptors.c	/^const uint8_t configDescriptor1[]={$/;"	v
 configNumber	lib/src/usb_host_local.h	/^    uint8_t                        configNumber;   \/\/ Number of this Configuration.$/;"	m	struct:_USB_CONFIGURATION
 configureADC	src/adc.c	/^void configureADC()$/;"	f
-configureAlarm	src/rtcc.c	/^void configureAlarm()$/;"	f
+configureAlarm	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^void configureAlarm()$/;"	f
 configureI2C	src/i2c.c	/^void configureI2C()$/;"	f
 configureLog	src/log.c	/^void configureLog()$/;"	f
 controlTransferState	lib/src/usb_device.c	/^USB_VOLATILE uint8_t controlTransferState;$/;"	v
@@ -5509,9 +5516,9 @@ currentBufferUser	lib/inc/usb_host.h	/^    uint8_t    currentBufferUser;  \/\/ T
 currentConfiguration	lib/src/usb_host_local.h	/^    uint8_t                currentConfiguration;               \/\/ Value of current Configuration.$/;"	m	struct:_USB_DEVICE_INFO
 currentConfigurationDescriptor	lib/src/usb_host_local.h	/^    USB_CONFIGURATION   *currentConfigurationDescriptor;    \/\/ Descriptor of the current Configuration.$/;"	m	struct:_USB_DEVICE_INFO
 currentConfigurationPower	lib/src/usb_host_local.h	/^    uint16_t                currentConfigurationPower;          \/\/ Max power in milli-amps.$/;"	m	struct:_USB_DEVICE_INFO
-current_http_step	src/esp8266.c	/^enum ESP_SEND_HTTP_STEP current_http_step = ESP_SEND_HEADER;$/;"	v	typeref:enum:ESP_SEND_HTTP_STEP
+current_http_step	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^enum ESP_SEND_HTTP_STEP current_http_step = ESP_SEND_HEADER;$/;"	v	typeref:enum:ESP_SEND_HTTP_STEP
 current_menu_selected	src/app_device_cdc_basic.c	/^static uint8_t current_menu_selected = MAIN_MENU;$/;"	v	file:
-current_state	src/esp8266.c	/^uint8_t current_state = ESP_ST_WAITING_CONNECTION;$/;"	v
+current_state	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint8_t current_state = ESP_ST_WAITING_CONNECTION;$/;"	v
 dCBWDataTransferLength	lib/inc/usb_device_msd.h	/^    uint32_t dCBWDataTransferLength;     \/\/ number of bytes of data host expects to transfer$/;"	m	struct:_USB_MSD_CBW
 dCBWSignature	lib/inc/usb_device_msd.h	/^    uint32_t dCBWSignature;            \/\/ 55 53 42 43h$/;"	m	struct:_USB_MSD_CBW
 dCBWTag	lib/inc/usb_device_msd.h	/^    uint32_t dCBWTag;                    \/\/ sent by host, device echos this value in CSW (associated a CSW with a CBW)$/;"	m	struct:_USB_MSD_CBW
@@ -5618,25 +5625,27 @@ ep_num	lib/inc/usb_device_phdc.h	/^	uint8_t ep_num;$/;"	m	struct:PHDC_TX_ENDPOIN
 ep_num	lib/src/usb_hal_local.h	/^        uint16_t ep_num:      4;  \/\/ Endpoint number$/;"	m	struct:__anon194::__anon195
 errorCode	lib/inc/usb_host_cdc.h	/^    uint8_t                                errorCode;             \/\/ Error code of last error.$/;"	m	struct:_USB_CDC_DEVICE_INFO
 errorCode	lib/src/usb_host_local.h	/^    uint8_t                errorCode;                          \/\/ Error code of last operation.$/;"	m	struct:_USB_DEVICE_INFO
-espAttention	src/esp8266.c	/^void espAttention()$/;"	f
-espEndCmd	src/esp8266.c	/^void espEndCmd()$/;"	f
-espPrint	src/esp8266.c	/^void espPrint(char *str)$/;"	f
-espSendCmd	src/esp8266.c	/^void espSendCmd(uint16_t len)$/;"	f
-espSendCommands	src/esp8266.c	/^uint8_t espSendCommands(uint8_t id, char *args, char *out)$/;"	f
-esp_commands	src/esp8266.c	/^const char esp_commands[][20] = {"CWMODE", "CWJAP", "CIFSR", "CIPMUX", "CIPSERVER"};$/;"	v
-esp_n_rd	src/esp8266.c	/^uint16_t esp_n_rd = 0;$/;"	v
-esp_n_rx	src/esp8266.c	/^uint16_t esp_n_rx = 0;$/;"	v
+espAttention	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void espAttention()$/;"	f
+espEndCmd	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void espEndCmd()$/;"	f
+espPrint	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void espPrint(char *str)$/;"	f	signature:(char *str)
+espPrint	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void espPrint(char *str);$/;"	p	file:	signature:(char *str)
+espSendCmd	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void espSendCmd(uint16_t len)$/;"	f	signature:(uint16_t len)
+espSendCmd	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void espSendCmd(uint16_t len);$/;"	p	file:	signature:(uint16_t len)
+espSendCommands	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint8_t espSendCommands(uint8_t id, char *args, char *out)$/;"	f	signature:(uint8_t id, char *args, char *out)
+esp_commands	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^const char esp_commands[][20] = {"CWMODE", "CWJAP", "CIFSR", "CIPMUX", "CIPSERVER"};$/;"	v
+esp_n_rd	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint16_t esp_n_rd = 0;$/;"	v
+esp_n_rx	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint16_t esp_n_rx = 0;$/;"	v
 esp_n_tx	src/app_device_cdc_basic.c	/^uint16_t esp_n_tx = 0;$/;"	v
-esp_putch	src/esp8266.c	/^void esp_putch(char c)$/;"	f
-esp_rx_buf	src/esp8266.c	/^char esp_rx_buf[ESP_MAX_IN_LEN];$/;"	v
+esp_putch	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void esp_putch(char c)$/;"	f	signature:(char c)
+esp_rx_buf	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^char esp_rx_buf[ESP_MAX_IN_LEN];$/;"	v
 event	lib/src/usb_host_local.h	/^        USB_EVENT               event;          \/\/ Event that occured.$/;"	m	struct:__anon180
 featureBits	lib/inc/usb_host_hid_parser.h	/^    uint16_t                     featureBits;       \/\/ If feature report then length of report in bits$/;"	m	struct:_HID_REPORT
 field	lib/inc/usb_common.h	/^    }field;$/;"	m	union:__anon23	typeref:struct:__anon23::__anon24
 field	lib/src/usb_hal_local.h	/^    }field;$/;"	m	union:__anon191	typeref:struct:__anon191::__anon192
 field	lib/src/usb_hal_local.h	/^    }field;$/;"	m	union:__anon194	typeref:struct:__anon194::__anon195
 files	html/dir_68267d1309a1af8e8297ef4c3efbcdba.html	/^<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"><\/a>$/;"	a
-fillChartData	src/esp8266.c	/^uint16_t fillChartData( uint16_t offset, uint16_t step)$/;"	f
-fillSnapShotData	src/esp8266.c	/^void fillSnapShotData()$/;"	f
+fillChartData	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint16_t fillChartData( uint16_t offset, uint16_t step)$/;"	f	signature:( uint16_t offset, uint16_t step)
+fillSnapShotData	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void fillSnapShotData()$/;"	f
 filler1	lib/inc/usb_hal_dspic33e.h	/^        unsigned char filler1           :2;$/;"	m	struct:__USTAT::__anon20
 filler1	lib/inc/usb_hal_pic16f1.h	/^        unsigned char filler1:1;$/;"	m	struct:__USTAT::__anon132
 filler1	lib/inc/usb_hal_pic16f1.h	/^        unsigned filler1:8;$/;"	m	struct:__BDT::__anon131
@@ -5674,11 +5683,11 @@ func-members	html/soil_8c.html	/^<tr class="heading"><td colspan="2"><h2 class="
 func-members	html/tc74_8c.html	/^<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"><\/a>$/;"	a
 getADCMean	src/adc.c	/^uint8_t getADCMean()$/;"	f
 getADCValues	src/adc.c	/^uint8_t getADCValues(uint8_t n_channels, uint8_t *buffer)$/;"	f
-getChartOffset	src/esp8266.c	/^void getChartOffset()$/;"	f
-getChartSteps	src/esp8266.c	/^void getChartSteps()$/;"	f
+getChartOffset	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void getChartOffset()$/;"	f
+getChartSteps	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void getChartSteps()$/;"	f
 getLight	src/light_sensor.c	/^uint8_t getLight()$/;"	f
 getSoilWet	src/soil.c	/^uint8_t getSoilWet()$/;"	f
-getStatus	src/esp8266.c	/^uint8_t getStatus()$/;"	f
+getStatus	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint8_t getStatus()$/;"	f
 getXPos	html/search/search.js	/^function getXPos(item)$/;"	f
 getYPos	html/search/search.js	/^function getYPos(item)$/;"	f
 getsUSBUSART	lib/src/usb_device_cdc.c	/^uint8_t getsUSBUSART(uint8_t *buffer, uint8_t len)$/;"	f
@@ -5686,8 +5695,8 @@ globals	lib/inc/usb_host_hid_parser.h	/^    HID_GLOBALS              globals;   
 globals	lib/inc/usb_host_hid_parser.h	/^    HID_GLOBALS globals;        \/\/ holds cuurent globals items$/;"	m	struct:_USB_HID_DEVICE_RPT_INFO
 globalsNesting	lib/inc/usb_host_hid_parser.h	/^    uint8_t globalsNesting;        \/\/ On encountering every PUSH item , this is incremented , keep track of current depth of Globals$/;"	m	struct:_USB_HID_DEVICE_RPT_INFO
 globalsStack	lib/inc/usb_host_hid_parser.h	/^    HID_GLOBALS *globalsStack;          \/\/ List of global Items, see HID_GLOBALS for details in the structure$/;"	m	struct:_USB_HID_ITEM_LIST
-goToConnecting	src/esp8266.c	/^void goToConnecting()$/;"	f
-goToSending	src/esp8266.c	/^void goToSending()$/;"	f
+goToConnecting	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void goToConnecting()$/;"	f
+goToSending	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void goToSending()$/;"	f
 haveDesignatorMax	lib/inc/usb_host_hid_parser.h	/^    bool haveDesignatorMax;     \/\/ True if report descriptor has a valid Designator Max$/;"	m	struct:_USB_HID_DEVICE_RPT_INFO
 haveDesignatorMin	lib/inc/usb_host_hid_parser.h	/^    bool haveDesignatorMin;     \/\/ True if report descriptor has a valid Designator Min$/;"	m	struct:_USB_HID_DEVICE_RPT_INFO
 haveStringMax	lib/inc/usb_host_hid_parser.h	/^    bool haveStringMax;         \/\/ True if report descriptor has a valid String Max$/;"	m	struct:_USB_HID_DEVICE_RPT_INFO
@@ -5729,11 +5738,11 @@ interfaceNum	lib/inc/usb_host_cdc.h	/^    uint8_t                            int
 interfaceNum	lib/inc/usb_host_cdc.h	/^    uint8_t                            interfaceNum;         \/\/ communication interface number$/;"	m	struct:_COMM_INTERFACE_DETAILS
 interfaceNum	lib/inc/usb_host_hid.h	/^    uint8_t interfaceNum;                \/\/ interfaceNum - informs HID layer about interface number.$/;"	m	struct:_HID_DATA_DETAILS
 interfaceNumber	lib/inc/usb_host_hid_parser.h	/^    uint8_t interfaceNumber;       \/\/ This stores the interface number for the current report descriptor$/;"	m	struct:_USB_HID_DEVICE_RPT_INFO
-isConnected	src/esp8266.c	/^uint8_t isConnected()$/;"	f
-isConnectionRequest	src/esp8266.c	/^uint8_t isConnectionRequest()$/;"	f
+isConnected	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint8_t isConnected()$/;"	f
+isConnectionRequest	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint8_t isConnectionRequest()$/;"	f
 isConversionFinished	src/adc.c	/^uint8_t isConversionFinished()$/;"	f
 isDevAvailable	src/i2c.c	/^int isDevAvailable(uint8_t device_add)$/;"	f
-isHttpSend	src/esp8266.c	/^uint8_t isHttpSend()$/;"	f
+isHttpSend	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint8_t isHttpSend()$/;"	f
 isRange	lib/inc/usb_host_hid_parser.h	/^    bool                     isRange;       \/\/ True if Usage item has a valid MAX and MIN range$/;"	m	struct:_HID_USAGEITEM
 isRange	lib/inc/usb_host_hid_parser.h	/^    bool                     isRange;   \/\/ If range of String Item is valid$/;"	m	struct:_HID_STRINGITEM
 language_id	lib/inc/usb_ch9.h	/^    uint16_t  language_id;$/;"	m	struct:__anon134
@@ -5761,7 +5770,7 @@ manufacturer	lib/inc/usb_host_android.h	/^    char* manufacturer;         \/\/St
 manufacturer_size	lib/inc/usb_host_android.h	/^    uint8_t manufacturer_size;     \/\/length of manufacturer string$/;"	m	struct:__anon155
 maxCollectionNesting	lib/inc/usb_host_hid_parser.h	/^    uint8_t maxCollectionNesting;  \/\/ Maximum depth of collections$/;"	m	struct:_USB_HID_DEVICE_RPT_INFO
 maxGlobalsNesting	lib/inc/usb_host_hid_parser.h	/^    uint8_t maxGlobalsNesting;     \/\/ Maximum depth of Globals$/;"	m	struct:_USB_HID_DEVICE_RPT_INFO
-maxStorage	src/datastorage.c	/^uint16_t maxStorage()$/;"	f
+maxStorage	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^uint16_t maxStorage()$/;"	f
 max_pkt_size	lib/src/usb_hal_local.h	/^    unsigned int    max_pkt_size;   \/\/ Max packet size of EP$/;"	m	struct:_USB_HAL_PIPE_DATA
 maximum	lib/inc/usb_host_hid_parser.h	/^    uint16_t                     maximum;   \/\/ Specifies the last string index when assigning a group of sequential strings to controls in an array or bitmap$/;"	m	struct:_HID_STRINGITEM
 mediaParameters	lib/inc/usb_device_msd.h	/^    void * mediaParameters;$/;"	m	struct:__anon50
@@ -5776,7 +5785,7 @@ msg_from_esp	src/app_device_cdc_basic.c	/^static uint8_t msg_from_esp[MAX_MSG_LE
 msg_in	src/app_device_cdc_basic.c	/^static uint8_t msg_in[MAX_MSG_LEN];$/;"	v	file:
 msg_len	src/app_device_cdc_basic.c	/^static uint8_t msg_len = 0;$/;"	v	file:
 msg_out	src/app_device_cdc_basic.c	/^static uint8_t msg_out[MAX_MSG_LEN];$/;"	v	file:
-nbytes_to_receive	src/esp8266.c	/^uint16_t nbytes_to_receive = 0;$/;"	v
+nbytes_to_receive	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint16_t nbytes_to_receive = 0;$/;"	v
 next	lib/src/usb_host_local.h	/^    struct _USB_CONFIGURATION   *next;          \/\/ Pointer to next node.$/;"	m	struct:_USB_CONFIGURATION	typeref:struct:_USB_CONFIGURATION::_USB_CONFIGURATION
 next	lib/src/usb_host_local.h	/^    struct _USB_ENDPOINT_INFO   *next;                  \/\/ Pointer to the next node in the list.$/;"	m	struct:_USB_ENDPOINT_INFO	typeref:struct:_USB_ENDPOINT_INFO::_USB_ENDPOINT_INFO
 next	lib/src/usb_host_local.h	/^    struct _USB_INTERFACE_INFO  *next;        \/\/ Pointer to the next node in the list.$/;"	m	struct:_USB_INTERFACE_INFO	typeref:struct:_USB_INTERFACE_INFO::_USB_INTERFACE_INFO
@@ -5861,7 +5870,7 @@ readRegister	src/i2c.c	/^int readRegister(uint8_t device_add, int address, int *
 readSeqRegisters	src/i2c.c	/^int readSeqRegisters(uint8_t device_add, int address, int dlen, uint8_t *dout)$/;"	f
 readSeqRegisters16add	src/i2c.c	/^int readSeqRegisters16add(uint8_t device_add, uint16_t address, int dlen, uint8_t *dout)$/;"	f
 readTemperature	src/tc74.c	/^uint8_t readTemperature()$/;"	f
-readyToSend	src/esp8266.c	/^uint8_t readyToSend()$/;"	f
+readyToSend	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^uint8_t readyToSend()$/;"	f
 recipient	lib/inc/usb_ch9.h	/^                uint8_t    recipient:  5;  \/\/          Recipient of the request$/;"	m	struct:__anon135::__anon145::__anon146::__anon147
 remaining	lib/src/usb_hal_local.h	/^    unsigned int    remaining;      \/\/ Number of bytes remaining to transfer$/;"	m	struct:_USB_HAL_PIPE_DATA
 remainingBytes	lib/inc/usb_host_cdc.h	/^    uint16_t                                remainingBytes;        \/\/ Number uint8_ts remaining to be transferrerd in case user data length is more than 64 uint8_ts$/;"	m	struct:_USB_CDC_DEVICE_INFO
@@ -5894,12 +5903,18 @@ resvd	lib/src/usb_hal_local.h	/^        unsigned short resvd:   6;$/;"	m	struct:
 resvd	lib/src/usb_hal_local.h	/^        unsigned short resvd:   8;$/;"	m	struct:_BDT_SETUP::__anon185
 resvd	lib/src/usb_hal_local.h	/^        unsigned short resvd:   8;$/;"	m	struct:_BDT_SETUP::__anon186
 returnState	lib/inc/usb_host_cdc.h	/^    uint8_t                                returnState;           \/\/ State to return to after performing error handling.$/;"	m	struct:_USB_CDC_DEVICE_INFO
-rtccLock	src/rtcc.c	/^inline void rtccLock()$/;"	f
-rtccReadClock	src/rtcc.c	/^void rtccReadClock( uint8_t *week_day, uint8_t *hour, uint8_t *minutes, uint8_t *seconds)$/;"	f
-rtccReadDate	src/rtcc.c	/^void rtccReadDate(uint8_t *year, uint8_t *month, uint8_t *day)$/;"	f
-rtccSetClock	src/rtcc.c	/^void rtccSetClock( uint8_t week_day, uint8_t hour, uint8_t minutes, uint8_t seconds)$/;"	f
-rtccSetDate	src/rtcc.c	/^void rtccSetDate( uint8_t year, uint8_t month, uint8_t day)$/;"	f
-rtccUnlock	src/rtcc.c	/^inline void rtccUnlock()$/;"	f
+rtccLock	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^void rtccLock();$/;"	p	signature:()
+rtccLock	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^inline void rtccLock()$/;"	f
+rtccReadClock	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^void rtccReadClock( uint8_t *week_day, uint8_t *hour, uint8_t *minutes, uint8_t *seconds);$/;"	p	signature:( uint8_t *week_day, uint8_t *hour, uint8_t *minutes, uint8_t *seconds)
+rtccReadClock	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^void rtccReadClock( uint8_t *week_day, uint8_t *hour, uint8_t *minutes, uint8_t *seconds)$/;"	f	signature:( uint8_t *week_day, uint8_t *hour, uint8_t *minutes, uint8_t *seconds)
+rtccReadDate	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^void rtccReadDate(uint8_t *year, uint8_t *month, uint8_t *day);$/;"	p	signature:(uint8_t *year, uint8_t *month, uint8_t *day)
+rtccReadDate	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^void rtccReadDate(uint8_t *year, uint8_t *month, uint8_t *day)$/;"	f	signature:(uint8_t *year, uint8_t *month, uint8_t *day)
+rtccSetClock	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^void rtccSetClock( uint8_t week_day, uint8_t hour, uint8_t minutes, uint8_t seconds);$/;"	p	signature:( uint8_t week_day, uint8_t hour, uint8_t minutes, uint8_t seconds)
+rtccSetClock	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^void rtccSetClock( uint8_t week_day, uint8_t hour, uint8_t minutes, uint8_t seconds)$/;"	f	signature:( uint8_t week_day, uint8_t hour, uint8_t minutes, uint8_t seconds)
+rtccSetDate	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^void rtccSetDate( uint8_t year, uint8_t month, uint8_t day);$/;"	p	signature:( uint8_t year, uint8_t month, uint8_t day)
+rtccSetDate	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^void rtccSetDate( uint8_t year, uint8_t month, uint8_t day)$/;"	f	signature:( uint8_t year, uint8_t month, uint8_t day)
+rtccUnlock	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	/^void rtccUnlock();$/;"	p	signature:()
+rtccUnlock	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/rtcc.c	/^inline void rtccUnlock()$/;"	f
 sItemData	lib/inc/usb_host_hid_parser.h	/^        int32_t                    sItemData;      \/\/ Item Data is stored in signed format$/;"	m	union:_HID_ITEM_INFO::__anon125
 sd000	src/usb_descriptors.c	/^const struct{uint8_t bLength;uint8_t bDscType;uint16_t string[1];}sd000={$/;"	v	typeref:struct:__anon205
 sd001	src/usb_descriptors.c	/^const struct{uint8_t bLength;uint8_t bDscType;uint16_t string[25];}sd001={$/;"	v	typeref:struct:__anon206
@@ -5939,8 +5954,8 @@ searchData	html/search/functions_9.js	/^var searchData=$/;"	v
 searchData	html/search/pages_0.js	/^var searchData=$/;"	v
 seconds	include/datastorage.h	/^	uint8_t seconds;$/;"	m	struct:STORAGE
 self_power	lib/src/usb_device.c	84;"	d	file:
-sendHTTP	src/esp8266.c	/^void sendHTTP(char *http)$/;"	f
-sendHttpBlock	src/esp8266.c	/^void sendHttpBlock()$/;"	f
+sendHTTP	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void sendHTTP(char *http)$/;"	f	signature:(char *http)
+sendHttpBlock	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^void sendHttpBlock()$/;"	f
 send_0_pkt	lib/src/usb_hal_local.h	/^        uint8_t send_0_pkt:  1; \/\/ Flag indicating when to send a zero-sized packet$/;"	m	struct:__anon191::__anon192
 serial	lib/inc/usb_host_android.h	/^    char* serial;               \/\/String: serial number of the device$/;"	m	struct:__anon155
 serial_size	lib/inc/usb_host_android.h	/^    uint8_t serial_size;           \/\/length of the serial number string$/;"	m	struct:__anon155
@@ -5974,11 +5989,14 @@ src tc74 c File Reference	latex/tc74_8c.tex	/^\\hypertarget{tc74_8c}{}\\section{
 startBit	lib/inc/usb_host_hid_parser.h	/^    uint8_t                     startBit;            \/\/ Starting Bit Position of the report$/;"	m	struct:_HID_REPORTITEM
 state	lib/inc/usb_host_cdc.h	/^    uint8_t                                state;                 \/\/ State machine state of the device.$/;"	m	struct:_USB_CDC_DEVICE_INFO
 status	lib/src/usb_host_local.h	/^    }                           status;$/;"	m	struct:_USB_ENDPOINT_INFO	typeref:union:_USB_ENDPOINT_INFO::__anon174
-storageAppendData	src/datastorage.c	/^void storageAppendData( storage_data to_write )$/;"	f
-storageClean	src/datastorage.c	/^void storageClean()$/;"	f
-storageGetData	src/datastorage.c	/^uint8_t storageGetData( uint16_t index, storage_data *data )$/;"	f
-storageInit	src/datastorage.c	/^void storageInit()$/;"	f
-storageUpdateSt	src/datastorage.c	/^void storageUpdateSt()$/;"	f
+storageAppendData	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^void storageAppendData( storage_data to_write )$/;"	f	signature:( storage_data to_write )
+storageClean	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^void storageClean()$/;"	f
+storageGetData	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^uint8_t storageGetData( uint16_t index, storage_data *data )$/;"	f	signature:( uint16_t index, storage_data *data )
+storageInit	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^void storageInit(uint8_t *hour, uint8_t *min)$/;"	f	signature:(uint8_t *hour, uint8_t *min)
+storageUpdateSt	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^void storageUpdateSt();$/;"	p	file:
+storageUpdateSt	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^void storageUpdateSt(void)$/;"	f	signature:(void)
+storageUpdateStTime	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^void storageUpdateStTime(uint8_t hour, uint8_t min)$/;"	f	signature:(uint8_t hour, uint8_t min)
+storageUpdateStTime	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	/^void storageUpdateStTime(uint8_t hour, uint8_t min);$/;"	p	file:	signature:(uint8_t hour, uint8_t min)
 storage_data	include/datastorage.h	/^typedef struct STORAGE storage_data;$/;"	t	typeref:struct:STORAGE
 string	src/usb_descriptors.c	/^const struct{uint8_t bLength;uint8_t bDscType;uint16_t string[1];}sd000={$/;"	m	struct:__anon205	file:
 string	src/usb_descriptors.c	/^const struct{uint8_t bLength;uint8_t bDscType;uint16_t string[25];}sd001={$/;"	m	struct:__anon206	file:

@@ -15,6 +15,11 @@ class SmartSprinkler:
     def close(self):
         self.s.close()
 
+    def setDate(self, hour, date):
+        if self.connected:
+            self.s.send(b'DGN_DATE_%d_%d_%d_%d_%d_%d#'%\
+                    (hour[0],hour[1],hour[2],date[0],date[1],date[2]))
+
     def setOn(self):
         values = []
         if self.connected:
@@ -56,9 +61,11 @@ class SmartSprinkler:
         return values
 
 if __name__=="__main__":
-    con = SmartSprinkler("192.168.0.201")
+    con = SmartSprinkler("192.168.0.157")
     print(con.setOn())
     time.sleep(2)
     con.setOff()
+    time.sleep(2)
+    con.setDate([20,30,17], [10,7,16])
     con.close()
 
