@@ -6,11 +6,17 @@ from wx.lib.pubsub import setuparg1
 from wx.lib.pubsub import pub
 from ipaddress import ip_address
 
+import matplotlib
+matplotlib.use('WXAgg')
+from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
+from matplotlib.backends.backend_wx import NavigationToolbar2Wx
+from matplotlib.figure import Figure
 
 class MainFrame(wx.Frame):
     def __init__(self):
         wx.Frame.__init__(self, None, title="Smart Sprinkler")
 
+        self.values2plot = [ [], [], [] ]
 
         self.comthread = ComThread()
         self.comthread.start()
@@ -31,6 +37,17 @@ class MainFrame(wx.Frame):
         self.light_value = wx.StaticText(self, label="0")
         self.light_gauge = wx.Gauge(self, style=wx.GA_VERTICAL)
 
+        self.figure = Figure(facecolor='#ece9d8')
+        self.axes = self.figure.add_subplot(111)
+        self.canvas = FigureCanvas(self, -1, self.figure)
+        self.axes.set_xlabel("Time (s)", fontsize=12)
+        self.axes.set_ylabel("Voltage (mV)", fontsize=12)
+        self.axes.autoscale(False)
+
+        #self.canvas.SetInitialSize(size=(600, 600))
+        #self.cid_update = self.canvas.mpl_connect(
+        #    'motion_notify_event', self.update_status_bar)
+
         grid = wx.GridBagSizer(hgap=10, vgap=10)
         grid.Add(self.pump_label, pos=(0,0))
         grid.Add(self.pump_button, pos=(0,1))
@@ -47,6 +64,7 @@ class MainFrame(wx.Frame):
         grid.Add(self.light_value, pos=(2,2), flag = wx.ALIGN_CENTER)
         grid.Add(self.light_gauge, pos=(3,2), flag = wx.ALIGN_CENTER)
 
+        grid.Add(self.canvas, pos=(0,3), span=(4,1))
         self.main_sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.main_sizer.Add(grid, 0, wx.ALL, border=10)
         self.SetSizerAndFit(self.main_sizer)
@@ -74,7 +92,24 @@ class MainFrame(wx.Frame):
 
         return dout
 
+    def redrawPlot(self, data):
+        for i in range(3):
+            self.values2plot[i].append(data[i])
+
+        try:
+            self.axes.clear()
+            self.axes.autoscale(False)
+            self.axes.grid(color='gray', linestyle='dashed')
+            for i in range(3):
+                self.axes.plot( self.values2plot[i] )
+
+            self.canvas.draw()
+            self.axes.autoscale(True)
+        except:
+            print "Error trying to paint"
+
     def update(self, msg):
+        self.redrawPlot(msg.data)
         self.themperature_value.SetLabel('%d degrees'%msg.data[0])
         self.humidity_value.SetLabel('RAW %d'%msg.data[1])
         self.light_value.SetLabel('RAW %d'%msg.data[2])
@@ -90,6 +125,7 @@ class MainFrame(wx.Frame):
         self.light_gauge.SetValue(data[2])
 
         self.SetSizerAndFit(self.main_sizer)
+
 
     def on_close(self, event):
         dlg = wx.MessageDialog(
@@ -121,7 +157,6 @@ class ComThread (threading.Thread):
                 self.envState = smartsprinkler.setOn()
             else:
                 self.envState = smartsprinkler.setOff()
-            print self.envState
             smartsprinkler.close()
             wx.CallAfter(pub.sendMessage, "refresh", self.envState)
             time.sleep(1)

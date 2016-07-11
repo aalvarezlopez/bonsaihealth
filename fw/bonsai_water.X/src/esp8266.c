@@ -151,7 +151,6 @@ uint8_t isConnectionRequest()
 	char *http_source;
 	char *dgn_source;
 	uint8_t date[6];
-	char str[100];
 	ptr = strstr( esp_rx_buf, CONNECTION_REQUEST_MSG);
 	http_source = strstr( esp_rx_buf, CONNECTION_REQUEST_4HTTP);
 	dgn_source = strstr( esp_rx_buf, CONNECTION_REQUEST_4DGN);
@@ -184,8 +183,6 @@ uint8_t isConnectionRequest()
 				if( ptr == NULL){
 					break;
 				}
-				sprintf(str,"%d\n", date[i]);
-				LOG_DBG(str);
 			}
 			rtccSetClock( 0, date[0], date[1], date[2]);
 			rtccSetDate( date[5], date[4], date[3]);

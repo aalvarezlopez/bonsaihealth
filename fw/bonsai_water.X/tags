@@ -481,7 +481,7 @@ ENDPOINT_MASK	lib/inc/usb_hal_pic18.h	166;"	d
 ENDPOINT_MASK	lib/inc/usb_hal_pic24.h	222;"	d
 ENDPOINT_MASK	lib/inc/usb_hal_pic24e.h	172;"	d
 ENDPOINT_MASK	lib/inc/usb_hal_pic24f.h	222;"	d
-END_CHAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	233;"	d	file:
+END_CHAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	230;"	d	file:
 EOM	lib/inc/usb_device_msd.h	/^    	unsigned EOM:1;                        \/\/ End of Medium$/;"	m	struct:__anon47::__anon49
 EP	lib/src/usb_device_local.h	114;"	d
 EP	lib/src/usb_device_local.h	186;"	d
@@ -815,7 +815,7 @@ ESP_ST_CONNECTING	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266
 ESP_ST_SEND_CMD	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_ST_SEND_CMD,$/;"	e	enum:__anon1	file:
 ESP_ST_SEND_MSG	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_ST_SEND_MSG$/;"	e	enum:__anon1	file:
 ESP_ST_WAITING_CONNECTION	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	/^	ESP_ST_WAITING_CONNECTION,$/;"	e	enum:__anon1	file:
-ESP_TIMEOUT_REPLY	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	628;"	d	file:
+ESP_TIMEOUT_REPLY	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	625;"	d	file:
 EVENT_1MS	lib/inc/usb_common.h	/^    EVENT_1MS,$/;"	e	enum:__anon25
 EVENT_ALT_INTERFACE	lib/inc/usb_common.h	/^    EVENT_ALT_INTERFACE,$/;"	e	enum:__anon25
 EVENT_ANDROID_ATTACH	lib/inc/usb_host_android.h	66;"	d
@@ -1148,7 +1148,7 @@ MAX_DATA_HIST_LEN	include/http.h	15;"	d
 MAX_DAY	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	17;"	d
 MAX_ESP_CMD_LEN	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	60;"	d	file:
 MAX_ESP_N_RANGE	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	59;"	d	file:
-MAX_HEADER_LEN	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	231;"	d	file:
+MAX_HEADER_LEN	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	228;"	d	file:
 MAX_HOUR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	14;"	d
 MAX_HTTP_SIZE	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	61;"	d	file:
 MAX_MIN	/home/adrian/projects/auto_riego/fw/bonsai_water.X/include/rtcc.h	15;"	d
@@ -1270,7 +1270,7 @@ MSD_WRITE10_RX_SECTOR	lib/inc/usb_device_msd.h	110;"	d
 MSD_WRITE10_SECTOR	lib/inc/usb_device_msd.h	109;"	d
 MSD_WRITE10_WAIT	lib/inc/usb_device_msd.h	107;"	d
 MSD_WRITE_10	lib/inc/usb_device_msd.h	89;"	d
-MSG_LEN_ARG_POS	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	234;"	d	file:
+MSG_LEN_ARG_POS	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	231;"	d	file:
 MUTE_CONTROL	lib/inc/usb_device_audio.h	98;"	d
 MUX_EN	include/user.h	11;"	d
 MediaDetect	lib/inc/usb_device_msd.h	/^    bool  (*MediaDetect)(void * config);$/;"	m	struct:__anon50
@@ -1306,7 +1306,7 @@ NextUSBOut	src/app_device_cdc_basic.c	/^unsigned char    NextUSBOut;$/;"	v
 NextUSBOut	src/app_device_cdc_basic.c	/^unsigned char  NextUSBOut;$/;"	v
 NumBlocks	lib/inc/usb_device_msd.h	/^	uint8_t NumBlocks[4];$/;"	m	struct:__anon43
 OBJ_FILES	Makefile	/^OBJ_FILES := $(addprefix obj\/,$(notdir $(C_FILES:.c=.o)))$/;"	m
-OFFSET_VAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	206;"	d	file:
+OFFSET_VAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	203;"	d	file:
 OFFSET_VAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	51;"	d	file:
 ORF_MASK	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	50;"	d	file:
 OTG_FEATURE_A_ALT_HNP_SUPPORT	lib/inc/usb_ch9.h	503;"	d
@@ -1568,7 +1568,7 @@ SOIL_H	include/soil.h	2;"	d
 SPACIOUSNESS_CONTROL	lib/inc/usb_device_audio.h	125;"	d
 SPEAKER	lib/inc/usb_device_audio.h	165;"	d
 SPF	lib/inc/usb_device_msd.h	/^	unsigned SPF:1;                        \/\/ SubPageFormat=0 means Page_0 format$/;"	m	struct:__anon44
-SPLIT_CHAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	232;"	d	file:
+SPLIT_CHAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	229;"	d	file:
 SSF_8020i	lib/inc/usb_device_msd.h	40;"	d
 SSF_8070i	lib/inc/usb_device_msd.h	44;"	d
 STAT	lib/inc/usb_hal_dspic33e.h	/^	        BD_STAT         STAT;$/;"	m	struct:__BDT::__anon17::__anon18
@@ -1589,7 +1589,7 @@ STATUS_ADD	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/datastorage.c	
 STATUS_MASK	lib/src/usb_hal_local.h	101;"	d
 STATUS_MASK	lib/src/usb_hal_local.h	127;"	d
 STATUS_MASK	lib/src/usb_hal_local.h	74;"	d
-STEP_VAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	207;"	d	file:
+STEP_VAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	204;"	d	file:
 STEP_VAR	/home/adrian/projects/auto_riego/fw/bonsai_water.X/src/esp8266.c	52;"	d	file:
 STMSDLED	lib/inc/usb_device_msd.h	60;"	d
 STMSDTRIS	lib/inc/usb_device_msd.h	58;"	d
