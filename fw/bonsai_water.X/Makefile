@@ -13,8 +13,8 @@ LD_FLAGS := -mcpu=24FJ64GB106 -omf=elf\
 CC_FLAGS := -mcpu=24FJ64GB106 \
 	-g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off -std=gnu99
 INCLUDE := -I ./include -I ./lib/inc
-CC = /opt/microchip/xc16/v1.11/bin/xc16-gcc
-BIN2HEX = "/opt/microchip/xc16/v1.11/bin"/xc16-bin2hex 
+CC = /opt/microchip/xc16/v1.30/bin/xc16-gcc
+BIN2HEX = "/opt/microchip/xc16/v1.30/bin"/xc16-bin2hex 
 GIT_HASH := $(shell git rev-parse --short HEAD)
 
 

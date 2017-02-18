@@ -133,9 +133,17 @@ void ESP8266Init()
 	IFS0bits.T3IF = 0;
 	// Configure ESP8266
 
+	espSendCommands(ESP_MODE, "3", temp);
+	LOG_DBG("**** MODE ****");
+	LOG_DBG(temp);
+	espSendCommands(ESP_SSID, "\"WLAN_AAL\",\"Introduccion1\"", temp);
+	LOG_DBG("**** SSID ****");
+	LOG_DBG(temp);
+    __delay_ms(5000); /* Wait one second for the connection*/
 	espSendCommands(ESP_IP, NULL, temp);
 	LOG_DBG("**** IP ****");
 	LOG_DBG(temp);
+    __delay_ms(5000); /* Wait one second for the connection*/
 	espSendCommands(ESP_MUX, "1", temp);
 	LOG_DBG("**** MUX****");
 	LOG_DBG(temp);

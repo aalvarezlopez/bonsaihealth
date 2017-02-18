@@ -7,7 +7,7 @@
 /******************************************************************************/
 /* User Function Prototypes                                                   */
 /******************************************************************************/
-#define PUMP PORTGbits.RG6
+#define PUMP OC1R
 #define MUX_EN PORTEbits.RE5
 
 void RTCCTriggerAcq();
